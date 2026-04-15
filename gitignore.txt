@@ -1,5 +1,0 @@
-__pycache__/
-*.pyc
-pipeline.log
-output_report.json
-output_report.html
