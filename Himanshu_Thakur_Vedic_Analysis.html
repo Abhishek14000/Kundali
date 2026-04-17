@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Deep Vedic Astrology Analysis — Himanshu Thakur</title>
+<style>
+  :root {
+    --gold: #b8860b;
+    --deep: #1a1a2e;
+    --mid: #16213e;
+    --accent: #e2b96f;
+    --text: #f0e6d3;
+    --muted: #c9b99a;
+    --highlight: #ffdf80;
+    --danger: #e07070;
+    --good: #80e0a0;
+    --table-head: #2a1a4e;
+    --border: #4a3a20;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--deep);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 40px 30px; }
+
+  .main-header {
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+  }
+  .main-header h1 { font-size: 2.2em; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+  .main-header .subtitle { font-size: 1.05em; color: var(--muted); font-style: italic; }
+  .birth-box {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 10px 30px; margin-top: 18px; font-size: 0.95em; color: var(--accent);
+  }
+  .birth-box span b { color: var(--highlight); }
+
+  .toc { background: var(--mid); border: 1px solid var(--border); border-radius: 8px; padding: 20px 28px; margin-bottom: 40px; }
+  .toc h2 { color: var(--accent); font-size: 1.1em; margin-bottom: 12px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 4px 0; }
+  .toc a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  .toc a:hover { color: var(--highlight); }
+
+  section { margin-bottom: 48px; border-left: 4px solid var(--gold); padding-left: 20px; }
+  section h2 { font-size: 1.35em; color: var(--accent); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  section h3 { font-size: 1.1em; color: var(--highlight); margin: 20px 0 8px; }
+  section h4 { font-size: 1em; color: var(--accent); margin: 14px 0 6px; font-style: italic; }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+  strong { color: var(--highlight); }
+  em { color: var(--muted); font-style: italic; }
+  blockquote {
+    border-left: 3px solid var(--gold); margin: 14px 0; padding: 10px 18px;
+    background: rgba(184,134,11,0.08); border-radius: 0 6px 6px 0;
+    font-style: italic; color: var(--muted);
+  }
+  .highlight-box {
+    background: rgba(224,185,111,0.08); border: 1px solid var(--border);
+    border-radius: 6px; padding: 14px 18px; margin: 14px 0;
+  }
+  .good  { color: var(--good);    font-weight: bold; }
+  .warn  { color: #f0c060;        font-weight: bold; }
+  .danger{ color: var(--danger);  font-weight: bold; }
+
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92em; }
+  th { background: var(--table-head); color: var(--accent); padding: 9px 12px; text-align: left; border-bottom: 2px solid var(--gold); }
+  td { padding: 8px 12px; border-bottom: 1px solid rgba(74,58,32,0.5); vertical-align: top; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  tr:hover td { background: rgba(184,134,11,0.07); }
+
+  .dasha-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .dasha-card { background: var(--mid); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; }
+  .dasha-card .period { font-size: 0.82em; color: var(--muted); }
+  .dasha-card .title { color: var(--accent); font-weight: bold; font-size: 1em; }
+  .dasha-card .body { font-size: 0.9em; margin-top: 6px; }
+
+  .formula {
+    background: #0d0d1a; border: 1px solid var(--gold); border-radius: 6px;
+    padding: 14px 20px; font-family: 'Courier New', monospace; font-size: 0.9em;
+    color: #d0f0b0; margin: 14px 0;
+  }
+  .formula .comment { color: #7a9a7a; }
+
+  .rasi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    max-width: 500px; margin: 16px auto; font-size: 0.82em; text-align: center;
+  }
+  .rasi-cell {
+    background: var(--mid); border: 1px solid var(--border); padding: 10px 6px;
+    min-height: 70px; position: relative;
+  }
+  .rasi-cell .house-num { font-size: 0.7em; color: var(--muted); display: block; }
+  .rasi-cell .sign-name { font-size: 0.75em; color: var(--gold); display: block; }
+  .rasi-cell .planets { color: var(--highlight); font-size: 0.85em; }
+  .rasi-cell.lagna-cell { border: 2px solid var(--gold); }
+  .center-box { grid-column: 2 / 4; grid-row: 2 / 4; background: rgba(184,134,11,0.05); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  .center-box .chart-title { color: var(--accent); font-size: 0.9em; font-weight: bold; }
+  .center-box .chart-sub   { color: var(--muted);  font-size: 0.78em; }
+
+  .footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85em; font-style: italic; }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    section { border-left-color: #888; }
+    .formula { background: #f0f0f0; color: #000; border-color: #888; }
+    blockquote { background: #f8f8f8; }
+    th { background: #e0e0e0; color: #000; }
+    section h2 { color: #333; border-bottom-color: #888; }
+    section h3 { color: #555; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════════════════════════════════════════════════════════ HEADER -->
+<div class="main-header">
+  <h1>✦ Deep Vedic Astrology Analysis ✦</h1>
+  <div class="subtitle">Based on P.V.R. Narasimha Rao's <em>Vedic Astrology: An Integrated Approach</em> (2001) — Complete Scan &amp; Application</div>
+  <div class="birth-box">
+    <span><b>Name:</b> Himanshu Thakur</span>
+    <span><b>Date:</b> 19 March 2002</span>
+    <span><b>Time:</b> 4:00:00 AM IST</span>
+    <span><b>Place:</b> Ballia, UP, India (28°11'N, 79°22'E)</span>
+    <span><b>Lagna:</b> Capricorn 17°07'13"</span>
+    <span><b>Ayanamsa:</b> Lahiri 23°53'15"</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TOC -->
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Complete Planetary Positions — Rasi &amp; D-9 Charts</a></li>
+    <li><a href="#s2">Capricorn Lagna — Personality, Body &amp; Soul</a></li>
+    <li><a href="#s3">Functional Nature of Planets for Capricorn Lagna</a></li>
+    <li><a href="#s4">Strength Analysis of Key Planets</a></li>
+    <li><a href="#s5">Key Yogas (Per Narasimha Rao Ch. 11)</a></li>
+    <li><a href="#s6">Ashtakavarga — House-by-House Bindus Analysis</a></li>
+    <li><a href="#s7">Aspects (Graha Drishti &amp; Rasi Drishti) — Per NR Ch. 10</a></li>
+    <li><a href="#s8">Navamsha (D-9) Deep Analysis</a></li>
+    <li><a href="#s9">Baadhaka Analysis — Per NR Ch. 13.3</a></li>
+    <li><a href="#s10">Vimsottari Dasha Analysis — Per NR Ch. 16</a></li>
+    <li><a href="#s11">Nakshatra Analysis (Krittika &amp; Sravana)</a></li>
+    <li><a href="#s12">Divisional Chart Summary (D-10 Career, D-7 Progeny)</a></li>
+    <li><a href="#s13">Remedial Measures — Per NR Ch. 34</a></li>
+    <li><a href="#s14">Final Synthesis &amp; Life Overview</a></li>
+  </ol>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ S1 -->
+<section id="s1">
+  <h2>Part 1 — Complete Planetary Positions</h2>
+
+  <h3>Rasi Chart (D-1)</h3>
+
+  <!-- Visual Rasi Chart (South Indian style) -->
+  <div class="rasi-grid">
+    <!-- Row 1 -->
+    <div class="rasi-cell">
+      <span class="house-num">H12</span>
+      <span class="sign-name">Sagittarius</span>
+      <span class="planets">—</span>
+    </div>
+    <div class="rasi-cell lagna-cell">
+      <span class="house-num">H1 (Lagna)</span>
+      <span class="sign-name">Capricorn</span>
+      <span class="planets">ASC</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H2</span>
+      <span class="sign-name">Aquarius</span>
+      <span class="planets">Me</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H3</span>
+      <span class="sign-name">Pisces</span>
+      <span class="planets">Su · Ve★</span>
+    </div>
+    <!-- Row 2 -->
+    <div class="rasi-cell">
+      <span class="house-num">H11</span>
+      <span class="sign-name">Scorpio</span>
+      <span class="planets">Ke</span>
+    </div>
+    <div class="center-box">
+      <span class="chart-title">RASI CHART</span>
+      <span class="chart-sub">Himanshu Thakur</span>
+      <span class="chart-sub">19 Mar 2002, 4:00 AM</span>
+      <span class="chart-sub">Ballia, UP</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H4</span>
+      <span class="sign-name">Aries</span>
+      <span class="planets">Mo · Ma</span>
+    </div>
+    <!-- Row 3 (center cells absorbed) -->
+    <div class="rasi-cell">
+      <span class="house-num">H10</span>
+      <span class="sign-name">Libra</span>
+      <span class="planets">—</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H5</span>
+      <span class="sign-name">Taurus</span>
+      <span class="planets">Sa · Ra</span>
+    </div>
+    <!-- Row 4 -->
+    <div class="rasi-cell">
+      <span class="house-num">H9</span>
+      <span class="sign-name">Virgo</span>
+      <span class="planets">—</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H8</span>
+      <span class="sign-name">Leo</span>
+      <span class="planets">—</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H7</span>
+      <span class="sign-name">Cancer</span>
+      <span class="planets">—</span>
+    </div>
+    <div class="rasi-cell">
+      <span class="house-num">H6</span>
+      <span class="sign-name">Gemini</span>
+      <span class="planets">Ju</span>
+    </div>
+  </div>
+  <p style="text-align:center; font-size:0.8em; color:var(--muted);">★ = Exalted &nbsp;|&nbsp; Lagna = Ascendant</p>
+
+  <h3>Planetary Positions Table</h3>
+  <div class="table-wrap">
+  <table>
+    <tr>
+      <th>Planet</th><th>Sign</th><th>Degrees</th><th>Nakshatra &amp; Pada</th>
+      <th>House (from Cap Lagna)</th><th>Status &amp; Notes</th>
+    </tr>
+    <tr>
+      <td><strong>ASC</strong></td><td>Capricorn</td><td>17°07'13"</td>
+      <td>Sravana 3rd Pada</td><td>H1</td>
+      <td>Lagna lord = Saturn (H5)</td>
+    </tr>
+    <tr>
+      <td><strong>Sun</strong></td><td>Pisces</td><td>04°16'28"</td>
+      <td>Uttarabhadra 1st Pada</td><td>H3</td>
+      <td>H8 lord in H3; Uttarabhadra = Saturn-ruled nakshatra</td>
+    </tr>
+    <tr>
+      <td><strong>Moon</strong></td><td>Aries</td><td>27°29'57"</td>
+      <td>Krittika 1st Pada</td><td>H4 — Rasi sign</td>
+      <td>H7 lord; Krittika = Sun-ruled nakshatra</td>
+    </tr>
+    <tr>
+      <td><strong>Mars</strong></td><td>Aries</td><td>18°17'37"</td>
+      <td>Bharani 2nd Pada</td><td>H4</td>
+      <td><span class="good">Own sign</span> (Aries = Mars's sign); Bharani = Venus-ruled nak</td>
+    </tr>
+    <tr>
+      <td><strong>Mercury</strong></td><td>Aquarius</td><td>17°11'33"</td>
+      <td>Satabhisa 4th Pada</td><td>H2</td>
+      <td>H6+H9 lord in H2; Satabhisa = Rahu-ruled nakshatra</td>
+    </tr>
+    <tr>
+      <td><strong>Jupiter</strong></td><td>Gemini</td><td>12°12'47"</td>
+      <td>Ardra 2nd Pada</td><td>H6</td>
+      <td>H3+H12 lord in H6; enemy sign (Gem = Mercury's sign); Ardra = Rahu-ruled nak</td>
+    </tr>
+    <tr>
+      <td><strong>Venus</strong></td><td>Pisces</td><td>19°38'15"</td>
+      <td>Revati 1st Pada</td><td>H3</td>
+      <td><span class="good">EXALTED</span> (Pi = Venus's exaltation sign); H5+H10 lord = <strong>Raja Yoga Karaka</strong>; Revati = Mercury-ruled nak</td>
+    </tr>
+    <tr>
+      <td><strong>Saturn</strong></td><td>Taurus</td><td>15°31'17"</td>
+      <td>Rohini 2nd Pada</td><td>H5 — Lagna Lord</td>
+      <td>Friendly sign (Taurus = Venus's sign; Venus-Saturn are friends); Rohini = Moon-ruled nak; <strong>VARGOTTAMA</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Rahu [R]</strong></td><td>Taurus</td><td>28°23'44"</td>
+      <td>Mrigasira 2nd Pada</td><td>H5</td>
+      <td>With Saturn (lagna lord); Mrigasira = Mars-ruled nakshatra</td>
+    </tr>
+    <tr>
+      <td><strong>Ketu [R]</strong></td><td>Scorpio</td><td>28°23'44"</td>
+      <td>Jyeshtha 4th Pada</td><td>H11</td>
+      <td>In baadhaka sthana; Jyeshtha = Mercury-ruled nakshatra</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>D-9 (Navamsha) Positions</h3>
+  <p><em>Calculated using Parasara system: Movable rasi → from Aries, Fixed rasi → from Capricorn, Dual rasi → from Libra.</em></p>
+  <p><strong>D-9 Lagna: Virgo</strong> (ASC at Capricorn 17°07' → 6th navamsha of movable Cp starting from Ar = Virgo)</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Rasi Sign</th><th>D-9 Sign</th><th>D-9 House (Virgo Lagna)</th><th>D-9 Status</th></tr>
+    <tr><td><strong>ASC</strong></td><td>Capricorn</td><td><strong>Virgo</strong></td><td>H1</td><td>D-9 lagna lord = Mercury</td></tr>
+    <tr><td><strong>Sun</strong></td><td>Pisces</td><td>Scorpio</td><td>H3</td><td>In Mars-owned sign — active, probing nature</td></tr>
+    <tr><td><strong>Moon</strong></td><td>Aries</td><td>Sagittarius</td><td>H4</td><td>In Jupiter-owned sign — philosophical emotions</td></tr>
+    <tr><td><strong>Mars</strong></td><td>Aries</td><td>Virgo</td><td>H1</td><td>D-9 lagna occupied; Mars in enemy-neutral sign</td></tr>
+    <tr><td><strong>Mercury</strong></td><td>Aquarius</td><td>Gemini</td><td>H10</td><td>In own sign in D-9 H10 — strong for career communication</td></tr>
+    <tr><td><strong>Jupiter</strong></td><td>Gemini</td><td>Capricorn</td><td>H5</td><td><span class="danger">DEBILITATED in D-9</span> (Capricorn = Jupiter's debil. sign)</td></tr>
+    <tr><td><strong>Venus</strong></td><td>Pisces</td><td><strong>Pisces</strong></td><td>H7</td><td><span class="good">EXALTED in D-9 + VARGOTTAMA</span> — soul-level excellence in relationships &amp; dharma</td></tr>
+    <tr><td><strong>Saturn</strong></td><td>Taurus</td><td><strong>Taurus</strong></td><td>H9</td><td><span class="good">VARGOTTAMA</span> — exceptional strength; same sign in rasi &amp; D-9</td></tr>
+    <tr><td><strong>Rahu</strong></td><td>Taurus</td><td>Virgo</td><td>H1</td><td>In D-9 lagna with Mars — intensifies ambition &amp; karma</td></tr>
+    <tr><td><strong>Ketu</strong></td><td>Scorpio</td><td>Virgo</td><td>H1</td><td>Also in D-9 lagna — past-life karma manifesting through self</td></tr>
+  </table>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Standout D-9 findings:</strong></p>
+    <ul>
+      <li><strong>Venus in Pisces (D-9 H7)</strong> — VARGOTTAMA + EXALTED. Per NR (Ch. 40 re: navamsha): Vargottamaamsa means a planet occupies the same sign in rasi and navamsa, giving it enormous inherent strength. Venus is already the Raja Yoga Karaka; now with vargottama status in exaltation, it is the single most powerful planet in the chart. Marriages and partnerships are karmically blessed at the deepest level.</li>
+      <li><strong>Saturn in Taurus (D-9 H9)</strong> — VARGOTTAMA. The lagna lord is vargottama: the body, self, and vitality are all strengthened by this placement. Consistent with long life and strong constitution.</li>
+      <li><strong>Jupiter in Capricorn (D-9 H5) — DEBILITATED</strong>. The natural significator of children, dharma, and higher wisdom is debilitated in navamsha. This creates challenges around children and formal spiritual wisdom, though the D-9 H5 position (Capricorn) places Jupiter here with potential for neecha bhanga if Mars or Saturn aspect.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S2 -->
+<section id="s2">
+  <h2>Part 2 — Capricorn Lagna — Personality, Body &amp; Soul</h2>
+
+  <blockquote>Narasimha Rao (Ch. 2, Rasis, p. 19–23): <em>"Makara (Capricorn) is a movable, earthy, feminine, dry, cold, nocturnal sign. Its symbol is the crocodile/sea-goat. It is ruled by Saturn and is the exaltation sign of Mars. It rules the knees. Makaras are hard workers, persistent, methodical, and politically astute."</em></blockquote>
+
+  <h3>Capricorn Lagna — Core Characteristics</h3>
+  <p>With <strong>Capricorn rising</strong>, Himanshu's entire personality and life experience is mediated through Saturnian themes: discipline, responsibility, ambition, and the slow but certain accumulation of achievement. Capricorn is a cardinal earth sign — it <em>initiates</em> material endeavors and builds lasting structures.</p>
+
+  <h3>Physical Constitution</h3>
+  <p>Capricorn ascendant produces a lean, somewhat angular frame with distinctive features. The lagna lord Saturn in Taurus (H5) gives durability and staying power to the constitution, but the Rahu conjunction with Saturn can bring skin issues, nervous tension, or chronic joint-related concerns (Saturn rules bones/joints for Capricorn). The nakshatra of the ASC is <strong>Sravana</strong> (3rd pada, ruled by Moon), adding receptivity and a deep ear for learning to the outer personality.</p>
+
+  <h3>Tripod of Life (Per NR, Ch. 16.5.3)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Reference Point</th><th>Planet/Sign</th><th>Significance</th></tr>
+    <tr><td><strong>Lagna (Body)</strong></td><td>Capricorn — ASC 17°07'</td><td>H1 lord Saturn in H5 — physical vitality channeled through learning, creativity; bones/joints need care</td></tr>
+    <tr><td><strong>Moon (Mind)</strong></td><td>Aries — H4 (Rasi sign)</td><td>The mind is fiery, independent, impulsive; Moon in Krittika (Sun-ruled) gives penetrating intelligence and a no-nonsense attitude</td></tr>
+    <tr><td><strong>Sun (Soul)</strong></td><td>Pisces — H3 (Sun-sign)</td><td>Soul expresses through Piscean themes — compassion, dissolution, spirituality, service; the inner motivator is transcendence</td></tr>
+  </table>
+  </div>
+
+  <p>Per NR: <em>"The results experienced due to soul (Sun) last long and change slowly. The results experienced due to mind (Moon) last shorter and change fast."</em> For Himanshu, the Aries Moon (fire, action) operates at a fast, impulsive pace while the Pisces Sun (water, intuition) slowly shapes deeper soul-level direction toward spiritual integration.</p>
+
+  <h3>Sravana Nakshatra Lagna</h3>
+  <p>The ascendant falls in <strong>Sravana nakshatra</strong> (spanning 10° to 23°20' Capricorn), ruled by <strong>Moon</strong>. Sravana's deity is Vishnu (the preserver), and its symbol is an ear. Per classical texts cited by NR: one born in Sravana is a <em>listener</em>, a <em>learner</em>, and someone who acquires knowledge from a wide variety of sources. This adds an unusual dimension to a Capricorn lagna — beneath the hard-working, goal-oriented exterior lies a person who absorbs information deeply, processes it quietly, and often surprises others with the breadth of what he knows. The Moon as nakshatra lord of the ASC links the body/outer self strongly to the 7th house (Cancer, ruled by Moon) — partnerships and marriage will shape and transform the native's physical identity and public face significantly.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S3 -->
+<section id="s3">
+  <h2>Part 3 — Functional Nature of Planets for Capricorn Lagna</h2>
+
+  <blockquote>Narasimha Rao (Ch. 13, p. 143): <em>"The lords of trines from lagna are functional benefics. The lords of 3rd, 6th and 11th are functional malefics for most lagnas. Natural malefics owning kendras are mostly neutral."</em></blockquote>
+
+  <h3>House Ownership Matrix</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Houses Owned</th><th>Functional Role</th><th>Analysis</th></tr>
+    <tr>
+      <td><strong>Venus</strong></td>
+      <td>H5 (Taurus) + H10 (Libra)</td>
+      <td><span class="good">RAJA YOGA KARAKA ★★★</span></td>
+      <td>Per NR: "If the lord of a quadrant is associated with the lord of a trine, that brings the combined blessings of Lakshmi and Vishnu." Venus alone rules <em>both</em> a trikona (H5 = dharma) and a kendra (H10 = karma). For Capricorn, Venus is the singular Raja Yoga Karaka — the planet that most directly enables power, prosperity, and recognition. Venus is also <strong>exalted in Pisces (H3)</strong> and <strong>vargottama in D-9</strong>. This makes Venus the supreme benefactor in the entire chart.</td>
+    </tr>
+    <tr>
+      <td><strong>Saturn</strong></td>
+      <td>H1 (Capricorn) + H2 (Aquarius)</td>
+      <td><span class="good">Functional Benefic (Lagna Lord)</span></td>
+      <td>As lagna lord, Saturn is always a primary benefic. Also ruling H2 (wealth, speech, family), Saturn has dual ownership that makes the accumulation of wealth and the building of a secure life a fundamental Saturn-period promise. Saturn is <strong>vargottama</strong> — exceptional dignity.</td>
+    </tr>
+    <tr>
+      <td><strong>Mercury</strong></td>
+      <td>H6 (Gemini) + H9 (Virgo)</td>
+      <td><span class="warn">Mixed (9th lord = benefic, 6th lord = malefic)</span></td>
+      <td>Mercury's 9th lordship (dharma trikona) makes it a strong functional benefic. However, its simultaneous ownership of H6 (dusthana) dilutes this. The net effect depends on Mercury's position: Mercury in H2 (Aquarius, Saturn's sign) is reasonably placed and leans toward benefic expression — communicating dharmic wisdom, earning through service-related knowledge.</td>
+    </tr>
+    <tr>
+      <td><strong>Mars</strong></td>
+      <td>H4 (Aries) + H11 (Scorpio)</td>
+      <td><span class="warn">Mixed — Baadhaka Lord</span></td>
+      <td>Mars rules a kendra (H4) — as a natural malefic owning a kendra, it is largely neutral. However, Mars is also one of the two <strong>baadhaka lords</strong> for Capricorn lagna (the other being Ketu). See Part 9. Mars in own sign (Aries, H4) is powerful but brings restlessness and intensity to home/mother matters.</td>
+    </tr>
+    <tr>
+      <td><strong>Moon</strong></td>
+      <td>H7 (Cancer)</td>
+      <td><span class="warn">Kendradhipati — Mixed</span></td>
+      <td>Natural benefic (Moon) owning a kendra (H7) creates kendradhipati dosha — it becomes somewhat malefic for the lagna. Moon in Aries (H4) in Krittika nakshatra is in a Martian environment, making it intense and less naturally benefic. Moon's periods will activate marriage/partnership themes (H7) but with some turbulence.</td>
+    </tr>
+    <tr>
+      <td><strong>Sun</strong></td>
+      <td>H8 (Leo)</td>
+      <td><span class="danger">Functional Malefic (8th lord)</span></td>
+      <td>Sun rules the 8th house (obstacles, hidden matters, transformation, longevity). As the 8th lord, Sun's periods bring challenges, sudden changes, and transformative upheavals. Sun is in Pisces (H3) — 8th lord in 3rd creates some "mrityu-like" themes around initiative and courage. However, Sun's nakshatra (Uttarabhadra, Saturn-ruled) moderates this somewhat.</td>
+    </tr>
+    <tr>
+      <td><strong>Jupiter</strong></td>
+      <td>H3 (Pisces) + H12 (Sagittarius)</td>
+      <td><span class="danger">Functional Malefic (both dusthana lords)</span></td>
+      <td>Jupiter owns H3 (3rd = boldness/siblings, considered mildly malefic) and H12 (12th = losses, moksha). Both are dusthanas. Per NR: dusthana lords in dusthanas create Viparita effects. Jupiter in H6 (Gemini) = 12th lord in a dusthana — a component of Viparita Raja Yoga (see Part 5). Despite being a natural benefic, Jupiter is a functional malefic for this lagna and must be treated with caution in dasha analysis.</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Key Insight:</strong> Venus being both the 5th and 10th lord for Capricorn — while also being <em>exalted</em> and <em>vargottama</em> — is the single most extraordinary feature of this chart. This is the highest possible manifestation of the Raja Yoga Karaka principle described by Narasimha Rao. The native's peak success, recognition, and dharmic fulfillment will all arrive through Venus-activated periods and Venus-connected themes: beauty, arts, finance, relationships, luxury, creativity.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S4 -->
+<section id="s4">
+  <h2>Part 4 — Strength Analysis of Key Planets</h2>
+
+  <h3>♀ Venus — The Supreme Benefactor</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Pisces 19°38'15", Revati 1st pada, H3 (3rd from Capricorn lagna)</p>
+    <p><strong>Dignity in Rasi:</strong> <span class="good">EXALTED</span> — Pisces is Venus's exaltation sign (deepest exaltation at 27° Pisces). At 19°38', Venus is strongly exalted though not at the peak degree. This is the <em>uccha</em> (peak dignity) state, where Venus's significations of beauty, art, harmony, prosperity, and refined intelligence function at maximum capacity.</p>
+    <p><strong>Dignity in D-9:</strong> <span class="good">VARGOTTAMA + EXALTED</span> — Venus in Pisces in both the rasi and navamsha charts. Per NR (p. 127): "A planet in vargottamaamsa occupies the same sign in rasi and navamsha — this amplifies the planet's inherent nature enormously." Venus's soul-level quality is of the highest order.</p>
+    <p><strong>Combustion check:</strong> Sun at 4°16' Pisces, Venus at 19°38' Pisces → difference = 15°22'. Classical combustion limit for Venus = 10°. Venus is <span class="good">NOT combust</span> (15°22' &gt; 10°). Full exaltation power intact.</p>
+    <p><strong>Functional role:</strong> Raja Yoga Karaka — 5th lord (H5 = children, intellect, creativity, poorva punya) + 10th lord (H10 = career, status, authority).</p>
+    <p><strong>Key finding per NR's framework:</strong> "The lords of 9th and 10th forming a yoga is the Dharma-Karmadhipati Yoga — excellent." Though this is 5th+10th, the principle is identical: the most significant trine (H5 = dharma sthana from Sun's perspective) joined with the most significant kendra (H10 = karma sthana). As Venus <em>alone</em> rules both, it functions as a self-contained Raja Yoga — no conjunction needed. This is the pinnacle of yogakaraka status.</p>
+  </div>
+
+  <h3>♄ Saturn — Lagna Lord, Vargottama</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Taurus 15°31'17", Rohini 2nd pada, H5 (5th from lagna)</p>
+    <p><strong>Dignity:</strong> Taurus is owned by Venus (Saturn and Venus are natural friends). Saturn is in <em>Mitra avastha</em> (friendly state). This is a stable, supportive environment for Saturn to function well.</p>
+    <p><strong>Vargottama:</strong> Saturn is in Taurus in both rasi and navamsha. Per NR: this gives Saturn exceptional inherent strength — the lagna lord's vitality is unusually robust. The body and physical self will generally hold up well through life's challenges.</p>
+    <p><strong>Saturn in H5 (Rohini nakshatra, Moon-ruled):</strong> Lagna lord in 5th = intelligence, learning, creativity. Rohini is the nakshatra of Moon — its themes include beauty, abundance, fertility, and material creation. Saturn in Rohini gives disciplined creativity, methodical application of intelligence, and building tangible things step by step.</p>
+    <p><strong>Rahu conjunction:</strong> Saturn (lagna lord) is conjoined with Rahu in H5. This is the most challenging feature of the chart. Rahu amplifies and distorts Saturn's significations. Potential effects: unusual ambitions, unconventional learning paths, disruption to continuity (H5 = education, children, speculative ventures). Per NR: nodes conjunct with planets intensify and sometimes derange that planet's natural significations.</p>
+    <p><strong>Ashtakavarga of H5 = 20 bindus</strong> (weakest house in the chart) — amplifies challenges here.</p>
+  </div>
+
+  <h3>☽ Moon — Mind, Rasi Lord</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Aries 27°29'57", Krittika 1st pada, H4</p>
+    <p><strong>Dignity:</strong> Aries is Mars's sign. Moon in Aries is in an enemy/difficult sign (Moon prefers water signs or Taurus). However, Krittika 1st pada is actually located in Aries (Krittika spans 26°40' Aries to 10°00' Taurus). Krittika is ruled by Sun — so Moon here picks up solar qualities: assertiveness, pride, leadership spirit, and spiritual fire (agni).</p>
+    <p><strong>Moon as rasi lord:</strong> The Moon sign is Aries — Himanshu is an Aries-Moon person emotionally: direct, courageous, occasionally impatient, prone to quick enthusiasm and quick frustration. The rasi lord Mars being in the same sign amplifies the fiery, action-oriented nature of the mind.</p>
+    <p><strong>Position from Sun:</strong> Moon in Aries, Sun in Pisces. Moon is <em>apoklima</em> (cadent) from Sun (H3 from Sun's position counting from the 1st). Per NR (Ch. 11, General Guidelines): "If Moon is in an apoklima from Sun, then one may possess a lot of wealth, intelligence and skills." This is a positive configuration for material intelligence and wealth accumulation.</p>
+    <p><strong>Chandrashtama concern:</strong> As Moon is the Rasi Lord (Aries), during Rahu MD the native should be careful of periods when Rahu transits Aries (8th from Moon = Scorpio transit, or when planets transit over Moon in Aries).</p>
+  </div>
+
+  <h3>♂ Mars — Own Sign, Baadhaka Lord</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Aries 18°17'37", Bharani 2nd pada, H4</p>
+    <p><strong>Dignity:</strong> <span class="good">Own sign (Aries)</span> — Mars in Aries is at peak natural dignity. Mars rules Bharani nakshatra's deity Yama (god of death), and Mars in Bharani gives themes of transformation, sexual energy, and the courage to face endings. The combination of own-sign Mars in a Venus-ruled nakshatra gives Mars both strength and a softening creative element.</p>
+    <p><strong>Conjunction with Moon:</strong> Moon + Mars = Chandra-Mangala Yoga (see Part 5).</p>
+    <p><strong>Baadhaka role:</strong> Mars rules both the baadhaka sthana (H11 = Scorpio, for Capricorn lagna) and is one of its lords. Mars in own sign in H4 (a kendra) is powerful, but its role as baadhaka means Mars's periods can bring obstacles, especially related to home/property (H4) and gains (H11) simultaneously.</p>
+  </div>
+
+  <h3>☿ Mercury — 9th Lord in H2</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Aquarius 17°11'33", Satabhisa 4th pada, H2</p>
+    <p><strong>Dignity:</strong> Aquarius is Saturn's sign. Mercury and Saturn are natural friends — Mercury is in <em>Mitra avastha</em> here. Satabhisa (100 healers) is Rahu's nakshatra, adding an unconventional, scientific, research-oriented quality to Mercury's intelligence. This Mercury thinks outside the box, is interested in technology, healing, and hidden knowledge.</p>
+    <p><strong>As 9th lord in 2nd:</strong> The dharma trikona lord (H9) placed in H2 (speech, wealth, family) = dharmic wealth. Mercury in H2 suggests that wealth comes through dharmic work, communication, teaching, and knowledge-sharing. As H6 lord in H2, there's also an element of service/competition driving wealth-building.</p>
+    <p><strong>From Moon:</strong> Mercury is in H11 from Moon (Aries → Aquarius = 11th sign). H11 = gains. Mercury's natural significations — communication, trade, intellect — become a major channel for income and social gains.</p>
+  </div>
+
+  <h3>♃ Jupiter — Functional Malefic in H6</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Gemini 12°12'47", Ardra 2nd pada, H6</p>
+    <p><strong>Dignity:</strong> Gemini is Mercury's sign. Jupiter-Mercury are natural enemies. Jupiter in an enemy sign is in <em>Necha-like pressure</em> (not fully debilitated, but uncomfortable). Ardra nakshatra is Rahu's — Jupiter in Rahu's nakshatra gets a destabilizing, unconventional coloring.</p>
+    <p><strong>As H3+H12 lord in H6:</strong> This creates the <strong>Partial Viparita Raja Yoga</strong> (12th lord in a dusthana). Per NR: "Because dusthanas show obstacles, dusthana lords in dusthanas means obstacles running into obstacles — one experiences eventual tremendous success after initial struggle."</p>
+    <p><strong>Jupiter in H6 (Ari Bhava):</strong> Jupiter in 6th = strength in service, ability to overcome enemies/competition, often leads to government service, medical/legal/teaching professions. However Jupiter's enmity with Mercury (the sign lord) weakens this benefit.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S5 -->
+<section id="s5">
+  <h2>Part 5 — Key Yogas (Per Narasimha Rao, Ch. 11)</h2>
+
+  <h3>🔆 Yoga 1: Exalted Raja Yoga Karaka (Venus)</h3>
+  <div class="highlight-box">
+    <p><strong>Type:</strong> Self-contained Raja Yoga (H5 + H10 lord in exaltation)</p>
+    <p><strong>Per NR (p. 114):</strong> "Basic Raaja Yoga: If the lord of a quadrant is associated with the lord of a trine, that association brings the combined blessings of Lakshmi and Vishnu."</p>
+    <p>Venus being the <em>sole planet</em> that owns both a major trikona (H5) and a major kendra (H10) is a self-associating raja yoga of the highest order. The planet <em>is</em> both the quadrant lord and the trine lord simultaneously — there is no dilution, no separation, and no dependency on another planet's cooperation.</p>
+    <p>Venus's exaltation (Pisces = H3) places this Raja Yoga Karaka in a <em>positive but deferred expression</em> position. H3 is the 11th from H5 (gains from creativity) and the 6th from H10 (challenges in career). This means the full Raja Yoga power <strong>rises gradually and manifests strongly in specific Venus-activated periods</strong> rather than immediately from birth.</p>
+    <p><strong>Result:</strong> Significant career achievement, artistic/aesthetic talent, financial accumulation, and public recognition — all tied to Venus-activated periods (currently unfolding in the Rahu MD, since Rahu's sign lord is Venus).</p>
+  </div>
+
+  <h3>🔆 Yoga 2: Chandra-Mangala Yoga (Moon + Mars in Aries, H4)</h3>
+  <div class="highlight-box">
+    <p><strong>Definition (NR, p. 107):</strong> "If Moon and Mars are together (in one sign), then this yoga is present."</p>
+    <p><strong>Result (NR):</strong> "One born with this yoga is worldly wise and materially successful. He may earn money through unscrupulous means. He may treat mother or other women badly."</p>
+    <p><strong>Application to Himanshu's chart:</strong></p>
+    <ul>
+      <li>Moon in Aries (H4) + Mars in Aries (H4) — both in own territory for Mars</li>
+      <li>This yoga in H4 emphasizes material success tied to real estate, property, homeland, and mother's influence</li>
+      <li>Mars in own sign (Aries) strengthens the Chandra-Mangala yoga significantly — the "worldly wise" quality is enhanced</li>
+      <li>The negative side (earning through questionable means, difficult relationship with women) must be watched — particularly during Mars and Moon dasas</li>
+      <li><strong>Modified by context:</strong> Moon is in Krittika (Sun-ruled) and Mars in Bharani (Venus-ruled) — the Sun and Venus influences add luminosity and grace respectively, partially moderating the harsher Chandra-Mangala indications</li>
+    </ul>
+  </div>
+
+  <h3>🔆 Yoga 3: Partial Viparita Raja Yoga (Jupiter as 12th lord in H6)</h3>
+  <div class="highlight-box">
+    <p><strong>Definition (NR, p. 114–115):</strong> "If the lords of the 6th, 8th and 12th houses occupy dusthanas, this yoga is present. One experiencing this yoga has tremendous success, typically after initial struggle."</p>
+    <p><strong>Application:</strong></p>
+    <ul>
+      <li>Jupiter = 12th lord (Sagittarius) for Capricorn lagna → placed in H6 (Gemini) = dusthana ✓</li>
+      <li>Sun = 8th lord (Leo) → placed in H3 (Pisces) — H3 is upachaya (not strictly dusthana), partial ✓</li>
+      <li>Per NR: "The results of this yoga may be experienced with just one or two dusthana lords occupying a dusthana."</li>
+    </ul>
+    <p><strong>Result:</strong> After periods of struggle and apparent setbacks (especially in early career and educational phases), a remarkable turnaround brings success. The struggle itself becomes the foundation for eventual triumph. This is often the pattern in the charts of self-made individuals who overcome significant obstacles.</p>
+  </div>
+
+  <h3>🔆 Yoga 4: Sunaphaa Yoga (Saturn + Rahu in 2nd from Moon)</h3>
+  <div class="highlight-box">
+    <p><strong>Definition (NR, p. 98):</strong> "If there are planets other than Sun in the 2nd house from Moon, this yoga is present. One born with this yoga becomes a king or an equal. He is intelligent, wealthy and renowned."</p>
+    <p><strong>Application:</strong> Moon is in Aries (H4). The 2nd from Moon = Taurus (H5). Saturn and Rahu are both in Taurus (H5). Both are non-Sun planets in the 2nd from Moon → <strong>Sunaphaa Yoga is present</strong>.</p>
+    <p><strong>Result (modified):</strong> Intelligence, fame, and wealth are promised. However, Saturn (benefic but with Rahu) in the 2nd from Moon creates a complex flavor — perseverance and ambition (Saturn) mixed with unusual, perhaps unorthodox pathways (Rahu) to achieve these results. The Sunaphaa yoga here gives wealth-building through disciplined, unconventional effort.</p>
+  </div>
+
+  <h3>🔆 Yoga 5: Vesi Yoga (Planets in 2nd from Sun)</h3>
+  <div class="highlight-box">
+    <p><strong>Definition (NR, p. 97):</strong> "If there are planets other than Moon in the 2nd from Sun, Vesi yoga is present. One born with this yoga is fortunate and happy."</p>
+    <p><strong>Application:</strong> Sun is in Pisces (H3). 2nd from Sun = Aries (H4). Moon and Mars are in Aries. Moon is excluded from Vesi (per definition) — but <strong>Mars in the 2nd from Sun creates Vesi Yoga</strong>. Per NR: "One born with this yoga is fortunate, happy, skilled in speech and long-lived." Mars in own sign (Aries) in the 2nd from Sun strengthens this yoga significantly, giving courage, initiative, and the capacity to vocalize one's truth forcefully.</p>
+  </div>
+
+  <h3>🔆 Yoga 6: Anapha Yoga (Planets in 12th from Moon)</h3>
+  <div class="highlight-box">
+    <p><strong>Definition (NR, p. 98):</strong> "If there are planets other than Sun in the 12th from Moon, Anapha yoga is present. One born with this yoga has a good physique, is virtuous and enjoys pleasures."</p>
+    <p><strong>Application:</strong> Moon in Aries. 12th from Moon = Pisces (H3). Sun and Venus are in Pisces. Sun is excluded by definition — but <strong>Venus in the 12th from Moon creates Anapha Yoga</strong>. Exalted Venus in Anapha position gives extraordinary refinement, physical attractiveness, the enjoyment of sensory pleasures, and a virtuous, pleasurable life — especially during Venus-related periods.</p>
+  </div>
+
+  <h3>⚠ Yoga 7: Shrapit-Type Yoga (Saturn + Rahu in H5)</h3>
+  <div class="highlight-box">
+    <p>While not specifically named in NR's book, the Saturn-Rahu conjunction in H5 represents a <strong>karmic burden yoga</strong>. Per NR's principles on nodes (Rahu/Ketu): Rahu conjoined with a planet intensifies and often distorts that planet's karmic role. When the lagna lord (Saturn) is conjoined with Rahu, the native's physical constitution, ambitions, and sense of identity carry accumulated past-life karma that must be consciously processed.</p>
+    <p><strong>Manifestation in H5:</strong> The 5th house (children, creativity, intellect, speculation) is simultaneously Saturn's placement and the weakest house in ashtakavarga (20 bindus). The native may face: delays or unusual circumstances around children, disruption in creative or educational pursuits, volatility in speculative investments.</p>
+    <p><strong>Silver lining:</strong> Saturn is vargottama and Venus rules Taurus (H5's sign) — and Venus is exalted. The sign lord of H5 is supremely powerful, providing an overarching grace to this otherwise challenging placement.</p>
+  </div>
+
+  <h3>🔆 Yoga 8: Mridanga Yoga (Potential)</h3>
+  <div class="highlight-box">
+    <p><strong>Definition (NR, p. 112):</strong> "If (1) there are planets in own and exaltation signs in quadrants and trines and (2) lagna lord is strong, then this yoga is present."</p>
+    <p><strong>Check:</strong></p>
+    <ul>
+      <li>Venus — EXALTED in Pisces (H3 = not a kendra/trikona from lagna)</li>
+      <li>Mars — OWN SIGN in Aries (H4 = kendra ✓)</li>
+      <li>Lagna lord Saturn — in friendly sign, VARGOTTAMA = strong ✓</li>
+    </ul>
+    <p>Mars in own sign in a kendra (H4) + strong lagna lord = <strong>Mridanga Yoga is present</strong>. Per NR: "One born with this yoga is a king or an equal and he is happy." Mars in own sign in H4 from a strong lagna delivers real estate/property gains, success in competitive environments, and the drive to achieve leadership positions.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S6 -->
+<section id="s6">
+  <h2>Part 6 — Ashtakavarga Analysis (Per NR, Ch. 12)</h2>
+
+  <blockquote>Narasimha Rao (Ch. 12, p. 123): <em>"Ashtakavarga is a system that gives a total score (bindu count) for each house, showing the overall strength of each house based on the combined benefic and malefic aspects of all planets."</em></blockquote>
+
+  <h3>Sarvashtakavarga (Total Bindus per House)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>House</th><th>Sign</th><th>Bindus</th><th>Rating</th><th>Key Planets Here</th><th>Interpretation</th></tr>
+    <tr>
+      <td><strong>H1</strong></td><td>Capricorn</td><td><strong>30</strong></td><td><span class="warn">Adequate</span></td><td>ASC (empty)</td>
+      <td>Lagna with 30 bindus = sufficient constitutional strength; not exceptional but stable self-expression</td>
+    </tr>
+    <tr>
+      <td><strong>H2</strong></td><td>Aquarius</td><td><strong>25</strong></td><td><span class="danger">Below Average</span></td><td>Mercury</td>
+      <td>Wealth and speech house below 28. Mercury (9th lord) here tries to compensate but the overall wealth accumulation may be slow in early years</td>
+    </tr>
+    <tr>
+      <td><strong>H3</strong></td><td>Pisces</td><td><strong>30</strong></td><td><span class="warn">Adequate</span></td><td>Sun, Venus★</td>
+      <td>Adequate courage/initiative; exalted Venus here is a massive qualitative boost, though the bindu count doesn't reflect it fully</td>
+    </tr>
+    <tr>
+      <td><strong>H4</strong></td><td>Aries</td><td><strong>24</strong></td><td><span class="danger">Below Average</span></td><td>Moon, Mars</td>
+      <td>Home, mother, emotional stability — somewhat challenged. Despite Mars in own sign, the 24-bindu score indicates tension and instability in domestic matters</td>
+    </tr>
+    <tr>
+      <td><strong>H5</strong></td><td>Taurus</td><td><strong>20</strong></td><td><span class="danger">WEAKEST ⚠</span></td><td>Saturn, Rahu</td>
+      <td>Children, creativity, speculation, education — the most challenged house. 20 bindus is critically low. Saturn + Rahu here with the weakest BAV score signals karmic difficulty in 5th-house matters throughout life</td>
+    </tr>
+    <tr>
+      <td><strong>H6</strong></td><td>Gemini</td><td><strong>24</strong></td><td><span class="danger">Below Average</span></td><td>Jupiter</td>
+      <td>Enemies, debts, service — 24 bindus; Jupiter as malefic here doesn't help. The native must exert significant effort to overcome competition and service-related challenges</td>
+    </tr>
+    <tr>
+      <td><strong>H7</strong></td><td>Cancer</td><td><strong>31</strong></td><td><span class="good">Above Average</span></td><td>Empty</td>
+      <td>Marriage and partnerships — good score for relationships. The empty 7th with 31 bindus shows potential for a beneficial, supportive partner</td>
+    </tr>
+    <tr>
+      <td><strong>H8</strong></td><td>Leo</td><td><strong>32</strong></td><td><span class="good">Above Average</span></td><td>Empty</td>
+      <td>Longevity, transformation, hidden wealth — strong 8th house supports a long life and the ability to tap into others' resources and occult/research areas</td>
+    </tr>
+    <tr>
+      <td><strong>H9</strong></td><td>Virgo</td><td><strong>28</strong></td><td><span class="warn">Adequate</span></td><td>Empty</td>
+      <td>Dharma, luck, father, higher learning — exactly at the threshold. With Mercury (9th lord) in H2 and the house empty, dharmic luck requires conscious activation</td>
+    </tr>
+    <tr>
+      <td><strong>H10</strong></td><td>Libra</td><td><span class="good"><strong>38</strong></span></td><td><span class="good">STRONGEST ★★</span></td><td>Empty</td>
+      <td><strong>The chart's most powerful house.</strong> Career, status, and public recognition are guaranteed to be exceptional. 38 bindus = extraordinary potential for professional achievement and social recognition. Venus rules H10 (Libra) — and Venus is the exalted Raja Yoga Karaka. The H10 promise is immense.</td>
+    </tr>
+    <tr>
+      <td><strong>H11</strong></td><td>Scorpio</td><td><strong>31</strong></td><td><span class="good">Above Average</span></td><td>Ketu</td>
+      <td>Gains, elder siblings, social network — good score. Ketu here (baadhaka co-lord) creates unusual patterns in how gains arrive — often suddenly or from unexpected sources</td>
+    </tr>
+    <tr>
+      <td><strong>H12</strong></td><td>Sagittarius</td><td><strong>24</strong></td><td><span class="danger">Below Average</span></td><td>Empty</td>
+      <td>Foreign travel, losses, spiritual liberation — 24 bindus; not particularly strong for foreign settlement, though spiritual inclinations may draw the native toward retreat or meditation</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Ashtakavarga Insight (Per NR, Ch. 12):</strong> The <strong>asymmetry</strong> between H10 (38 = career) and H5 (20 = children/creativity) is the most revealing pattern in this chart. Career and professional achievement are the native's <em>karmic strength zone</em> while creativity, education, and progeny are the <em>karmic debt zone</em>. Life will consistently push Himanshu toward professional excellence while the personal/creative sphere requires persistent conscious effort.</p>
+    <p>Per NR: "A planet transiting a sign that has fewer bindus in its own ashtakavarga is less effective in that area." Transits and dasas activating H5 (Taurus) must be approached carefully for educational and creative endeavors.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S7 -->
+<section id="s7">
+  <h2>Part 7 — Aspects &amp; Argalas (Per NR, Ch. 10)</h2>
+
+  <blockquote>Narasimha Rao (Ch. 10, p. 85): <em>"Graha drishti (planetary aspects): Sun/Moon/Mercury/Venus aspect 7th; Mars aspects 4th, 7th, 8th; Jupiter aspects 5th, 7th, 9th; Saturn aspects 3rd, 7th, 10th."</em></blockquote>
+
+  <h3>Key Graha Drishti Aspects</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Position</th><th>Aspects (Graha Drishti)</th><th>Significance</th></tr>
+    <tr>
+      <td><strong>Saturn</strong></td><td>Taurus H5</td>
+      <td>H7 (Cancer — 3rd aspect), H8 (Leo — 7th aspect), H2 (Aquarius — 10th aspect)</td>
+      <td>Saturn's 10th aspect on H2 (Mercury) = lagna lord directly aspects the 2nd lord/planet in 2nd. <strong>This is Saturn gazing on its own second-house domain</strong> — stabilizing wealth. Saturn's 3rd aspect on H7 (empty Cancer = marriage) — marriage will be Saturnian: serious, loyal, but slow to bloom.</td>
+    </tr>
+    <tr>
+      <td><strong>Mars</strong></td><td>Aries H4</td>
+      <td>H7 (Cancer — 4th aspect), H8 (Leo — 7th aspect), H11 (Scorpio — 8th aspect)</td>
+      <td>Mars's 8th aspect on H11 (Ketu in Scorpio) = baadhaka lord aspecting the baadhaka house where Ketu (co-baadhaka) sits — intensifies baadhaka energy. Mars 4th aspect on H7 = partnership matters touched by the fiery baadhaka lord.</td>
+    </tr>
+    <tr>
+      <td><strong>Jupiter</strong></td><td>Gemini H6</td>
+      <td>H10 (Libra — 5th aspect), H12 (Sagittarius — 7th aspect), H2 (Aquarius — 9th aspect)</td>
+      <td><strong>Jupiter's 5th aspect on H10 (Libra)</strong> is critical: Jupiter aspects the 10th house (career = 38 bindus). Despite being a functional malefic, Jupiter's 5th aspect on the strongest house in the chart activates career potential — but with Jupiter's double-dusthana nature, this activation carries complexity (career growth comes with moral/ethical testing). Jupiter's 9th aspect on H2 (Mercury) = dharmic influence on speech and wealth.</td>
+    </tr>
+    <tr>
+      <td><strong>Rahu</strong></td><td>Taurus H5</td>
+      <td>Conjunct Saturn — intensifies Saturn's aspects</td>
+      <td>Rahu in Mrigasira (Mars-ruled) nakshatra acts as a proxy for Mars, adding martial energy to H5's dynamics</td>
+    </tr>
+    <tr>
+      <td><strong>Sun</strong></td><td>Pisces H3</td>
+      <td>H9 (Virgo — 7th aspect)</td>
+      <td>Sun (8th lord) aspects H9 (dharma/luck). As 8th lord, Sun's gaze on the 9th house creates a degree of pressure on dharmic luck — the native must consciously cultivate good fortune through right action rather than expecting automatic luck.</td>
+    </tr>
+    <tr>
+      <td><strong>Venus</strong></td><td>Pisces H3</td>
+      <td>H9 (Virgo — 7th aspect)</td>
+      <td><strong>Venus (exalted RYK) aspects H9 (dharma)</strong> — the Raja Yoga Karaka gazes on the dharma house from its exaltation sign. This is a profoundly auspicious aspect: dharmic activities, spiritual learning, higher education, and dealings with teachers/guides are all blessed by the exalted 5th+10th lord's gaze. Periods of Venus activation will see spiritual growth alongside material success.</td>
+    </tr>
+    <tr>
+      <td><strong>Mercury</strong></td><td>Aquarius H2</td>
+      <td>H8 (Leo — 7th aspect)</td>
+      <td>Mercury (9th lord) aspects H8. Mixed: 9th lord's look on the 8th can bring occult knowledge, research depth, and interest in transformative/healing subjects — appropriate for Mercury's Satabhisa nakshatra (associated with medicine and mysticism).</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>Rasi Drishti (Sign Aspects)</h3>
+  <p>Per NR (p. 87): Movable rasis aspect all fixed rasis except adjacent; Fixed rasis aspect all movable rasis except adjacent; Dual rasis aspect all other dual rasis.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Sign</th><th>Aspects (Rasi Drishti)</th><th>Planets Receiving this Aspect</th></tr>
+    <tr><td>Aries (H4 — movable)</td><td>Taurus, Leo, Scorpio (not Capricorn = adjacent)</td><td>H5 (Saturn, Rahu), H8 (empty), H11 (Ketu)</td></tr>
+    <tr><td>Taurus (H5 — fixed)</td><td>Aries, Cancer, Libra (not Gemini = adjacent)</td><td>H4 (Moon, Mars), H7 (empty), H10 (empty)</td></tr>
+    <tr><td>Pisces (H3 — dual)</td><td>Gemini, Virgo, Sagittarius</td><td>H6 (Jupiter), H9 (empty), H12 (empty)</td></tr>
+    <tr><td>Gemini (H6 — dual)</td><td>Virgo, Sagittarius, Pisces</td><td>H9 (empty), H12 (empty), H3 (Sun, Venus)</td></tr>
+    <tr><td>Aquarius (H2 — fixed)</td><td>Taurus, Leo, Scorpio (not Capricorn = adjacent)</td><td>H5 (Saturn, Rahu), H8 (empty), H11 (Ketu)</td></tr>
+    <tr><td>Scorpio (H11 — fixed)</td><td>Aries, Cancer, Libra (not Sagittarius)</td><td>H4 (Moon, Mars), H7 (empty), H10 (empty)</td></tr>
+  </table>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Notable Rasi Drishti insight:</strong> Aries (H4, containing Moon+Mars) aspects Taurus (H5, containing Saturn+Rahu). This means the Moon-Mars pair in H4 <em>directly aspects</em> the Saturn-Rahu pair in H5 via rasi drishti. Per NR's framework, this creates a dynamic where the Chandra-Mangala yoga (H4) constantly activates and challenges the karmic load in H5 — the emotional/mental impulsiveness of Moon-Mars pushes against the disciplined-yet-obstructed Saturn-Rahu karma. Learning to modulate this tension is a core life theme.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S8 -->
+<section id="s8">
+  <h2>Part 8 — Navamsha (D-9) Deep Analysis</h2>
+
+  <blockquote>Narasimha Rao (Ch. 6, Divisional Charts, p. 43): <em>"D-9 (Navamsha) gives deep information about one's inner nature, marriage, and dharma. It shows the soul's real journey. If a planet is strong in D-9, its soul-level quality is high."</em></blockquote>
+
+  <h3>D-9 Lagna: Virgo</h3>
+  <p>The Navamsha lagna is <strong>Virgo</strong> (Mercury-ruled). The D-9 lagna lord Mercury is in Gemini (own sign in D-9 H10 from Virgo). This suggests the inner soul orientation is analytical, service-minded, and deeply committed to excellence and refinement. The D-9 Virgo lagna amplifies themes of discrimination, health-consciousness, and skill-mastery.</p>
+
+  <h3>The Three Crown Jewels of This Navamsha</h3>
+
+  <h4>1. Venus in Pisces (D-9 H7) — Vargottama + Exalted</h4>
+  <p>Venus in Pisces in the 7th house of the navamsha (marriage/spouse chart) is one of the most auspicious signatures for partnership and relationship quality. <strong>Vargottama Venus in exaltation</strong> as the 9th lord from D-9 Virgo lagna (Taurus = H9 from Virgo = dharma house) means:</p>
+  <ul>
+    <li>The spouse/partner is karmically blessed, refined, and spiritually inclined</li>
+    <li>Marriage will ultimately be a vehicle for dharmic evolution</li>
+    <li>Soul-level love and artistic/aesthetic harmony in relationships</li>
+    <li>The D-9 7th house placement with exalted Venus = maximum possible blessing for marriage per Narasimha Rao's framework</li>
+  </ul>
+
+  <h4>2. Saturn in Taurus (D-9 H9) — Vargottama</h4>
+  <p>Saturn in Taurus in D-9 H9 (dharma house from Virgo lagna) + being Vargottama = exceptional alignment between the outer self (rasi) and inner soul (D-9) for Saturn's themes. Dharmic discipline, steady effort, and philosophical depth are authentic soul qualities — not just learned behaviors. Long-term spiritual practice (especially structured, disciplined forms) is deeply supported.</p>
+
+  <h4>3. Jupiter in Capricorn (D-9 H5) — Debilitated</h4>
+  <p>Jupiter, the planet of dharmic wisdom and children, is debilitated in the D-9 5th house. This is a significant soul-level challenge: the inner access to wisdom, grace, and the easy expansion of knowledge is constrained at the soul level. Jupiter's debilitation in D-9 also puts pressure on children (5th house of D-9 represents soul-level progeny karma). <strong>Neecha Bhanga (debilitation cancellation) check:</strong></p>
+  <ul>
+    <li>Jupiter is debilitated in Capricorn. Neecha Bhanga occurs if (a) the lord of Capricorn (Saturn) is in a kendra from lagna or Moon, or (b) Jupiter's exaltation lord (Cancer's Moon) aspects Jupiter.</li>
+    <li>In D-9: D-9 Lagna = Virgo. Saturn (lord of Capricorn) is in Taurus = H9 from Virgo. H9 is not a kendra. Moon is in Sagittarius = H4 from Virgo (kendra). Moon aspects Jupiter (in Capricorn, 3rd from Moon's Sagittarius = graha drishti)? Moon aspects the 7th = Gemini, so Moon does NOT directly aspect Capricorn with graha drishti.</li>
+    <li><strong>Partial Neecha Bhanga</strong>: Mars (exaltation lord of Capricorn) — Mars in Virgo (D-9 H1 = kendra from lagna) provides a partial cancellation. Per NR: if the sign in which the planet is debilitated has its lord in a kendra from Moon or lagna, debilitation is cancelled. Mars in a kendra provides partial relief.</li>
+  </ul>
+  <p>Conclusion: Jupiter's debilitation in D-9 is <em>partially cancelled</em>, meaning children will come with some delay or effort, and wisdom comes through earned experience rather than effortless grace.</p>
+
+  <h3>D-9 House Summary</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>D-9 House</th><th>Sign</th><th>Planets</th><th>Meaning from D-9 Virgo Lagna</th></tr>
+    <tr><td>H1</td><td>Virgo</td><td>Mars, Rahu, Ketu</td><td>Inner self — Mars + nodes in lagna = intense karmic self-discovery; strong will and powerful life mission</td></tr>
+    <tr><td>H3</td><td>Scorpio</td><td>Sun</td><td>Inner courage — Sun in Scorpio (deep, probing) = soul's dharmic boldness comes through transformation and facing fears</td></tr>
+    <tr><td>H4</td><td>Sagittarius</td><td>Moon</td><td>Inner emotional home — Moon in Sagittarius = the mind at the soul level seeks philosophy, travel, and higher meaning</td></tr>
+    <tr><td>H5</td><td>Capricorn</td><td>Jupiter (debilitated)</td><td>Dharmic creativity — Jupiter's debilitation here = creative/progeny challenges at soul level, requiring effort</td></tr>
+    <tr><td>H7</td><td>Pisces</td><td><strong>Venus (exalted, vargottama)</strong></td><td>Marriage at soul level = supremely blessed; spouse = spiritually evolved, artistic, compassionate</td></tr>
+    <tr><td>H9</td><td>Taurus</td><td><strong>Saturn (vargottama)</strong></td><td>Dharma = disciplined, methodical; wisdom comes through consistent, structured effort</td></tr>
+    <tr><td>H10</td><td>Gemini</td><td>Mercury (own sign)</td><td>Career at soul level = communication, intellect, trade — Mercury in own sign in D-9 H10 = fulfilling career in Mercury's domains</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S9 -->
+<section id="s9">
+  <h2>Part 9 — Baadhaka Analysis (Per NR, Ch. 13.3)</h2>
+
+  <blockquote>Narasimha Rao (Ch. 13, Table 31, p. 145): <em>"For a house falling in a movable rasi, the 11th house from there becomes baadhaka sthaana. Its lord is called a 'baadhaka' (troublemaker) for the original house. For Capricorn: Baadhaka sthaana = Scorpio (H11). Baadhaka lords = Mars &amp; Ketu."</em></blockquote>
+
+  <h3>Capricorn Lagna Baadhaka</h3>
+  <div class="highlight-box">
+    <p><strong>Baadhaka Sthana:</strong> H11 (Scorpio)</p>
+    <p><strong>Baadhaka Lords:</strong> Mars (natural ruler of Scorpio) and Ketu (shadow planet co-lord of Scorpio)</p>
+
+    <p><strong>Mars (Baadhaka lord) — Position: H4 (Aries), own sign</strong></p>
+    <p>Mars as baadhaka lord in H4 (kendra) in own sign is a powerful but problematic configuration. Mars is strong (own sign) and well-placed (kendra), meaning the baadhaka energy arrives with full force during Mars periods. The Mars Mahadasha (November 2017 – November 2024) would have been marked by both significant energy/achievement AND baadhaka-related obstacles — particularly around home, property, mother (H4 themes), and gains (H11 themes). Per NR: "Planets in Scorpio and Mars can create some obstructions and troubles." Mars as the 4th lord (property/home) and baadhaka means baadhaka troubles arrive <em>through the home/property sphere</em>.</p>
+
+    <p><strong>Ketu (Baadhaka co-lord) — Position: H11 (Scorpio) itself</strong></p>
+    <p>Ketu sitting IN the baadhaka sthana (H11) is the single most significant baadhaka indicator in this chart. Ketu represents past-life karma, unfinished business, and sudden detachment. Ketu in H11 in the baadhaka house literally <em>embodies</em> the baadhaka principle in the house of gains. This creates:</p>
+    <ul>
+      <li>Unusual, unexpected, or sudden interruptions to gains and social networks</li>
+      <li>Gains that arrive and then dissipate before they can be fully enjoyed</li>
+      <li>Social connections that carry past-life karma — some relationships feel fated but unresolved</li>
+      <li>Spiritual gains compensating for material losses (Ketu = moksha planet)</li>
+    </ul>
+    <p>However: H11 has 31 bindus = above average. The baadhaka is present but not overwhelming — the overall gains potential is still healthy.</p>
+  </div>
+
+  <h3>Baadhaka in Current Dasha Context</h3>
+  <p>The current Rahu Mahadasha (from November 2024) involves Rahu sitting in H5 with Saturn. While Rahu itself is not the baadhaka lord, it's conjunct with Saturn (the lagna lord) and acts in the sphere of Venus (sign lord of Taurus). The baadhaka lords (Mars and Ketu) will deliver their baadhaka energy as antardasas within the Rahu period. Specifically:</p>
+  <ul>
+    <li><strong>Rahu MD – Mars AD</strong> (future sub-period): baadhaka lord activated within already-complex Rahu MD = most challenging sub-period</li>
+    <li><strong>Rahu MD – Ketu AD</strong>: Ketu (baadhaka in its own sthana) gets activated = sudden disruptions to gains possible</li>
+  </ul>
+  <p>During these sub-periods, vigilance around property decisions, financial speculation, and social/professional relationships is strongly advised.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S10 -->
+<section id="s10">
+  <h2>Part 10 — Vimsottari Dasha Analysis (Per NR, Ch. 16)</h2>
+
+  <blockquote>Narasimha Rao (Ch. 16.5.1, p. 185): <em>"A planet gives the results promised by its positions in various divisional charts. Period of the 5th lord in D-7 can give a child. Period of the 8th lord in rasi can give troubles. Period of an exalted planet aspecting HL from the 11th from AL can give wealth."</em></blockquote>
+
+  <h3>Dasha Sequence from Birth</h3>
+  <div class="formula">
+<span class="comment">// Moon in Krittika nakshatra (Sun-ruled) → Vimsottari starts with Sun dasha</span>
+Sun MD  (6 yrs):  19 Mar 2002  →  5 Nov 2007   [Childhood: Sun = 8th lord, testing times, health challenges early life]
+Moon MD (10 yrs): 5 Nov 2007   →  5 Nov 2017   [Development years: Moon = 7th lord, Chandra-Mangala yoga active]
+Mars MD (7 yrs):  5 Nov 2017   →  5 Nov 2024   [Education/career launch: Mars = own sign, baadhaka lord, H4 lord]
+Rahu MD (18 yrs): 5 Nov 2024   →  5 Nov 2042   [CURRENT: Major transformative phase]
+Jupt MD (16 yrs): 5 Nov 2042   →  5 Nov 2058   [Middle career: Jupiter = functional malefic but 6th+12th lord]
+Satn MD (19 yrs): 5 Nov 2058   →  5 Nov 2077   [Mature life: Saturn = lagna lord, vargottama, peak of life]
+  </div>
+
+  <h3>Past Mahadashas</h3>
+
+  <h4>Sun Mahadasha (2002–2007) — Childhood</h4>
+  <p>Sun is the 8th lord for Capricorn lagna. Per NR: "Period of the 8th lord in rasi chart can give some troubles and frustration." The 8th lord's period in early childhood typically manifests as health challenges, family disruptions, or obstacles in the early environment. Sun is in H3 (Pisces) — the 8th lord in the 3rd house during childhood may have brought a somewhat difficult early social/family environment, disruption to the parents' home, or health concerns. However, Sun in Pisces (exaltation sign of Venus) softens this — and with only 5 years 7 months of Sun dasha (mostly in infancy and early childhood), the impact is limited.</p>
+
+  <h4>Moon Mahadasha (2007–2017) — Formative Years</h4>
+  <p>Moon rules H7 (Cancer) for Capricorn lagna. As a natural benefic with kendradhipati dosha, Moon's period is mixed. Moon in H4 (Aries, Krittika nakshatra) in Chandra-Mangala yoga:</p>
+  <ul>
+    <li>Active, energetic period with strong drive and initiative</li>
+    <li>H7 (marriage) activated by Moon — first awareness of relationships and social self</li>
+    <li>From Moon's own position (Aries), the Moon dasha gives results of H4 (home, education environment)</li>
+    <li>The 10-year Moon period (school years, approximately ages 5–15) = a period of emotional development, competitive spirit, and laying foundations for achievement</li>
+    <li>Moon's kendradhipati dosha = some obstruction or irregular patterns in education and home environment</li>
+  </ul>
+  <p>Per NR's "tripod of life": Moon is the mind reference for antardasa analysis. Moon periods activate the Sunaphaa yoga (Saturn + Rahu in 2nd from Moon), bringing complex ambitions and unconventional learning patterns.</p>
+
+  <h4>Mars Mahadasha (Nov 2017 – Nov 2024) — Educational/Early Career Phase</h4>
+  <p>Mars rules H4 (Aries) and H11 (Scorpio). Mars is in <strong>own sign</strong> (Aries) in H4 — a strong, energetic mahadasha lord. This is also the baadhaka lord.</p>
+  <ul>
+    <li><strong>Strengths in Mars MD:</strong> Mars in own sign = maximum energy, initiative, and willpower. H4 lord's period = active engagement with education, home, and property matters. H11 lord = gains potential through Mars's ambition.</li>
+    <li><strong>Challenges:</strong> Baadhaka lord dasha = significant obstacles to goals, especially around ages 15–22. Disruptions in educational pursuits, obstacles in the path of gains, and family tensions (H4 themes under baadhaka pressure) were likely.</li>
+    <li><strong>Moon antardasa (Moon MD in Mars MD):</strong> Moon in H4 with Mars = Chandra-Mangala activation. Emotionally intense, materially driven, possibly competitive/combative period.</li>
+    <li><strong>Jupiter antardasa (26/3/20 – 5/5/21):</strong> Jupiter = functional malefic (H3+H12 lord) in Mars MD — challenging sub-period, possibly signifying loss, expenses, or a difficult transition in education/career planning during 2020–2021.</li>
+    <li><strong>Venus antardasa (29/11/23 – 5/4/24):</strong> Venus = exalted RYK, activated within Mars MD — a brief but powerful sub-period delivering some Raja Yoga flavor even within the baadhaka mahadasha. Career beginnings, creative breakthroughs, or relationship developments during late 2023 to early 2024.</li>
+  </ul>
+
+  <h3>CURRENT: Rahu Mahadasha (Nov 2024 – Nov 2042) — 18 Transformative Years</h3>
+
+  <div class="highlight-box">
+    <p><strong>Rahu's Position:</strong> Taurus (H5), Mrigasira nakshatra (Mars-ruled), conjunct Saturn (lagna lord)</p>
+    <p><strong>Rahu will primarily give results of:</strong></p>
+    <ol>
+      <li><strong>Venus</strong> (sign lord of Taurus) — Venus = exalted Raja Yoga Karaka = powerful benefic results tied to career, beauty, arts, finance, relationship</li>
+      <li><strong>Mars</strong> (nakshatra lord, Mrigasira) — Mars = baadhaka lord = complexity, obstacles, but also fierce drive</li>
+      <li><strong>Saturn</strong> (conjunct planet) — Saturn = lagna lord = self-empowerment, discipline, systematic effort</li>
+    </ol>
+    <p>Per NR (Ch. 16.5.3, Rath's Tripod): "Sun is important for judging mahadasa." Sun is in Pisces (H3). Rahu is in Taurus = 3rd from Sun's position = <em>courage, initiative, boldness</em> — Rahu activates the parakrama (boldness/initiative) theme of the chart through Rahu's MD.</p>
+  </div>
+
+  <div class="dasha-grid">
+    <div class="dasha-card">
+      <div class="title">Rahu MD – Rahu AD</div>
+      <div class="period">5 Nov 2024 → 17 Jul 2027</div>
+      <div class="body"><span class="warn">Active Now (April 2026)</span>. Rahu-Rahu double period: intense, transformative, unpredictable. The themes of H5 (education, creativity, speculation) + Venus's lordship (career, beauty, relationships) and Saturn's conjunction (discipline, responsibility) create a powerfully complex mix. Career beginnings in earnest; unusual opportunities; some turbulence in personal sphere.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">Rahu MD – Jupiter AD</div>
+      <div class="period">17 Jul 2027 → 11 Dec 2029</div>
+      <div class="body"><span class="warn">Caution:</span> Jupiter = functional malefic (H3+H12 lord) in enemy sign (H6). Jupiter as antardasha lord within Rahu MD = potential for expensive mistakes, losses, or moral/ethical testing. However Jupiter aspects H10 (career) — some career recognition possible but at the cost of personal spending or family tension.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">Rahu MD – Saturn AD</div>
+      <div class="period">17 Oct 2032 → 17 Oct 2035</div>
+      <div class="body"><span class="good">Excellent:</span> Saturn = vargottama lagna lord. Rahu + Saturn = the two planets conjunct in H5 — their mutual dasha/antardasha activates the H5 karma powerfully. Lagna lord's antardasha in a transformative Rahu MD = significant achievement, career consolidation, possible marriage/family commitments. The best sub-period within Rahu MD for long-term building.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">Rahu MD – Venus AD</div>
+      <div class="period">23 May 2039 → 23 May 2042</div>
+      <div class="body"><span class="good">PEAK PERIOD:</span> Venus = exalted, vargottama Raja Yoga Karaka. Rahu (acting through Venus as sign lord) + Venus AD = the ultimate Raja Yoga activation. Career apex, recognition, financial success, relationship fulfillment. The chart's biggest promise will be delivered during this sub-period (ages approximately 37–40). This is the crowning period of the Rahu mahadasha.</div>
+    </div>
+  </div>
+
+  <h3>Future Mahadashas — Long-Range View</h3>
+
+  <h4>Jupiter Mahadasha (2042–2058) — Middle Career</h4>
+  <p>Jupiter is the functional malefic (H3+H12 lord) in H6, in enemy sign. Jupiter's 16-year period from approximately age 40 to 56 will be complex. Per NR's Viparita framework: Jupiter as 12th lord in H6 (partial Viparita) can ultimately deliver success, but through unconventional, spiritually-charged routes. Career may shift toward advisory, spiritual, philosophical, or foreign-based work during Jupiter MD. Periods that are internally productive (spiritual development, written/artistic work, teaching) will be the most fulfilling.</p>
+
+  <h4>Saturn Mahadasha (2058–2077) — The Final Harvest</h4>
+  <p>Saturn = lagna lord, vargottama, in H5, friendly sign. Saturn's 19-year mahadasha from age 56 to 75 is the final long major period. Per NR: the lagna lord's period gives results of the entire chart — all the promises of the nativity are available during the lagna lord's MD. The vargottama quality means this period is extraordinarily strong. This is when the <em>full legacy</em> of the chart is delivered: recognition, health, material security, and deep spiritual wisdom. Saturn in H9 of D-9 (dharma house) = Saturn MD in later life will be marked by profound dharmic insight and a wise, authoritative presence.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S11 -->
+<section id="s11">
+  <h2>Part 11 — Nakshatra Analysis</h2>
+
+  <blockquote>Narasimha Rao (Ch. 1, Table 2, p. 10): <em>The 27 nakshatras each have a Vimsottari dasha lord and a presiding deity, carrying specific energy signatures that modify the planet's natural expression.</em></blockquote>
+
+  <h3>Birth Nakshatra: Krittika (Moon's Position)</h3>
+  <p>Moon at Aries 27°29'57" falls in <strong>Krittika 1st pada</strong> (26°40' Aries – 0° Taurus). Krittika is ruled by <strong>Sun</strong>. Its deity is <strong>Agni</strong> (fire god). Symbol: a sharp blade or razor.</p>
+  <ul>
+    <li><strong>Solar nakshatra with a fiery Moon:</strong> The mind (Moon) in a Sun-ruled nakshatra in Mars's sign = triple fire energy. This native thinks quickly, can be sharp in criticism, has a penetrating intelligence, and a no-nonsense approach to truth.</li>
+    <li><strong>Agni's influence:</strong> Purification through fire — Krittika natives are drawn to cutting away the unnecessary, to precision, and to discipline. They are excellent at identifying flaws and inefficiencies.</li>
+    <li><strong>The critical faculty:</strong> Krittika's quality is "to cut" — in modern terms, analytical ability, discernment, and the capacity to assess situations clearly. This supports a career in any field requiring precision (engineering, surgery, analysis, finance).</li>
+    <li><strong>1st pada in Aries:</strong> The 1st pada falls in Aries navamsha (Leo navamsha? — Aries starts from Aries, 1st pada = Aries navamsha). This gives a pioneering, independent, and self-sufficient quality to the emotional nature.</li>
+  </ul>
+
+  <h3>Lagna Nakshatra: Sravana (ASC Position)</h3>
+  <p>ASC at Capricorn 17°07'13" falls in <strong>Sravana 3rd pada</strong> (10° – 23°20' Capricorn). Sravana is ruled by <strong>Moon</strong>. Its deity is <strong>Vishnu</strong>. Symbol: an ear.</p>
+  <ul>
+    <li><strong>Vishnu's nakshatra:</strong> Sravana is associated with hearing, learning, and preservation. Those born with this nakshatra rising have a gift for absorbing and retaining information from diverse sources.</li>
+    <li><strong>Moon-ruled lagna nakshatra:</strong> The Moon rules Sravana, linking the outer personality strongly to Moon's themes. Since Moon rules H7 (Cancer) for Capricorn lagna, marriage and partnerships will profoundly shape the native's outer identity and social persona.</li>
+    <li><strong>3rd pada:</strong> Falls in Gemini navamsha — adds a communicative, versatile, intellectually curious flavor to the Capricorn lagna's usual seriousness.</li>
+  </ul>
+
+  <h3>Key Nakshatra Connections Across the Chart</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Nakshatra</th><th>Nak Lord</th><th>Significance</th></tr>
+    <tr><td>ASC</td><td>Sravana</td><td>Moon</td><td>Outer personality linked to Moon (H7 lord) = partnerships shape the self</td></tr>
+    <tr><td>Moon</td><td>Krittika</td><td>Sun</td><td>Mind colored by Sun (8th lord) = transformation, depth, intensity in thought</td></tr>
+    <tr><td>Mars</td><td>Bharani</td><td>Venus</td><td>Mars (strength) in Venus-ruled nak = forceful but aesthetically intelligent action; combines H4+H11 with Venus's grace</td></tr>
+    <tr><td>Mercury</td><td>Satabhisa</td><td>Rahu</td><td>Mercury's intelligence has a Rahu flavor = unconventional, scientific, interested in the hidden and the innovative</td></tr>
+    <tr><td>Jupiter</td><td>Ardra</td><td>Rahu</td><td>Jupiter (dharma) colored by Rahu (disruption) = wisdom comes through storms and unexpected events, not smooth sailing</td></tr>
+    <tr><td>Venus</td><td>Revati</td><td>Mercury</td><td>Venus (RYK exalted) in Mercury-ruled nak = artistic intellect, communication as beauty, writing/teaching as a dharmic gift</td></tr>
+    <tr><td>Saturn</td><td>Rohini</td><td>Moon</td><td>Lagna lord Saturn in Moon-ruled nak (abundance, fertility) = capacity to build and sustain material abundance through persistent effort</td></tr>
+    <tr><td>Rahu</td><td>Mrigasira</td><td>Mars</td><td>Rahu acts like Mars during its MD = forceful, competitive, driven toward property and gains</td></tr>
+    <tr><td>Ketu</td><td>Jyeshtha</td><td>Mercury</td><td>Ketu in Mercury-ruled nak = past-life wisdom in communication, trade, and intellectual mastery; gains from writing/communication</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S12 -->
+<section id="s12">
+  <h2>Part 12 — Divisional Chart Summary</h2>
+
+  <blockquote>Narasimha Rao (Ch. 6, p. 43): <em>"Each divisional chart throws light on a specific area of one's life. D-10 (dasamsha) is used for career and D-7 (saptamsha) for progeny."</em></blockquote>
+
+  <h3>D-10 (Dasamsha) — Career</h3>
+  <p>The D-10 chart specifically governs career achievement and professional life. Per NR: "Dasamsa shows one's achievements in society." From the available shodashvarga data in the Vedic report, the D-10 house positions are: Su=11, Mo=12, Ma=1, Me=2, Ju=3, Ve=4, Sa=5, Ra=6, Ke=7 (relative house numbers from D-10 lagna). Without a confirmed D-10 lagna sign, we can note key D-10 principles:</p>
+  <ul>
+    <li><strong>Venus (RYK) in D-10:</strong> With H10 in rasi having 38 bindus and Venus as the 10th lord being exalted and vargottama, Venus's D-10 placement should be assessed in detail. The principle holds: Venus-activated periods (Venus AD within Rahu MD, and eventual Venus MD if we live long enough) will mark career peaks.</li>
+    <li><strong>Jupiter aspects H10 (Libra) via 5th graha drishti:</strong> Despite being a functional malefic, Jupiter's 5th aspect on H10 from H6 = the career house receives a complex Jupiter aspect. Career growth involves dharmic/ethical navigation.</li>
+    <li><strong>Saturn (vargottama lagna lord) ultimately governs the 10th from D-10 lagna</strong> (if D-10 lagna is Aries, Saturn in H5 of rasi = Saturn in H5 of D-10 = aspects H10 via 10th aspect = direct gaze on career). This supports structured, consistent career building.</li>
+  </ul>
+  <p><strong>Recommended career fields:</strong> Finance (Venus H10), arts/entertainment/beauty/fashion (Venus exalted), research/technology (Satabhisa Mercury), public administration (Saturn/Capricorn), real estate/property (Mars H4), healing/medicine (Satabhisa, Revati connections).</p>
+
+  <h3>D-7 (Saptamsha) — Progeny</h3>
+  <p>The 5th house in rasi (H5 = Taurus) has only 20 bindus — the chart's weakest house, further burdened by Saturn + Rahu conjunction. Jupiter (the natural karakas for children) is debilitated in D-9. These three factors collectively suggest:</p>
+  <ul>
+    <li>Challenges or delays in having children</li>
+    <li>Unconventional circumstances around progeny (Rahu in H5)</li>
+    <li>Children may arrive later in life or through unconventional means</li>
+    <li>Saturn + Rahu in H5 = karmic debt to be resolved around the 5th house themes before children can fully arrive</li>
+  </ul>
+  <p>However, Venus (as 5th lord) is exalted and vargottama — the <em>quality</em> of children (when they come) will be exceptional. The issue is timing and quantity, not quality. Venus-activated periods within Rahu MD (especially Venus AD: 2039–2042) or the eventual Venus MD in a future lifetime's calculation are most promising for progeny.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S13 -->
+<section id="s13">
+  <h2>Part 13 — Remedial Measures (Per NR, Ch. 34)</h2>
+
+  <blockquote>Narasimha Rao (Ch. 34, p. 394): <em>"Remedial measures can strengthen weak benefics, pacify strong malefics, and align the native with the cosmic rhythm. Mantra, gem, charity, and upasana (devotion) are the primary remedial tools of Vedic astrology."</em></blockquote>
+
+  <h3>Priority Remedies</h3>
+
+  <h4>1. Venus Strengthening (Raja Yoga Karaka — already strong but reinforce)</h4>
+  <ul>
+    <li><strong>Gemstone:</strong> Diamond (principal) or White Sapphire/Zircon (alternatives) — set in silver or platinum, worn on the ring finger of the right hand, activated on a Friday in Venus hora</li>
+    <li><strong>Mantra:</strong> <em>Om Shukraya Namah</em> (108 times on Fridays) or the Shukra Kavacham</li>
+    <li><strong>Charity:</strong> White sweets, sugar, white cloth to women on Fridays</li>
+    <li><strong>Color:</strong> Wear white or cream regularly, especially on Fridays</li>
+  </ul>
+
+  <h4>2. Saturn Strengthening (Lagna Lord, Vargottama)</h4>
+  <ul>
+    <li><strong>Gemstone:</strong> Blue Sapphire (Neelam) — only after careful individual assessment; alternatively, Amethyst or Lapis Lazuli for Saturn</li>
+    <li><strong>Mantra:</strong> <em>Om Shanaischaraya Namah</em> (108 times on Saturdays) or Shani Ashtakam</li>
+    <li><strong>Service:</strong> Saturn is pacified by service to the elderly, disabled, and disadvantaged — regular, consistent seva (selfless service) aligns one with Saturn's highest expression</li>
+    <li><strong>Fasting:</strong> Saturdays — especially effective for Capricorn lagna natives</li>
+    <li><strong>Discipline:</strong> Regular oil massage with sesame oil on Saturdays; donation of sesame seeds, mustard oil, or black cloth to the needy</li>
+  </ul>
+
+  <h4>3. Rahu Pacification (Currently Active in MD)</h4>
+  <ul>
+    <li><strong>Gemstone:</strong> Hessonite Garnet (Gomed) — to be worn during Rahu MD periods if Rahu is functional benefic (assess carefully given Rahu's complex role here)</li>
+    <li><strong>Mantra:</strong> <em>Om Rahave Namah</em> — 108 times, ideally on Saturdays or during Rahu Kala</li>
+    <li><strong>Durga worship:</strong> Per NR, Rahu is pacified by Goddess Durga's upasana — Devi Mahatmyam recitation (especially Chapters 1, 3, and 11) on Fridays and Tuesdays</li>
+    <li><strong>Avoid:</strong> Impulsive decisions, gambling, speculative investments, and reckless risk-taking during Rahu MD</li>
+  </ul>
+
+  <h4>4. Mars Mitigation (Baadhaka Lord)</h4>
+  <ul>
+    <li><strong>Mantra:</strong> <em>Om Mangalaya Namah</em> or Mangala Kavacham — on Tuesdays</li>
+    <li><strong>Hanuman Upasana:</strong> Hanuman Chalisa recitation on Tuesdays and Saturdays is a classical remedy for Mars-Rahu combinations and baadhaka mitigation</li>
+    <li><strong>Avoid:</strong> Confrontations, impulsive anger, and rash financial decisions during Mars-related antardasa periods</li>
+  </ul>
+
+  <h4>5. H5 Strengthening (Weakest House — 20 Bindus)</h4>
+  <ul>
+    <li>Worship of Saraswati (goddess of learning and creativity) for 5th house blessings</li>
+    <li>Chanting Gayatri Mantra (108 times daily) — Sun-related mantra, as Krittika (nakshatra connecting to Sun) rules the Moon and lagna nakshatra connects to Moon</li>
+    <li>Regular practice of a creative discipline (music, art, writing) — consciously activating 5th house themes builds its vitality</li>
+    <li>Avoid speculative investments (stock market gambling) until H5 is strengthened through dasha support</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S14 -->
+<section id="s14">
+  <h2>Part 14 — Final Synthesis &amp; Life Overview</h2>
+
+  <blockquote>Narasimha Rao (Ch. 13.4.1, p. 145): <em>"When we analyze the charts, we should remember all the concepts we have learnt. We should consider the inherent nature and the functional nature of planets, the baadhakas, the arudha padas, and the divisional charts together — not just individual factors in isolation."</em></blockquote>
+
+  <h3>The Chart's Central Theme</h3>
+  <p>This is a chart of <strong>karmic asymmetry resolved through disciplined ambition</strong>. The native (Himanshu Thakur, born 19 March 2002, Capricorn lagna) carries three extraordinary gifts and three formidable challenges that define his dharmic life path:</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Three Extraordinary Gifts</th><th>Three Formidable Challenges</th></tr>
+    <tr>
+      <td><strong>1. Venus — Exalted RYK, Vargottama</strong>: The single most powerful positive factor in the entire chart. Venus as the 5th+10th lord in exaltation and vargottama = the highest possible manifestation of Raja Yoga Karaka for Capricorn lagna. Career success, financial achievement, and relational grace are karmically guaranteed when Venus's periods activate.</td>
+      <td><strong>1. H5 = 20 Bindus + Saturn-Rahu conjunction</strong>: The 5th house (creativity, children, speculation, academic brilliance) is both the weakest house in ashtakavarga AND carries the karmic Saturn-Rahu burden. Creative and educational pursuits require exceptional sustained effort.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Saturn — Vargottama Lagna Lord in Rohini</strong>: The lagna lord is in the same sign in both rasi and navamsha — this anchors the physical constitution and basic vitality in exceptional strength. Saturn in Rohini (Moon-ruled nakshatra of abundance) gives the capacity to build lasting, material structures through patient effort.</td>
+      <td><strong>2. Baadhaka — Mars + Ketu as troublemakers</strong>: Mars (baadhaka lord in own sign, H4) and Ketu (baadhaka co-lord in the baadhaka house, H11) both operate from positions of strength — meaning the obstacles they deliver are not easy to dismiss. Gains, property, and social networks face periodic karmic disruptions.</td>
+    </tr>
+    <tr>
+      <td><strong>3. H10 = 38 Bindus</strong>: The chart's strongest house is the career house — ruled by Venus (exalted RYK). This convergence of the strongest ashtakavarga house AND the exalted RYK's lordship of that house creates a career promise of truly exceptional magnitude. Professional achievement will be the native's most visible karmic harvest.</td>
+      <td><strong>3. Jupiter debilitated in D-9 + H6 placement</strong>: The natural dharma-guru planet is under double pressure — in an enemy sign in H6 (rasi) and debilitated in D-9 H5. Access to dharmic wisdom and grace requires conscious cultivation through teachers, study, and spiritual practice rather than arriving spontaneously.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>Life Phases Overview</h3>
+
+  <h4>Early Life (Birth – 2024, Sun/Moon/Mars Mahadashas)</h4>
+  <p>The first 22 years of life involve the development phase under Sun (8th lord), Moon (7th lord with kendradhipati), and Mars (baadhaka lord). This period is marked by significant drive and energy (Moon-Mars in Aries, Chandra-Mangala yoga) balanced against real obstacles and turbulence (Mars as baadhaka). The early years build character through challenge. Educational and home environment may be somewhat unstable (H5 weak, H4 below average in BAV). The Mars MD period (2017–2024) would have involved intense effort in education/career launch alongside baadhaka-related obstacles.</p>
+
+  <h4>Active Adult Life (2024–2042, Rahu Mahadasha)</h4>
+  <p>The 18-year Rahu period is the most transformative phase of the native's first half of life. Rahu in Taurus (H5) gives Venus (RYK) as sign lord, meaning the Rahu MD will increasingly channel Venus's Raja Yoga Karaka energy toward career, prosperity, and recognition. The sub-periods of Saturn (2032–2035) and especially <strong>Venus (2039–2042)</strong> will be the standout periods of this 18-year window — periods of genuine career achievement, financial consolidation, and relationship fulfillment.</p>
+
+  <h4>Middle Maturity (2042–2058, Jupiter Mahadasha)</h4>
+  <p>Jupiter's 16-year period will be philosophically rich but materially complex. Career transitions, spiritual deepening, and engagement with dharmic/teaching activities will characterize this phase. The Viparita element (12th lord in 6th) suggests that conventional measures of success may transform — the native may move toward roles that are advisory, educational, or spiritually oriented rather than purely material.</p>
+
+  <h4>Mature Harvest (2058–2077, Saturn Mahadasha)</h4>
+  <p>Saturn's 19-year mahadasha as the vargottama lagna lord is the ultimate life harvest. This period (ages 56–75) consolidates all that has been built. Saturn in Rohini (abundance) in H5, with vargottama strength, and with D-9 placement in H9 (dharma house) = wisdom, authority, material security, and deep peace. This is when Himanshu will be the most himself: seasoned, wise, accomplished, and genuinely helpful to others.</p>
+
+  <h3>Core Life Wisdom (Per NR's Framework)</h3>
+  <ul>
+    <li><strong>Lean into Venus:</strong> All major career and life decisions should consider whether they align with Venusian themes (beauty, arts, finance, harmony, relationships). Venus's exaltation means these areas carry divine blessing.</li>
+    <li><strong>Respect Saturn's discipline:</strong> The vargottama lagna lord rewards consistent, methodical effort. Shortcuts (Rahu temptations) undermine the chart's fundamental promise. Long-term thinking and structural building are the keys to success.</li>
+    <li><strong>Navigate baadhaka consciously:</strong> Know that Mars and Ketu are baadhaka lords — when their sub-periods arrive within Rahu MD, take a conservative, cautious approach to gains and property decisions.</li>
+    <li><strong>Cultivate Jupiter:</strong> Despite Jupiter being a functional malefic, conscious cultivation of its highest expressions (dharma, teaching, spiritual wisdom, generosity) will progressively neutralize its obstructive energy and redirect it toward the Viparita blessing.</li>
+    <li><strong>Honor the H5 karma:</strong> The weakest house requires the most conscious care. Regular creative practice, academic dedication, and avoiding speculation will gradually strengthen the 5th house experience.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <p><strong>Summary in one sentence:</strong> Himanshu Thakur carries a chart of extraordinary career destiny (H10 = 38 bindus, Venus exalted + vargottama as RYK) and significant karmic debt in the creative/educational sphere (H5 = 20 bindus, Saturn-Rahu, Jupiter D-9 debilitated), to be resolved through Saturnian discipline, Venusian alignment, and the patient unfolding of Rahu Mahadasha's full potential — culminating in the Rahu-Venus sub-period (2039–2042) and the final Saturn Mahadasha harvest (2058–2077).</p>
+  </div>
+
+  <h3>Cross-Reference: Narasimha Rao Book Chapter Applications</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Book Chapter</th><th>Topic</th><th>Applied To This Chart</th></tr>
+    <tr><td>Ch. 2 (Rasis)</td><td>Capricorn characteristics</td><td>Capricorn lagna = earthy, disciplined, Saturn-ruled; movable sign = pioneer energy</td></tr>
+    <tr><td>Ch. 3 (Planets)</td><td>Planetary dignities</td><td>Venus exalted in Pisces; Saturn in friendly Taurus; Mars in own Aries; Jupiter in enemy Gemini</td></tr>
+    <tr><td>Ch. 6 (Divisional Charts)</td><td>D-9, D-10 analysis</td><td>D-9 shows Venus vargottama+exalted (marriage blessed); Saturn vargottama (strong constitution); Jupiter debilitated (progeny challenges)</td></tr>
+    <tr><td>Ch. 7 (Houses)</td><td>House significances</td><td>H10 = 38 bindus (career pinnacle); H5 = 20 bindus (creative challenge); H7 = 31 bindus (good marriage)</td></tr>
+    <tr><td>Ch. 10 (Aspects)</td><td>Graha + Rasi drishti</td><td>Venus aspects H9 (dharma blessed); Jupiter aspects H10 (career complex); Saturn aspects H2 (wealth building)</td></tr>
+    <tr><td>Ch. 11 (Yogas)</td><td>All major yogas</td><td>Raja Yoga Karaka (Venus); Chandra-Mangala (H4); Viparita partial (Jupiter H6); Sunaphaa (H5 from Moon); Vesi (Mars in 2nd from Sun); Anapha (Venus in 12th from Moon); Mridanga (Mars in own sign in kendra)</td></tr>
+    <tr><td>Ch. 12 (Ashtakavarga)</td><td>Bindu analysis</td><td>H10 = 38 (strongest); H5 = 20 (weakest); asymmetry drives life pattern toward professional success over personal/creative ease</td></tr>
+    <tr><td>Ch. 13 (Interpreting Charts)</td><td>Baadhakas, functional nature</td><td>Capricorn baadhaka = Scorpio (Mars+Ketu); Venus = RYK; Saturn = lagna lord; Jupiter = functional malefic</td></tr>
+    <tr><td>Ch. 16 (Vimsottari Dasa)</td><td>Dasha periods</td><td>Current: Rahu MD/Rahu AD (2024–2027); Peak: Rahu-Venus AD (2039–2042); Ultimate harvest: Saturn MD (2058–2077)</td></tr>
+    <tr><td>Ch. 34 (Remedial Measures)</td><td>Gem, mantra, charity</td><td>Venus (diamond/white sapphire); Saturn (blue sapphire/service); Rahu (hessonite/Durga upasana); Mars (Hanuman Chalisa)</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ FOOTER -->
+<div class="footer">
+  <p>Deep Vedic Analysis of Himanshu Thakur &nbsp;|&nbsp; Based on <em>Vedic Astrology: An Integrated Approach</em> by P.V.R. Narasimha Rao (2001)</p>
+  <p>Chart source: VedicReport4-17-202610-48-39PM.pdf (AstroSage.com) &nbsp;|&nbsp; Ayanamsa: Lahiri 23°53'15"</p>
+  <p><em>This analysis applies principles from the entire Narasimha Rao book including Rasis (Ch.2), Planets (Ch.3), Divisional Charts (Ch.6), Houses (Ch.7), Aspects (Ch.10), Yogas (Ch.11), Ashtakavarga (Ch.12), Interpreting Charts (Ch.13), Vimsottari Dasa (Ch.16), and Remedial Measures (Ch.34).</em></p>
+</div>
+
+</div>
+</body>
+</html>
