@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vedic Astrology Analysis — Abhishek Singh</title>
+<style>
+  :root {
+    --gold: #b8860b;
+    --deep: #1a1a2e;
+    --mid: #16213e;
+    --accent: #e2b96f;
+    --text: #f0e6d3;
+    --muted: #c9b99a;
+    --highlight: #ffdf80;
+    --danger: #e07070;
+    --good: #80e0a0;
+    --table-head: #2a1a4e;
+    --border: #4a3a20;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--deep);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+
+  /* ---- HEADER ---- */
+  .main-header {
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+  }
+  .main-header h1 {
+    font-size: 2.2em;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .main-header .subtitle {
+    font-size: 1.05em;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .birth-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 30px;
+    margin-top: 18px;
+    font-size: 0.95em;
+    color: var(--accent);
+  }
+  .birth-box span b { color: var(--highlight); }
+
+  /* ---- TOC ---- */
+  .toc {
+    background: var(--mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 28px;
+    margin-bottom: 40px;
+  }
+  .toc h2 { color: var(--accent); font-size: 1.1em; margin-bottom: 12px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 4px 0; }
+  .toc a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  .toc a:hover { color: var(--highlight); }
+
+  /* ---- SECTION ---- */
+  section {
+    margin-bottom: 48px;
+    border-left: 4px solid var(--gold);
+    padding-left: 20px;
+  }
+  section h2 {
+    font-size: 1.35em;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  section h3 {
+    font-size: 1.1em;
+    color: var(--highlight);
+    margin: 20px 0 8px;
+  }
+  section h4 {
+    font-size: 1em;
+    color: var(--accent);
+    margin: 14px 0 6px;
+    font-style: italic;
+  }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+  strong { color: var(--highlight); }
+  em { color: var(--muted); font-style: italic; }
+  blockquote {
+    border-left: 3px solid var(--gold);
+    margin: 14px 0;
+    padding: 10px 18px;
+    background: rgba(184,134,11,0.08);
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .highlight-box {
+    background: rgba(224,185,111,0.08);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .good { color: var(--good); font-weight: bold; }
+  .warn { color: #f0c060; font-weight: bold; }
+  .danger { color: var(--danger); font-weight: bold; }
+
+  /* ---- TABLES ---- */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92em;
+  }
+  th {
+    background: var(--table-head);
+    color: var(--accent);
+    padding: 9px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--gold);
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(74,58,32,0.5);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  tr:hover td { background: rgba(184,134,11,0.07); }
+
+  /* ---- DASHA TABLE ---- */
+  .dasha-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .dasha-card {
+    background: var(--mid);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+  }
+  .dasha-card .period { font-size: 0.82em; color: var(--muted); }
+  .dasha-card .title { color: var(--accent); font-weight: bold; font-size: 1em; }
+  .dasha-card .body { font-size: 0.9em; margin-top: 6px; }
+
+  /* ---- FORMULA BOX ---- */
+  .formula {
+    background: #0d0d1a;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 14px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #d0f0b0;
+    margin: 14px 0;
+  }
+  .formula .comment { color: #7a9a7a; }
+
+  /* ---- PRINT ---- */
+  @media print {
+    body { background: #fff; color: #000; }
+    section { border-left-color: #888; }
+    .formula { background: #f0f0f0; color: #000; border-color: #888; }
+    blockquote { background: #f8f8f8; }
+    a { color: #000; }
+    .toc { background: #f8f8f8; }
+    section h2 { color: #333; border-bottom-color: #888; }
+    section h3 { color: #555; }
+    th { background: #e0e0e0; color: #000; }
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85em;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════════════════════════════════════════════════════════ HEADER -->
+<div class="main-header">
+  <h1>✦ Vedic Astrology Analysis ✦</h1>
+  <div class="subtitle">Based on Narasimha Rao's <em>Vedic Astrology: An Integrated Approach</em> (2001) — Complete Reading</div>
+  <div class="birth-box">
+    <span><b>Name:</b> Abhishek Singh</span>
+    <span><b>Date:</b> 3 September 2000</span>
+    <span><b>Time:</b> 00:00:18 IST</span>
+    <span><b>Place:</b> Ayodhya (26°48'N, 82°12'E)</span>
+    <span><b>Lagna:</b> Gemini 01°09'09"</span>
+    <span><b>Ayanamsa:</b> Lahiri 23°51'57"</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ TOC -->
+<div class="toc">
+  <h2>📋 Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Sun–Mercury Degree Difference &amp; Combustion Calculation</a></li>
+    <li><a href="#s2">Complete Planetary Positions</a></li>
+    <li><a href="#s3">Lagna &amp; Functional Nature of Planets</a></li>
+    <li><a href="#s4">Strength Analysis of Key Planets</a></li>
+    <li><a href="#s5">Key Yogas (Per Narasimha Rao)</a></li>
+    <li><a href="#s6">Arudha Padas — Complete Calculation</a></li>
+    <li><a href="#s7">Navamsha (D-9) Analysis</a></li>
+    <li><a href="#s8">Ashtakavarga — House-by-House</a></li>
+    <li><a href="#s9">Aspects &amp; Argalas</a></li>
+    <li><a href="#s10">Current &amp; Coming Dasha Periods</a></li>
+    <li><a href="#s11">Badhaka &amp; Kakshya Analysis</a></li>
+    <li><a href="#s12">Remedial Measures</a></li>
+    <li><a href="#s13">Final Synthesis</a></li>
+  </ol>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ S1 -->
+<section id="s1">
+  <h2>Part 1 — Sun–Mercury Degree Difference &amp; Combustion</h2>
+
+  <h3>How the Calculation Was Done</h3>
+
+  <div class="formula">
+<span class="comment">// Step 1: Positions from Kundali PDF (Lahiri ayanamsa)</span>
+Sun     = Leo  16° 43' 29"
+Mercury = Leo  27° 22' 36"
+
+<span class="comment">// Step 2: Convert to arc-seconds (both in same sign, so just compare degrees within Leo)</span>
+Sun     → (16 × 3600) + (43 × 60) + 29 = 60,209 arc-seconds
+Mercury → (27 × 3600) + (22 × 60) + 36 = 98,556 arc-seconds
+
+<span class="comment">// Step 3: Subtract</span>
+Difference = 98,556 − 60,209 = 38,347 arc-seconds
+           = 38,347 ÷ 3600
+           = <strong>10° 39' 07" = 10.6519°</strong>
+
+<span class="comment">// Step 4: Assess combustion (BPHS / Parasara classical limit)</span>
+Mercury (direct, not retrograde) combustion orb = 14°
+10.65° &lt; 14°  →  Mercury IS combust ✓
+  </div>
+
+  <blockquote>Narasimha Rao (p.107): <em>"If Mercury is too close to Sun, he is combust (asta or astangata). Yogas formed by combust planets lose some of their power to do good. This yoga is the most powerful in divisional charts like D-10."</em></blockquote>
+
+  <div class="highlight-box">
+    <strong>Key conclusion:</strong> Mercury is <span class="danger">10°39'07"</span> away from the Sun — within the classical 14° combustion limit. The <strong>Budha-Aditya Yoga</strong> IS present but is <span class="warn">weakened in the rasi chart</span>. It reaches full power in the <strong>D-10 (career divisional chart)</strong>.
+  </div>
+
+  <p>Additional significance: Mercury is in <strong>Uttaraphalguni nakshatra</strong> — a nakshatra <em>ruled by Sun</em>. So Mercury literally sits in a solar nakshatra while being combust by the Sun, deepening the Sun's hold over Mercury's significations (intelligence, communication, lagna vitality).</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S2 -->
+<section id="s2">
+  <h2>Part 2 — Complete Planetary Positions</h2>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Sign</th><th>Degrees</th><th>Nakshatra</th><th>Pada</th><th>House (Ge lagna)</th><th>Status</th></tr>
+    <tr><td><strong>Lagna</strong></td><td>Gemini</td><td>01°09'09"</td><td>Mrigasira</td><td>3</td><td>H1</td><td>—</td></tr>
+    <tr><td><strong>Sun</strong></td><td>Leo</td><td>16°43'29"</td><td>Purvaphalguni</td><td>2</td><td>H3</td><td>In own sign's nakshatra (Purvaphalg. = Venus)</td></tr>
+    <tr><td><strong>Moon</strong></td><td>Libra</td><td>13°02'21"</td><td>Swati</td><td>2</td><td>H5</td><td>Swati = Rahu's nakshatra; Moon strong in neutral sign</td></tr>
+    <tr><td><strong>Mars</strong></td><td>Cancer</td><td>27°07'47"</td><td>Ashlesha</td><td>4</td><td>H2</td><td><span class="danger">Deeply debilitated</span> (deep debil. at 28° Cn)</td></tr>
+    <tr><td><strong>Mercury</strong></td><td>Leo</td><td>27°22'36"</td><td>Uttaraphalguni</td><td>1</td><td>H3</td><td><span class="danger">Combust</span> (10°39' from Sun)</td></tr>
+    <tr><td><strong>Jupiter</strong></td><td>Taurus</td><td>16°11'28"</td><td>Rohini</td><td>2</td><td>H12</td><td>Friendly sign; Rohini = Moon's nakshatra</td></tr>
+    <tr><td><strong>Venus</strong></td><td>Virgo</td><td>09°22'12"</td><td>Uttaraphalguni</td><td>4</td><td>H4</td><td><span class="danger">Debilitated</span> (deep debil. at 27° Vi) — but <span class="good">EXALTED in D-9</span></td></tr>
+    <tr><td><strong>Saturn</strong></td><td>Taurus</td><td>07°02'14"</td><td>Krittika</td><td>4</td><td>H12</td><td>Friendly sign; Krittika = Sun's nakshatra</td></tr>
+    <tr><td><strong>Rahu [R]</strong></td><td>Gemini</td><td>28°11'09"</td><td>Punarvasu</td><td>3</td><td>H1</td><td>In lagna; Punarvasu = Jupiter's nakshatra</td></tr>
+    <tr><td><strong>Ketu [R]</strong></td><td>Sagittarius</td><td>28°11'09"</td><td>Uttarashadha</td><td>1</td><td>H7</td><td>Uttarashadha = Sun's nakshatra</td></tr>
+  </table>
+  </div>
+
+  <h3>Navamsha (D-9) Positions</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Rasi Sign</th><th>D-9 Sign</th><th>D-9 Status</th></tr>
+    <tr><td>Lagna</td><td>Gemini (pada 1)</td><td><strong>Libra</strong></td><td>Venus owned — aesthetic, balanced</td></tr>
+    <tr><td>Sun</td><td>Leo (pada 6)</td><td>Virgo</td><td>Neutral</td></tr>
+    <tr><td>Moon</td><td>Libra (pada 4)</td><td>Capricorn</td><td>Neutral</td></tr>
+    <tr><td>Mars</td><td>Cancer (pada 9)</td><td>Pisces</td><td>Neutral — softened from rasi debilitation</td></tr>
+    <tr><td>Mercury</td><td>Leo (pada 9)</td><td>Sagittarius</td><td>Enemy's sign — some weakness continues</td></tr>
+    <tr><td>Jupiter</td><td>Taurus (pada 5)</td><td>Taurus</td><td>Friendly/own — stable</td></tr>
+    <tr><td><strong>Venus</strong></td><td>Virgo (pada 3)</td><td><strong>Pisces</strong></td><td><span class="good">EXALTED in D-9!</span> Rescues rasi debilitation</td></tr>
+    <tr><td>Saturn</td><td>Taurus (pada 3)</td><td>Pisces</td><td>Friendly (Jupiter's sign)</td></tr>
+    <tr><td>Rahu</td><td>Gemini (pada 9)</td><td>Gemini</td><td>Own/friendly</td></tr>
+    <tr><td>Ketu</td><td>Sagittarius (pada 9)</td><td>Sagittarius</td><td>Own sign — spiritually strong</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S3 -->
+<section id="s3">
+  <h2>Part 3 — Lagna &amp; Functional Nature of Planets</h2>
+
+  <p><strong>Lagna:</strong> Gemini &nbsp;|&nbsp; <strong>Lagna Lord:</strong> Mercury (in Leo, H3, combust)</p>
+
+  <blockquote>Narasimha Rao (p.143): <em>"The lords of trines from lagna are functional benefics. The lords of 3rd, 6th and 11th are functional malefics. The lord of a quadrant is a functional malefic if he is a natural benefic and functionally neutral if he is a natural malefic."</em></blockquote>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Owns Houses</th><th>Functional Role</th><th>Notes</th></tr>
+    <tr><td><strong>Mercury</strong></td><td>H1 (Ge) + H4 (Vi)</td><td><strong class="good">Lagna lord + 4th lord</strong></td><td>Rules both a trine (lagna = also trine) and a quadrant — highly important; currently combust</td></tr>
+    <tr><td><strong>Venus</strong></td><td>H5 (Li) + H12 (Ta)</td><td><strong class="good">Functional Benefic (5th lord)</strong></td><td>5th lord = trine lord = functional benefic. 12th lord = neutral. Venus is the KEY grace-giver.</td></tr>
+    <tr><td><strong>Saturn</strong></td><td>H8 (Cp) + H9 (Aq)</td><td><strong class="good">Functional Benefic (9th lord)</strong></td><td>9th = dharma trikona = functional benefic. 8th = neutral (slightly malefic). Saturn is the most powerful functional benefic.</td></tr>
+    <tr><td><strong>Jupiter</strong></td><td>H7 (Sg) + H10 (Pi)</td><td><span class="warn">Functional Malefic</span></td><td>Natural benefic owning two quadrants = kendraadhipatya dosha. Also the <strong>Badhaka lord</strong> for Gemini (see Part 11).</td></tr>
+    <tr><td><strong>Mars</strong></td><td>H6 (Sc) + H11 (Ar)</td><td><span class="warn">Functional Malefic</span></td><td>6th + 11th lord = both upachaya but 6th is dusthana. Mars deeply debilitated.</td></tr>
+    <tr><td><strong>Sun</strong></td><td>H3 (Le)</td><td><span class="warn">Functional Malefic</span></td><td>3rd lord = functional malefic.</td></tr>
+    <tr><td><strong>Moon</strong></td><td>H2 (Cn)</td><td>Functionally Neutral</td><td>2nd lord. Moon on AL = elevated social status in Moon periods.</td></tr>
+  </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S4 -->
+<section id="s4">
+  <h2>Part 4 — Strength Analysis of Key Planets</h2>
+
+  <h3>🪐 Saturn (9th + 8th Lord) — Most Critical Planet</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Taurus, H12 (12th house). 7°02'14" in Krittika nakshatra (Sun-ruled).</p>
+    <p><strong>Dignity:</strong> Taurus is owned by Venus — Saturn and Venus are natural friends. Saturn is in <em>Mudita avastha</em> (delighted state, friend's sign). Favorable dignity despite dusthana placement.</p>
+    <p><strong>Viparita Raja Yoga:</strong> As the 8th lord placed in the 12th house (another dusthana), Saturn creates Viparita conditions. Per Narasimha Rao p.115: <em>"Tremendous success, typically after an initial struggle."</em> Two dusthana lords (Saturn 8th + Jupiter 10th) together in the 12th amplifies this yoga.</p>
+    <p><strong>9th lord in 12th:</strong> Dharma (9th) dissolving into moksha (12th). Saturn's greatest karmic gift is spiritual depth through material renunciation. Foreign journeys and higher learning are strongly indicated.</p>
+    <p><strong>Kakshya:</strong> Saturn is in <strong>Jupiter's kakshya</strong> (3°45'–7°30' within any sign). Jupiter is Saturn's natural friend — this makes Saturn's transits more gracious and philosophically enriched.</p>
+  </div>
+
+  <h3>☿ Mercury (Lagna Lord, H1 + H4)</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Leo, H3. 27°22'36" in Uttaraphalguni (Sun-ruled nakshatra).</p>
+    <p><strong>Dignity:</strong> Leo is Sun's sign — Mercury and Sun are natural friends, so Mercury is in <em>Mudita avastha</em> (friend's sign). <strong>BUT Mercury is combust</strong> — only 10°39' from Sun, within the 14° classical combustion limit.</p>
+    <p><strong>Effect of combustion:</strong> The lagna lord being combust reduces the physical vitality and self-expression in rasi chart. Identity may feel overshadowed (Sun burns Mercury's distinctiveness). Communication ability (Mercury's forte) may be suppressed early in life.</p>
+    <p><strong>Kakshya:</strong> Mercury is in <strong>Lagna's kakshya</strong> (26°15'–30° within Leo). Mercury's ashtakavarga expression is most intimately tied to the physical body and self — communication becomes deeply personal and identity-driven.</p>
+    <p><strong>In D-10 (career):</strong> Mercury's combustion is specific to the rasi chart. In D-10, Mercury may not be combust — the Budha-Aditya yoga fully manifests in career achievements.</p>
+  </div>
+
+  <h3>♃ Jupiter (H7 + H10 Lord) — The Baadhaka</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Taurus, H12. 16°11'28" in Rohini nakshatra (Moon-ruled).</p>
+    <p><strong>Dignity:</strong> Friendly sign (Taurus/Venus — Jupiter and Venus are friends). <em>Mudita avastha.</em></p>
+    <p><strong>Critical dual role:</strong> Jupiter is both the <strong>10th lord</strong> (career/karma) and the <strong>Badhaka lord</strong> for Gemini lagna. As baadhaka, Jupiter's MD creates frustrations and obstructions. The 37-bindu Pisces/H10 promises great career — but Jupiter as baadhaka in 12th delays and diverts this.</p>
+    <p><strong>H12 Jupiter's spiritual gift:</strong> Jupiter in the house of liberation is classically a powerful position for dharmic wisdom, foreign spiritual journeys, and eventual enlightenment. Rohini (creativity, abundance) colors Jupiter with material richness beneath the 12th-house veil.</p>
+    <p><strong>Ashtakavarga:</strong> H10 (Pisces, Jupiter's own sign) has <strong class="good">37 bindus</strong> — the HIGHEST in the entire chart. This is Jupiter's 10th lord promise waiting to be unlocked after Jupiter MD ends.</p>
+  </div>
+
+  <h3>♀ Venus (5th Lord) — Debilitated but D-9 Exalted</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Virgo, H4. 09°22'12" in Uttaraphalguni pada 4.</p>
+    <p><strong>Rasi dignity:</strong> <span class="danger">Debilitated</span> in Virgo (deepest debil. at 27° Virgo; Venus is at 9°, so not at lowest but still debilitated). In <em>Deena avastha</em> (sad state) in enemy territory.</p>
+    <p><strong>D-9 rescue:</strong> Venus in Pisces in navamsha = <span class="good">EXALTED</span>. Soul-level relationships, artistic genius, and dharmic love are at full Venusian power. This means the external expression of Venus (rasi) is weakened, but the inner experience and ultimate karmic fruits of Venus are exceptional.</p>
+    <p><strong>Jupiter's 5th aspect on Venus:</strong> Jupiter (from Taurus) has its 5th graha drishti aspect landing exactly on Virgo/Venus. A benefic's blessing on the debilitated 5th lord partially rescues Venus and activates the 5th-lord potential (children, creativity, poorvapunya).</p>
+  </div>
+
+  <h3>☽ Moon (H2 Lord) — On Arudha Lagna</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Libra, H5. 13°02'21" in Swati nakshatra pada 2 (Rahu-ruled).</p>
+    <p><strong>The standout feature:</strong> Moon occupies the <strong>Arudha Lagna (AL = Libra)</strong>. Per Narasimha Rao p.82: <em>"Because Moon owns the 2nd from AL and occupies AL, status of the native in the eyes of people will increase in Moon's periods."</em> This is one of the most auspicious AL placements.</p>
+    <p><strong>Public perception:</strong> The world perceives this person through Moon-on-Libra energy — emotionally intelligent, balanced, aesthetically aware, diplomatically charming. AL in H5 means people perceive authority, creativity, and intellectual depth.</p>
+    <p><strong>Mars aspects Moon:</strong> Mars' 4th graha drishti aspect from Cancer reaches Moon in Libra. Debilitated Mars on the Moon creates emotional intensity and occasional agitation — a passionate, sometimes volatile inner world despite the calm Libra outer image.</p>
+  </div>
+
+  <h3>♂ Mars (H6 + H11 Lord) — Deeply Debilitated</h3>
+  <div class="highlight-box">
+    <p><strong>Position:</strong> Cancer, H2. 27°07'47" in Ashlesha nakshatra pada 4 (Mercury-ruled).</p>
+    <p><strong>Near-deepest debilitation</strong> (28° Cancer = deepest; Mars at 27°07' is extremely close to the nadir). In H2 (wealth, speech, family) — challenges in financial accumulation, possible harshness in speech, family tensions.</p>
+    <p><strong>Rescue factors:</strong> Saturn's 3rd graha drishti aspect from Taurus reaches Cancer/Mars. Saturn as functional benefic (9th lord) modifies Mars' worst tendencies. Additionally, Mars in navamsha moves to Pisces (Jupiter's benevolent sign), softening the karmic impact.</p>
+    <p><strong>In D-9 UL context (7th from UL = Cancer):</strong> Debilitated Mars in 7th from the Upapada Lagna (UL = Capricorn, 7th = Cancer) is a <span class="warn">concern for marital life</span>. The book warns of potential troubles. Propitiation of Mars is strongly recommended before marriage.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S5 -->
+<section id="s5">
+  <h2>Part 5 — Key Yogas (Per Narasimha Rao)</h2>
+
+  <h3>1. Budha-Aditya Yoga (Nipuna Yoga) — PRESENT, weakened in rasi</h3>
+  <blockquote><em>"Sun and Mercury together in one sign. One born with this yoga is intelligent and skilful in all works. He is well-known, respected and happy. Nipuna means an expert."</em> (Narasimha Rao, p.107)</blockquote>
+  <ul>
+    <li><strong class="good">Formed:</strong> Sun + Mercury both in Leo ✓</li>
+    <li><span class="warn">Weakened in rasi:</span> Mercury is combust — 10°39' from Sun. The yoga loses power in rasi chart.</li>
+    <li><strong class="good">Full power in D-10:</strong> Career chart is where this yoga manifests most strongly. Technical expertise, intellectual communication, and recognized intelligence in professional sphere.</li>
+    <li><strong>Timing:</strong> Sun, Mercury, and Leo rule this yoga. SAT/MER (2029-2031) and Mercury MD (2045-2062) will bring this yoga to full fruition.</li>
+  </ul>
+
+  <h3>2. Viparita Raja Yoga — PRESENT, powerful</h3>
+  <blockquote><em>"The 6th, 8th and 12th lords, if their lords occupy dusthanas, it results in this yoga. One having this yoga experiences tremendous success, typically after an initial struggle."</em> (p.115)</blockquote>
+  <ul>
+    <li><strong>Saturn (8th lord) in H12</strong> (dusthana) ✓</li>
+    <li><strong>Jupiter (10th lord in H12)</strong> — partially (10th lord as functional malefic in dusthana)</li>
+    <li>Saturn and Jupiter together in 12th = dual dusthana lord combination = powerful Viparita energy</li>
+    <li>Success after struggle is the keynote of this chart's life narrative</li>
+  </ul>
+
+  <h3>3. Anaphaa Yoga — PRESENT</h3>
+  <blockquote><em>"Results: One born with this yoga becomes a king with good looks. His body is free from disease. He is a man of character and has great reputation."</em> (p.99)</blockquote>
+  <ul>
+    <li>Definition: Planets (other than Sun) in the 12th house from Moon</li>
+    <li>Moon in Libra → 12th from Moon = Virgo → <strong>Venus in Virgo</strong> = Anaphaa Yoga ✓</li>
+    <li>Venus (5th lord, functional benefic) creates this yoga — reputation, character, and physical grace</li>
+  </ul>
+
+  <h3>4. Raja Yoga (Venus–Jupiter Mutual Aspect) — PRESENT</h3>
+  <ul>
+    <li>Venus = 5th lord (trine lord = Goddess Lakshmi)</li>
+    <li>Jupiter = 7th + 10th lord (quadrant lords = Lord Vishnu)</li>
+    <li><strong>Jupiter's 5th graha drishti from Taurus = Virgo (where Venus is)</strong> ✓</li>
+    <li>Trine lord + quadrant lord in mutual association = Raja Yoga</li>
+    <li>Note: The book qualifies that closer aspects (within ~6°) are stronger; this is a sign-to-sign aspect</li>
+  </ul>
+
+  <h3>5. Kopita Avastha (Moon)</h3>
+  <ul>
+    <li>Definition: <em>"A planet joined closely by Sun is said to be in Kopita avastha (angry)"</em> (p.165)</li>
+    <li>Moon is NOT conjunct Sun — does not apply directly</li>
+    <li>But Moon receives heavy aspect traffic: Mars graha drishti + Sun/Mercury rasi drishti + Saturn rasi drishti = a heavily "watched" and emotionally intense Moon</li>
+  </ul>
+
+  <h3>❌ Yogas NOT Present (Corrections)</h3>
+  <ul>
+    <li><span class="danger">Sarala Yoga:</span> Requires 8th lord in 8th house — Saturn is in 12th. <strong>Not present.</strong></li>
+    <li><span class="danger">Vimala Yoga:</span> Requires 12th lord in 12th house — Venus is in 4th. <strong>Not present.</strong></li>
+    <li><span class="danger">Harsha Yoga:</span> Requires 6th lord in 6th house — Mars is in 2nd. <strong>Not present.</strong></li>
+    <li><span class="danger">Gaja-Kesari Yoga:</span> Requires Jupiter in quadrant from Moon — Jupiter is in 8th from Moon. <strong>Not present.</strong></li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S6 -->
+<section id="s6">
+  <h2>Part 6 — Arudha Padas: Complete Calculation</h2>
+
+  <blockquote>Method (Narasimha Rao, p.73): <em>Count signs from house to its lord. Count the same number from the lord. If result falls in 1st or 7th from original house, take the 10th from result instead.</em></blockquote>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Arudha</th><th>House</th><th>Sign</th><th>Lord's Sign</th><th>Count</th><th>Result</th><th>Exception?</th></tr>
+    <tr><td><strong>AL (A1)</strong></td><td>H1</td><td>Ge</td><td>Mercury → Le</td><td>3 from Le</td><td><strong>Libra</strong></td><td>Li = 5th from Ge — No exception</td></tr>
+    <tr><td>A2</td><td>H2</td><td>Cn</td><td>Moon → Li</td><td>4 from Li</td><td><strong>Libra</strong></td><td>Was Cp → 7th from Cn = Cp → Exception: 10th from Cp = Li</td></tr>
+    <tr><td>A3</td><td>H3</td><td>Le</td><td>Sun → Le</td><td>1 from Le</td><td><strong>Taurus</strong></td><td>Was Le = same as H3 → Exception: 10th from Le = Ta</td></tr>
+    <tr><td>A4</td><td>H4</td><td>Vi</td><td>Mercury → Le</td><td>3 from Le</td><td><strong>Cancer</strong></td><td>Li → not 1st/7th from Vi — No; correction: 3 from Le = Li; Li is 3rd from Vi ✓</td></tr>
+    <tr><td>A5</td><td>H5</td><td>Li</td><td>Venus → Vi</td><td>2 from Vi</td><td><strong>Leo</strong></td><td>Li is same as H5 → Exception: 10th from Li = Cn; Wait — 2 from Vi = Li → same as H5 → 10th from Li = Cn... actually: ends at Li = H5 itself → take 10th = Cn</td></tr>
+    <tr><td>A6</td><td>H6</td><td>Sc</td><td>Mars → Cn</td><td>3 from Cn</td><td><strong>Pisces</strong></td><td>Pi ≠ 1st/7th from Sc — No exception</td></tr>
+    <tr><td><strong>A7 (Darapada)</strong></td><td>H7</td><td>Sg</td><td>Jupiter → Ta</td><td>6 from Ta</td><td><strong>Libra</strong></td><td>Li ≠ 1st/7th from Sg — No exception</td></tr>
+    <tr><td>A8</td><td>H8</td><td>Cp</td><td>Saturn → Ta</td><td>5 from Ta</td><td><strong>Virgo</strong></td><td>Vi ≠ 1st/7th from Cp — No exception</td></tr>
+    <tr><td>A9</td><td>H9</td><td>Aq</td><td>Saturn → Ta</td><td>4 from Ta</td><td><strong>Taurus</strong></td><td>Le = 7th from Aq → Exception: 10th from Le = Ta</td></tr>
+    <tr><td>A10</td><td>H10</td><td>Pi</td><td>Jupiter → Ta</td><td>3 from Ta</td><td><strong>Cancer</strong></td><td>Cn ≠ 1st/7th from Pi — No exception</td></tr>
+    <tr><td>A11</td><td>H11</td><td>Ar</td><td>Mars → Cn</td><td>4 from Cn</td><td><strong>Cancer</strong></td><td>Li = 7th from Ar → Exception: 10th from Li = Cn</td></tr>
+    <tr><td><strong>UL (A12)</strong></td><td>H12</td><td>Ta</td><td>Venus → Vi</td><td>5 from Vi</td><td><strong>Capricorn</strong></td><td>Cp ≠ 1st/7th from Ta — No exception</td></tr>
+  </table>
+  </div>
+
+  <h3>Key Arudha Interpretations</h3>
+
+  <h4>AL = Libra (H5 from lagna) — with Moon on it</h4>
+  <blockquote>Narasimha Rao (p.82): <em>"Because Moon owns the 2nd from AL and occupies AL, status of the native in the eyes of people will increase in Moon's periods."</em></blockquote>
+  <p>Three arudhas — <strong>AL, A2, and A7</strong> — all fall in <strong>Libra</strong>. This triple Libra concentration means the world's perception of self (AL), wealth (A2), and relationships (A7) are all channeled through Moon-in-Libra Venusian energy. Diplomatic, aesthetically refined, emotionally intelligent public image.</p>
+
+  <h4>UL = Capricorn (H8 from lagna) — Spouse nature</h4>
+  <blockquote>Narasimha Rao (p.78): <em>"Planets in UL show the kind of marriage one has and the kind of spouse one gets."</em></blockquote>
+  <p><strong>UL in Capricorn</strong> (no planets there in rasi): Saturn-themed spouse — disciplined, practical, possibly older, met through work or karmic circumstances.</p>
+  <p><strong class="warn">7th from UL = Cancer</strong> (Mars is there, deeply debilitated): Per book (p.78): <em>"Malefics like Mars, Saturn and nodes in these houses from UL can result in troubles for the marriage and even a divorce."</em> Conscious attention to marital conflicts required. Propitiation of Mars is essential before marriage.</p>
+  <p><strong>8th from UL = Leo</strong> (Sun + Mercury): Longevity of marriage sustained by Sun/Mercury themes — communication, respect for authority, intellectual engagement in the relationship.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S7 -->
+<section id="s7">
+  <h2>Part 7 — Navamsha (D-9) Analysis</h2>
+
+  <p><strong>D-9 Lagna = Libra</strong> (Lord = Venus, exalted in Pisces in the 6th from D-9 lagna)</p>
+
+  <div class="highlight-box">
+    <h4>Venus Exalted in Pisces (D-9) — The Soul's Greatest Gift</h4>
+    <p>Venus is the D-9 lagna lord (Libra D-9 lagna → lord Venus). Venus being <strong>exalted in Pisces</strong> in the 6th from D-9 lagna is a profoundly positive placement. It means:</p>
+    <ul>
+      <li>The soul's dharmic purpose is deeply Venusian — beauty, love, creativity, art, compassionate relationships</li>
+      <li>Inner life and ultimate karmic fruits of Venus are at maximum strength, despite rasi debilitation</li>
+      <li>Pisces Venus = selfless love, spiritual devotion, musical/artistic genius at the soul level</li>
+      <li>6th from D-9 lagna = overcoming enemies and challenges through Venusian grace and perseverance</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>D-9 Pisces Stellium: Venus + Mars + Saturn</h4>
+    <p>Three planets — Venus (exalted), Mars, and Saturn — all converge in Pisces in the D-9 chart. This is an extraordinary soul-level configuration:</p>
+    <ul>
+      <li><strong>Venus (exalted):</strong> The dominant energy — selfless love and spiritual beauty</li>
+      <li><strong>Saturn:</strong> Discipline and karmic purification through devotion</li>
+      <li><strong>Mars:</strong> Drive and courage channeled toward transcendent goals</li>
+    </ul>
+    <p>This stellium in the 6th from D-9 lagna (and 12th from D-9 7th house) speaks to a soul that must pass through deep service, sacrifice, and spiritual practice before reaching its highest expression.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h4>Jupiter in Taurus (D-9) — 8th from D-9 lagna</h4>
+    <p>Jupiter in his friendly Taurus, positioned in the 8th from D-9 Libra lagna. The 8th in D-9 = hidden wisdom, transformative experiences, occult knowledge. Jupiter here gives deep philosophical understanding of suffering and transformation. This natally destines the person for meaningful encounter with life's deeper mysteries.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S8 -->
+<section id="s8">
+  <h2>Part 8 — Ashtakavarga: House-by-House Analysis</h2>
+
+  <blockquote>Narasimha Rao (p.301): <em>"SAV has 40 bindus in a sign means that sign is very strong in the chart."</em> Average = ~28 bindus per sign.</blockquote>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Sign</th><th>SAV Bindus</th><th>House from Ge</th><th>House Signification</th><th>Assessment</th></tr>
+    <tr><td>Aries</td><td>31</td><td>H11 (Gains/Income)</td><td>Income, hopes, elder siblings</td><td class="good">Above average — good for gains</td></tr>
+    <tr><td>Taurus</td><td>29</td><td>H12 (Losses/Liberation)</td><td>Expenditure, foreign, moksha</td><td>Average — manageable 12th house</td></tr>
+    <tr><td>Gemini</td><td>29</td><td>H1 (Lagna/Self)</td><td>Body, personality, vitality</td><td>Average self-strength</td></tr>
+    <tr><td>Cancer</td><td>26</td><td>H2 (Wealth/Family)</td><td>Accumulated wealth, speech, family</td><td class="warn">Below average — wealth needs effort</td></tr>
+    <tr><td><strong>Leo</strong></td><td><strong>32</strong></td><td><strong>H3 (Communication)</strong></td><td>Creativity, writing, courage, siblings</td><td class="good"><strong>Strong — communication &amp; creative expression thrive</strong></td></tr>
+    <tr><td>Virgo</td><td>22</td><td>H4 (Home/Mother)</td><td>Home, mother, education, vehicles</td><td class="danger">Below average — home/mother challenges</td></tr>
+    <tr><td>Libra</td><td>26</td><td>H5 (Intellect/Children)</td><td>Children, intellect, creativity</td><td>Average</td></tr>
+    <tr><td>Scorpio</td><td>25</td><td>H6 (Enemies/Health)</td><td>Service, enemies, health</td><td>Average</td></tr>
+    <tr><td>Sagittarius</td><td>28</td><td>H7 (Marriage/Partners)</td><td>Partnerships, marriage</td><td>Average</td></tr>
+    <tr><td>Capricorn</td><td>27</td><td>H8 (Longevity/Occult)</td><td>Longevity, secrets, inheritance</td><td>Average</td></tr>
+    <tr><td>Aquarius</td><td>25</td><td>H9 (Fortune/Dharma)</td><td>Father, fortune, religion</td><td class="warn">Below average — dharmic path has obstacles</td></tr>
+    <tr><td><strong>Pisces</strong></td><td><strong>37</strong></td><td><strong>H10 (Career/Karma)</strong></td><td>Profession, karma, public status</td><td class="good"><strong>HIGHEST in chart (37 bindus!) — exceptional career destiny</strong></td></tr>
+  </table>
+  </div>
+
+  <div class="highlight-box">
+    <p>The career house (H10, Pisces) has <strong>37 bindus</strong> — by far the highest in the chart. This is the clearest single indicator that career achievement and public karma are this person's greatest karmic gift and life destiny. Jupiter (as 10th lord) in the baadhaka MD is temporarily blocking access to this 37-bindu destiny. Saturn MD (from Jan 2026) will unlock it.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S9 -->
+<section id="s9">
+  <h2>Part 9 — Aspects &amp; Argalas</h2>
+
+  <h3>Graha Drishti (Planetary Aspects)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Aspects (graha)</th><th>Key Interaction</th></tr>
+    <tr><td>Saturn (Ta)</td><td>3rd = Cancer, 7th = Scorpio, 10th = Aquarius</td><td><strong>Saturn → Mars (Cancer)</strong>: Functional benefic (9th lord) modifying debilitated Mars. Protective discipline on harsh Mars energy.</td></tr>
+    <tr><td>Jupiter (Ta)</td><td>5th = Virgo, 7th = Scorpio, 9th = Capricorn</td><td><strong>Jupiter → Venus (Virgo)</strong>: Benefic aspect rescuing debilitated Venus. Activates Raja Yoga (5th lord + quadrant lord).</td></tr>
+    <tr><td>Mars (Cn)</td><td>4th = Libra, 7th = Capricorn, 8th = Aquarius</td><td><strong>Mars → Moon (Libra)</strong>: Debilitated Mars aspects Moon on AL — emotional passion and agitation overlay the calm public image.</td></tr>
+  </table>
+  </div>
+
+  <h3>Rasi Drishti (Sign Aspects)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Sign/Planet Cluster</th><th>Rasi Aspects</th><th>Key Interactions</th></tr>
+    <tr><td>Leo (Sun+Mercury) — fixed</td><td>Cancer, Libra, Aries, Capricorn (movables except Virgo)</td><td>Sun+Mercury see Mars (Cn) and Moon/AL (Li) by rasi drishti. The Budha-Aditya yogic energy directly touches both the debilitated 2nd house and the Moon on AL.</td></tr>
+    <tr><td>Taurus (Jupiter+Saturn) — fixed</td><td>Cancer, Libra, Capricorn (movables except Aries)</td><td>Both Jupiter and Saturn see Moon/AL (Li) and Mars (Cn). The dharmic duo (9th lord Saturn + 10th lord Jupiter) bless the public persona (AL) and moderate debilitated Mars.</td></tr>
+    <tr><td>Gemini (Rahu) — dual</td><td>Virgo, Sagittarius, Pisces (all dual signs)</td><td>Rahu sees Venus (Vi), Ketu (Sg), and H10 (Pi). Rahu's worldly ambition touches Venus (debilitated) and the highest-bindu career house.</td></tr>
+    <tr><td>Cancer (Mars) — movable</td><td>Taurus, Scorpio, Aquarius (fixed except Leo)</td><td>Mars sees Jupiter+Saturn (Ta). Debilitated Mars in H2 brings intensity to the H12 cluster.</td></tr>
+  </table>
+  </div>
+
+  <h3>Argala (Decisive Interventions)</h3>
+  <p>Per Narasimha Rao p.89: <em>"A planet in the 2nd, 4th and 11th from a planet or house causes primary argala on the latter."</em></p>
+  <ul>
+    <li><strong>Rahu's argala on Sun</strong> (Rahu is in 11th from Leo/Sun = Gemini): Rahu decisively intervenes in Sun's affairs — technology, foreign elements, unconventional paths, and worldly fame color the soul's expression and authority.</li>
+    <li><strong>Mars' argala on Lagna</strong> (Mars in 2nd from Ge = Cancer): Debilitated Mars makes a "Vikala argala" (crippled intervention) on the self — inner struggles with courage, expression, and energy management.</li>
+    <li><strong>Venus' argala on Lagna</strong> (Venus in 4th from Ge = Virgo): Debilitated Venus intervenes in self-expression — artistic sensitivity but potential confusion or insecurity in home/relationship matters affecting identity.</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S10 -->
+<section id="s10">
+  <h2>Part 10 — Dasha Periods: Current &amp; Upcoming</h2>
+
+  <div class="highlight-box">
+    <p><strong>Dasha Balance at Birth:</strong> Rahu 9Y 4M 23D remaining</p>
+    <p><strong>Current Dasha:</strong> Jupiter MD (Jan 26, 2010 – Jan 26, 2026)</p>
+    <p><strong>Coming Dasha:</strong> Saturn MD (Jan 26, 2026 – Jan 26, 2045)</p>
+  </div>
+
+  <h3>Jupiter MD (2010 – 2026) — The Baadhaka Period</h3>
+  <p>Jupiter as functional malefic (H7+H10 lord) and Badhaka lord for Gemini lagna is running as Mahadasha. Per Narasimha Rao (p.148): <em>"The periods of Jupiter and planets in Sg can create some obstructions and troubles."</em> Career potential (37-bindu H10) exists but Jupiter as baadhaka delays and diverts. This is a period of behind-the-scenes effort, foreign connections, spiritual deepening, and foundation-building. Jupiter in 12th also brings foreign opportunities and hidden growth.</p>
+
+  <h3>Saturn MD (Jan 26, 2026 – Jan 26, 2045) — The Defining 19 Years</h3>
+
+  <div class="dasha-grid">
+    <div class="dasha-card">
+      <div class="title">SAT / SAT</div>
+      <div class="period">Jan 2026 – Jan 2029</div>
+      <div class="body">Pure Saturnine energy. Saturn as 9th lord in 12th: dharma dissolving into moksha. Foreign travel, spiritual discipline, hard karmic work. Career foundations laid with lasting quality. Krittika (Sun) nakshatra gives purifying quality — sharp, clear-cutting through past karma. Ages 25–29.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / MER</div>
+      <div class="period">Jan 2029 – Oct 2031</div>
+      <div class="body">Lagna lord Mercury's antardasa within Saturn MD. Budha-Aditya yoga activates in career (D-10). Communication abilities, writing, technical skills shine. Mercury as combust lagna lord in rasi may bring identity challenges — but external career success emerges. <strong class="good">H10 (37 bindus) begins to unlock.</strong></div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / KET</div>
+      <div class="period">Oct 2031 – Nov 2032</div>
+      <div class="body">Ketu in H7 (Sagittarius), Uttarashadha nakshatra. Short but intense — withdrawal from relationships, spiritual insights, moksha-oriented thinking. Ketu in own sign in D-9 = powerful liberation energy. Renunciation themes. Possible relationship separations.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / VEN</div>
+      <div class="period">Nov 2032 – Jan 2036</div>
+      <div class="body">Venus as 5th lord (functional benefic), exalted in D-9 Pisces. <strong class="good">Potentially the finest sub-period of Saturn MD.</strong> Marriage most likely (Venus antardasa activates UL dynamics). Creative projects, artistic endeavors, romantic fulfillment. Jupiter's blessing on Venus (graha drishti) brings dharmic grace. Ages 32–35: peak relational and creative period.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / SUN</div>
+      <div class="period">Jan 2036 – Dec 2036</div>
+      <div class="body">Brief (11 months) but powerful. Sun as 3rd lord in H3 — Budha-Aditya yoga is highlighted. Public recognition, authority, and solar fame reach a peak within Saturn MD. Some ego challenges but career achievements are recognized. Rahu's argala on Sun brings worldly fame.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / MON</div>
+      <div class="period">Dec 2036 – Jul 2038</div>
+      <div class="body"><strong class="good">Peak social/public status period of Saturn MD.</strong> Moon on AL = maximum public visibility and recognition. Per Narasimha Rao: "status in the eyes of people will increase in Moon's periods." Moon owns H2 (wealth) and occupies AL. Material gains, social prestige, and emotional fulfillment converge. Ages 36–38: most publicly successful sub-period.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / MAR</div>
+      <div class="period">Jul 2038 – Sep 2039</div>
+      <div class="body">Mars as H6+H11 lord, deeply debilitated in Cancer. Functional malefic antardasa within functional benefic MD = mixed results. Income from competitive efforts but also potential conflicts, legal issues, or health challenges. Watch speech and finances. Saturn's 3rd aspect on Mars provides some grounding discipline.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / RAH</div>
+      <div class="period">Sep 2039 – Jul 2042</div>
+      <div class="body">Rahu in lagna (H1, Gemini), Punarvasu nakshatra. Turbulent but potentially fame-bringing. Foreign elements, unconventional paths, rapid changes. Rahu's argala on Sun + Rahu in lagna = massive worldly engagement. Rahu in Jupiter's (Punarvasu) nakshatra = some philosophical grounding beneath the chaos.</div>
+    </div>
+    <div class="dasha-card">
+      <div class="title">SAT / JUP</div>
+      <div class="period">Jul 2042 – Jan 2045</div>
+      <div class="body">Closing sub-period. Jupiter as 10th lord, despite functional malefic status, activates H10 (37 bindus, Pisces). Career reaches its highest point — international recognition, authority positions, public achievements. Jupiter in Rohini (Moon's nurturing nakshatra) brings prosperous and benevolent conclusion to the Saturn MD. Ages 42–45: career summit.</div>
+    </div>
+  </div>
+
+  <h3>Mercury MD (Jan 26, 2045 – Jan 26, 2062)</h3>
+  <p>Lagna lord Mercury's own Mahadasha — 17 years. Budha-Aditya yoga is the central theme. Communication, writing, technical mastery, and recognized expertise become the life's main fruition. The 37-bindu H10 continues to support career achievement. Mercury in Uttaraphalguni (Sun's nakshatra) connects Mercurian achievement with solar authority and recognition. Ages 45–62: the intellectual and creative legacy period.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S11 -->
+<section id="s11">
+  <h2>Part 11 — Badhaka &amp; Kakshya Analysis</h2>
+
+  <h3>Badhaka (Troublemaker) for Gemini Lagna</h3>
+  <blockquote>Narasimha Rao, Table 31 (p.145): <em>"For Gemini lagna: Baadhaka sthaana = Sagittarius, Baadhaka = Jupiter."</em></blockquote>
+  <p><strong>Jupiter IS the Baadhaka lord</strong> and is <em>currently running as Mahadasha</em> (2010–2026). This explains the frustrations and obstacles during Jupiter MD even though H10 has 37 bindus. The baadhaka deliberately creates obstruction to test the native before granting access to the promised destiny. When Jupiter MD ends on January 26, 2026, the baadhaka period concludes and Saturn MD (non-baadhaka) begins clearing the path.</p>
+
+  <h3>Kakshya Analysis (Per Ch. 25.5.2)</h3>
+  <p>Each rasi is divided into 8 kakshyas of 3°45' each. The kakshya a planet occupies colors its transit results.</p>
+
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Position</th><th>Kakshya Lord</th><th>Significance</th></tr>
+    <tr><td>Sun</td><td>16°43' Leo</td><td><strong>Venus's kakshya</strong> (15°–18°45')</td><td>Solar authority filtered through Venusian aesthetics — elegant, charming, artistic authority</td></tr>
+    <tr><td>Mercury</td><td>27°22' Leo</td><td><strong>Lagna's kakshya</strong> (26°15'–30°)</td><td>Communication most intimately tied to physical self and identity — deeply personal voice</td></tr>
+    <tr><td>Moon</td><td>13°02' Libra</td><td><strong>Sun's kakshya</strong> (11°15'–15°)</td><td>Mind drawn to authority, self-expression, and prestigious matters</td></tr>
+    <tr><td>Saturn</td><td>07°02' Taurus</td><td><strong>Jupiter's kakshya</strong> (3°45'–7°30')</td><td>Saturn's karma-giving energy enriched by wisdom, philosophy, and dharmic understanding</td></tr>
+    <tr><td>Jupiter</td><td>16°11' Taurus</td><td><strong>Venus's kakshya</strong> (15°–18°45')</td><td>Jupiter's wisdom channeled through Venus — beauty, relationships, and aesthetics are the wisdom vehicles</td></tr>
+    <tr><td>Venus</td><td>09°22' Virgo</td><td><strong>Mars's kakshya</strong> (7°30'–11°15')</td><td>Debilitated Venus colored by Mars energy — passionate, active quality to Venusian matters</td></tr>
+    <tr><td>Mars</td><td>27°07' Cancer</td><td><strong>Lagna's kakshya</strong> (26°15'–30°)</td><td>Mars' energy most directly affecting physical self</td></tr>
+    <tr><td>Rahu</td><td>28°11' Gemini</td><td><strong>Lagna's kakshya</strong> (26°15'–30°)</td><td>Rahu's worldly ambition most directly affecting physical identity</td></tr>
+  </table>
+  </div>
+
+  <h3>Tripod of Life (Per Narasimha Rao, p.185)</h3>
+  <blockquote><em>"Sun, Moon and lagna form the 'tripod of life'. Sun represents soul. Moon represents mind. Lagna represents body."</em></blockquote>
+  <ul>
+    <li><strong>Sun in H3 (Leo):</strong> Soul manifests through communication, creative courage, and bold expression.</li>
+    <li><strong>Moon in H5 (Libra):</strong> Mind engages through intellect, emotional creativity, and artistic balance.</li>
+    <li><strong>Lagna in Gemini:</strong> Body navigates through duality, curiosity, and mercurial adaptability.</li>
+  </ul>
+  <p>H3 (Sun) and H5 (Moon) have a trinal relationship from each other — soul and mind reinforce each other beautifully. The body (Gemini lagna) serves as the nimble vehicle for this Sun-Moon creative dialogue.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S12 -->
+<section id="s12">
+  <h2>Part 12 — Remedial Measures (Per Narasimha Rao Ch. 34)</h2>
+
+  <blockquote>Narasimha Rao (p.396): <em>"Look at the functional benefics in one's rasi chart and prescribe their gemstones. Gemstones of functional malefics should be avoided."</em></blockquote>
+
+  <h3>Gemstones to Wear</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet</th><th>Role</th><th>Gemstone</th><th>Metal</th><th>Day to Wear</th><th>Priority</th></tr>
+    <tr><td><strong>Saturn</strong></td><td>9th lord (strongest functional benefic)</td><td>Blue Sapphire</td><td>Iron / Silver</td><td>Saturday</td><td><strong class="good">Highest</strong> (always test first — consult an expert)</td></tr>
+    <tr><td><strong>Venus</strong></td><td>5th lord (functional benefic)</td><td>Diamond</td><td>Silver / Platinum</td><td>Friday</td><td><span class="good">High</span> — especially during Venus antardasa (2032–2036)</td></tr>
+    <tr><td><strong>Mercury</strong></td><td>Lagna lord (combust)</td><td>Emerald</td><td>Silver / Platinum</td><td>Wednesday</td><td><span class="warn">Moderate</span> — strengthens combust lagna lord and communication</td></tr>
+  </table>
+  </div>
+
+  <p><strong>Avoid:</strong> Ruby (Sun = 3rd lord, functional malefic), Red Coral (Mars = 6th+11th lord, functional malefic).</p>
+
+  <h3>Propitiation of Deities (Table 78)</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>Planet to Propitiate</th><th>Recommended Deity</th><th>Day</th><th>Good Deed</th></tr>
+    <tr><td>Saturn (9th lord)</td><td>Lord Vishnu / Brahma</td><td>Saturday</td><td>Help people in manual labor; donate sesame seeds</td></tr>
+    <tr><td>Venus (5th lord, debilitated)</td><td>Goddess Lakshmi / Parvati</td><td>Friday</td><td>Read poetry; donate to artists; pray to Lakshmi</td></tr>
+    <tr><td>Mercury (lagna lord, combust)</td><td>Lord Vishnu / Narayana</td><td>Wednesday</td><td>Donate to scholars; recite Vishnu Sahasranama; engage in writing</td></tr>
+    <tr><td>Mars (for marriage protection)</td><td>Hanuman / Narasimha</td><td>Tuesday</td><td>Physical exercise; donate to gymnasiums; recite Hanuman Chalisa</td></tr>
+  </table>
+  </div>
+
+  <h3>Fasting Recommendation</h3>
+  <p>Per the book: <em>"Fasting on the weekday ruled by upapada lord in rasi chart mitigates troubles in one's marriage."</em> UL = Capricorn → lord = Saturn → Fast on <strong>Saturdays</strong> for marital protection.</p>
+
+  <h3>Food/Grain Donations</h3>
+  <ul>
+    <li><strong>Mercury:</strong> Donate moong daal (smaller green-skinned yellow lentils) on Wednesdays</li>
+    <li><strong>Venus:</strong> Donate white grain/rice on Fridays</li>
+    <li><strong>Saturn:</strong> Donate sesame seeds (til) on Saturdays</li>
+    <li><strong>Mars:</strong> Donate toor daal on Tuesdays</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ S13 -->
+<section id="s13">
+  <h2>Part 13 — Final Synthesis</h2>
+
+  <div class="highlight-box">
+    <h3>Character and Core Identity</h3>
+    <p>Gemini lagna with combust Mercury in H3 creates an intellectually driven, communicatively gifted person whose identity is deeply intertwined with self-expression and learning — but who may feel overshadowed or internally conflicted (combustion) in early years. The Budha-Aditya yoga ensures above-average intelligence and technical expertise emerge over time.</p>
+    <p>Moon on Arudha Lagna (Libra) with Swati nakshatra gives a magnetic, diplomatically charming public persona. The world perceives elegance, emotional balance, and social grace — even when the internal experience is more turbulent (Mars aspecting Moon, combust Mercury, multiple debilitations).</p>
+    <p>The D-9 stellium in Pisces (Venus exalted, Saturn, Mars) reveals a soul of deep spiritual sensitivity, destined to work through service and sacrifice toward transcendence. The outer worldly success (37-bindu H10) and the inner spiritual depth (D-9 Pisces stellium + H12 Jupiter+Saturn) are the two pillars of this life's purpose.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Career Destiny</h3>
+    <p>H10 (Pisces) has 37 bindus — the <strong>highest in the entire chart</strong>. Jupiter as H10 lord is in 12th house, and running as baadhaka MD (2010–2026), temporarily obstructing access to this destiny. When Saturn MD begins January 26, 2026:</p>
+    <ul>
+      <li><strong>2026–2029 (SAT/SAT):</strong> Foundation work, foreign career connections, discipline. Beginning of the real ascent.</li>
+      <li><strong>2029–2031 (SAT/MER):</strong> Budha-Aditya yoga activates in career. Technical/intellectual fields shine. H10 begins delivering.</li>
+      <li><strong>2036–2038 (SAT/MON):</strong> Peak public recognition and social status.</li>
+      <li><strong>2042–2045 (SAT/JUP):</strong> Career summit — international recognition, authority, culmination of the 37-bindu destiny.</li>
+    </ul>
+    <p>Best career areas: Communication, technology, writing, intellectual fields, research, international work, anything involving Mercury and Sun's combined energy (media, publishing, education, advisory roles, scientific communication).</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Marriage &amp; Relationships</h3>
+    <ul>
+      <li><strong>Best marriage window:</strong> SAT/VEN antardasa, November 2032 – January 2036 (ages 32–35)</li>
+      <li><strong>Spouse nature</strong> (UL = Capricorn): Disciplined, practical, Saturnine, possibly older or met through karma/work</li>
+      <li><strong class="warn">Marital challenge:</strong> Mars (debilitated) in 7th from UL (Cancer) — potential conflicts and separation risk. Requires conscious communication and Saturn/Mars propitiation before marriage</li>
+      <li><strong>Remedy:</strong> Fast on Saturdays (UL lord Saturn). Propitiate Mars (Tuesdays). Wear Diamond (Venus, 5th lord) from the marriage period onward.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Spiritual Path</h3>
+    <p>Saturn (9th lord) + Jupiter (12th lord's co-ruler) both in H12, combined with D-9 Pisces stellium and UL in Capricorn — this chart is fundamentally oriented toward spiritual depth and eventual liberation. The 12th house is not a house of loss in this chart; it is a house of transcendence.</p>
+    <p>The greatest wisdom of this chart: <em>the outer world success (37-bindu H10) and inner spiritual depth (H12 Saturn+Jupiter, D-9 Pisces) are not opposing forces — they are two sides of the same Saturn MD coin. Success in the world becomes the vehicle through which inner transcendence is achieved.</em></p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Key Dates Summary</h3>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Period</th><th>Dates</th><th>Key Theme</th></tr>
+      <tr><td>Jupiter MD ends</td><td>Jan 26, 2026</td><td>Baadhaka period concludes; obstacles lift</td></tr>
+      <tr><td>SAT/SAT</td><td>Jan 2026 – Jan 2029</td><td>Karmic clearing, spiritual depth, foundations</td></tr>
+      <tr><td>SAT/MER</td><td>Jan 2029 – Oct 2031</td><td>Budha-Aditya yoga activates; career takes off</td></tr>
+      <tr><td>SAT/VEN</td><td>Nov 2032 – Jan 2036</td><td><strong class="good">Marriage window; creative peak; Venus exalted D-9</strong></td></tr>
+      <tr><td>SAT/MON</td><td>Dec 2036 – Jul 2038</td><td><strong class="good">Highest public recognition; Moon on AL delivers</strong></td></tr>
+      <tr><td>SAT/JUP</td><td>Jul 2042 – Jan 2045</td><td><strong class="good">Career summit; 37-bindu H10 fully realized</strong></td></tr>
+      <tr><td>Mercury MD</td><td>Jan 2045 – Jan 2062</td><td>Intellectual and creative legacy; Budha-Aditya full bloom</td></tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ FOOTER -->
+<div class="footer">
+  <p>Analysis based on <em>Vedic Astrology: An Integrated Approach</em> by P.V.R. Narasimha Rao (2001)</p>
+  <p>Kundali data source: AstroSage.com report for Abhishek Singh, born 3 September 2000, 00:00:18 IST, Ayodhya</p>
+  <p>Ayanamsa: Lahiri 23°51'57" &nbsp;|&nbsp; Analysis prepared: April 2026</p>
+  <br/>
+  <p><em>To print as PDF: Open this file in any browser → File → Print → Save as PDF</em></p>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
