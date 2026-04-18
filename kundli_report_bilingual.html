@@ -40,19 +40,22 @@
     font-family: 'Georgia', 'Times New Roman', serif;
     background: var(--deep);
     color: var(--text);
-    line-height: 2.05;
+    line-height: 2.1;
+    overflow-x: hidden;
   }
 
   /* ─── Force gold links — override browser defaults ─── */
-  a,
+  a {
+    color: #c8a86e !important;
+    text-decoration: none !important;
+  }
   a:visited,
   a:active {
     color: #c8a86e !important;
-    text-decoration: none;
   }
   a:hover {
     color: #ffd966 !important;
-    text-decoration: underline;
+    text-decoration: underline !important;
   }
   .sidebar .toc a {
     color: #c8a86e !important;
@@ -110,7 +113,7 @@
   }
   .toc li { margin: 2px 0; }
   .toc a {
-    color: #c8a86e;
+    color: #c8a86e !important;
     text-decoration: none;
     font-size: 0.77rem;
     line-height: 1.45;
@@ -121,7 +124,7 @@
   }
   .toc a:hover {
     background: #2a1e08;
-    color: #ffd966;
+    color: #ffd966 !important;
   }
   .toc a.toc-h3 {
     font-size: 0.72rem;
@@ -361,14 +364,14 @@
   }
   @media (max-width: 768px) {
     html { font-size: 19px; }
-    body { line-height: 2.15; }
+    body { line-height: 2.2; }
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.3rem; }
     h3 { font-size: 1.15rem; }
     .layout { display: block; }
-    .sidebar { display: none; }
-    .main  { max-width: 100%; padding: 16px 12px 50px; }
-    .card  { padding: 16px 12px; }
+    .sidebar { display: none !important; }
+    .main  { max-width: 100% !important; width: 100% !important; padding: 18px 12px 50px !important; }
+    .card  { padding: 18px 12px !important; }
     table  { font-size: 0.95rem; }
   }
 
