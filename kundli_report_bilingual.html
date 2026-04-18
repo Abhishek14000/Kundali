@@ -10,19 +10,40 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
 
+  /* ─── CSS Variables — Dark Royal Theme ─── */
+  :root {
+    --gold:        #b8860b;
+    --gold-light:  #d4a017;
+    --accent:      #e2b96f;
+    --highlight:   #ffd966;
+    --deep:        #13101e;   /* deep navy-black */
+    --mid:         #1c1630;
+    --card-bg:     #1a1208;
+    --sidebar-bg:  #0e0b18;
+    --text:        #f0e6d3;
+    --muted:       #c9b99a;
+    --border:      #3a2a14;
+    --border2:     #4a3a28;
+    --good:        #52c478;
+    --warn:        #f0c040;
+    --danger:      #e86060;
+    --table-head:  #241640;
+    --section-bar: #b8860b;
+  }
+
   /* ─── Reset ─── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; font-size: 16px; }
 
-  /* ─── Base dark theme ─── */
+  /* ─── Base ─── */
   body {
-    font-family: 'Georgia', 'Noto Sans Devanagari', serif;
-    background: #1a1209;
-    color: #f0e4c8;
-    line-height: 1.85;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--deep);
+    color: var(--text);
+    line-height: 1.82;
   }
 
-  /* ─── Hindi content uses Devanagari font ─── */
+  /* ─── Hindi font ─── */
   .lang-hi,
   .lang-hi * {
     font-family: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', serif;
@@ -35,158 +56,326 @@
     min-height: 100vh;
   }
 
-  /* ─── Sticky sidebar ─── */
+  /* ─── Sticky Sidebar ─── */
   .sidebar {
-    width: 260px;
-    min-width: 220px;
+    width: 272px;
+    min-width: 230px;
     max-width: 300px;
-    background: #120d05;
-    border-right: 2px solid #b8860b;
+    background: var(--sidebar-bg);
+    border-right: 2px solid var(--gold);
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    padding: 24px 14px;
+    padding: 22px 14px 28px;
     flex-shrink: 0;
   }
-  .sidebar h2 {
-    font-size: 0.82rem;
+  .sidebar-title {
+    font-size: 0.76rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #d4a017;
-    margin-bottom: 14px;
+    letter-spacing: 2.5px;
+    color: var(--gold-light);
+    margin-bottom: 2px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #b8860b;
+    border-bottom: 1px solid var(--gold);
+    font-family: 'Georgia', serif;
   }
-  .sidebar .toc ul { list-style: none; padding-left: 0; }
-  .sidebar .toc ul ul { padding-left: 12px; border-left: 1px solid #3a2a0a; margin-top: 3px; }
-  .sidebar .toc li { margin: 3px 0; }
-  .sidebar .toc a {
-    color: #c8a86e; text-decoration: none; font-size: 0.80rem;
-    line-height: 1.4; display: block; padding: 2px 4px; border-radius: 3px;
+  .sidebar-subtitle {
+    font-size: 0.71rem;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-style: italic;
+    padding-top: 4px;
+  }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc ul ul {
+    padding-left: 10px;
+    border-left: 1px solid rgba(184,134,11,0.25);
+    margin-top: 2px;
+  }
+  .toc li { margin: 2px 0; }
+  .toc a {
+    color: #c8a86e;
+    text-decoration: none;
+    font-size: 0.77rem;
+    line-height: 1.45;
+    display: block;
+    padding: 3px 6px;
+    border-radius: 3px;
     transition: background 0.2s, color 0.2s;
   }
-  .sidebar .toc a:hover { background: #2a1e08; color: #ffd966; }
+  .toc a:hover {
+    background: rgba(184,134,11,0.14);
+    color: var(--highlight);
+  }
+  .toc a.toc-h3 {
+    font-size: 0.72rem;
+    color: #a08858;
+    padding-left: 10px;
+  }
+  .toc a.toc-h3:hover { color: var(--accent); }
 
-  /* ─── Language toggle button ─── */
+  /* ─── Language Toggle Button ─── */
   .lang-toggle {
     position: fixed;
     top: 18px;
     right: 22px;
     z-index: 1000;
-    background: linear-gradient(135deg, #b8860b, #d4a017);
-    color: #1a1209;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #120f04;
     border: none;
     border-radius: 30px;
     padding: 10px 22px;
-    font-size: 0.88rem;
+    font-size: 0.87rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     cursor: pointer;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 14px rgba(0,0,0,0.55);
     transition: all 0.25s ease;
     font-family: 'Georgia', 'Noto Sans Devanagari', serif;
   }
   .lang-toggle:hover {
-    background: linear-gradient(135deg, #d4a017, #ffd966);
-    box-shadow: 0 5px 18px rgba(0,0,0,0.6);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, var(--gold-light), var(--highlight));
+    box-shadow: 0 5px 20px rgba(0,0,0,0.65);
+    transform: translateY(-2px);
   }
-  .lang-toggle .arrow { display: inline-block; transition: transform 0.3s; }
+  .lang-toggle .arrow {
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform 0.38s cubic-bezier(.34,1.4,.64,1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lang-toggle .arrow { transition: transform 0.2s ease; }
+    html { scroll-behavior: auto; }
+  }
 
-  /* ─── Main area ─── */
+  /* ─── Main Area ─── */
   .main {
     flex: 1;
-    max-width: 880px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 48px 48px 80px;
+    padding: 48px 44px 80px;
+    min-width: 0;
   }
 
-  /* ─── Card container ─── */
+  /* ─── Card ─── */
   .card {
-    background: #211607;
-    border: 1px solid #3a2a0a;
-    border-radius: 10px;
-    padding: 40px 44px;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+    background: var(--card-bg);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 44px 50px;
+    box-shadow: 0 6px 44px rgba(0,0,0,0.72);
   }
 
-  /* ─── Language sections: smooth fade ─── */
-  .lang-section {
-    transition: opacity 0.35s ease;
-  }
-  .lang-section.hidden {
-    display: none;
-  }
+  /* ─── Language sections ─── */
+  .lang-section { transition: opacity 0.35s ease; }
+  .lang-section.hidden { display: none; }
 
   /* ─── Headings ─── */
   h1 {
-    font-size: 2rem; color: #ffd966;
-    border-bottom: 3px solid #b8860b;
-    padding-bottom: 12px; margin-bottom: 24px; margin-top: 8px;
+    font-size: 2rem;
+    color: var(--highlight);
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+    margin-top: 6px;
+    letter-spacing: 1px;
   }
   h2 {
-    font-size: 1.45rem; color: #e8c060;
-    border-bottom: 1.5px solid #7a5c10;
-    padding-bottom: 8px; margin-top: 48px; margin-bottom: 18px;
+    font-size: 1.32em;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border2);
+    border-left: 4px solid var(--section-bar);
+    padding: 6px 0 8px 14px;
+    margin-top: 54px;
+    margin-bottom: 18px;
   }
-  h3 { font-size: 1.15rem; color: #d4a855; margin-top: 32px; margin-bottom: 12px; }
-  h4 { font-size: 1rem; color: #c89640; margin-top: 24px; margin-bottom: 8px; }
-  h5, h6 { font-size: 0.95rem; color: #b08030; margin-top: 16px; margin-bottom: 6px; }
+  h3 {
+    font-size: 1.1em;
+    color: var(--highlight);
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+  h4 {
+    font-size: 1em;
+    color: var(--accent);
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+  h5, h6 {
+    font-size: 0.93rem;
+    color: var(--muted);
+    margin-top: 13px;
+    margin-bottom: 4px;
+  }
 
   /* ─── Text ─── */
-  p { margin-bottom: 14px; }
-  ul, ol { margin: 10px 0 14px 24px; }
-  li { margin-bottom: 6px; }
-  strong { color: #ffd966; }
-  em { color: #d4a855; }
+  p { margin-bottom: 13px; }
+  ul, ol { padding-left: 22px; margin-bottom: 13px; }
+  li { margin-bottom: 5px; }
+  strong { color: var(--highlight); }
+  em { color: var(--muted); font-style: italic; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
 
-  /* ─── Keyword highlights ─── */
-  .green  { color: #52c478; font-weight: bold; }
-  .red    { color: #e86060; font-weight: bold; }
-  .yellow { color: #f0c040; font-weight: bold; }
-
-  /* ─── Tables ─── */
-  table { width: 100%; border-collapse: collapse; margin: 20px 0 28px; font-size: 0.9rem; background: #1c1005; }
-  th { background: #3a2a08; color: #ffd966; font-weight: bold; padding: 10px 14px; border: 1px solid #5a420e; text-align: left; }
-  td { padding: 8px 14px; border: 1px solid #3a2a0a; color: #e0d0b0; vertical-align: top; }
-  tr:nth-child(even) td { background: #231808; }
-  tr:hover td { background: #2c1e0a; }
+  /* ─── Keyword colours ─── */
+  .green  { color: var(--good);   font-weight: bold; }
+  .red    { color: var(--danger); font-weight: bold; }
+  .yellow { color: var(--warn);   font-weight: bold; }
+  .good   { color: var(--good);   font-weight: bold; }
+  .warn   { color: var(--warn);   font-weight: bold; }
+  .danger { color: var(--danger); font-weight: bold; }
 
   /* ─── Blockquotes ─── */
   blockquote {
-    border-left: 4px solid #b8860b;
-    margin: 16px 0; padding: 10px 20px;
-    background: #1c1308; color: #d4b880;
-    font-style: italic; border-radius: 0 6px 6px 0;
+    border-left: 4px solid var(--gold);
+    margin: 16px 0;
+    padding: 11px 20px;
+    background: rgba(184,134,11,0.07);
+    color: var(--muted);
+    font-style: italic;
+    border-radius: 0 6px 6px 0;
   }
 
-  /* ─── HR ─── */
-  hr { border: none; border-top: 1px solid #3a2a0a; margin: 36px 0; }
+  /* ─── Highlight Box ─── */
+  .highlight-box {
+    background: rgba(212,160,23,0.06);
+    border: 1px solid var(--border2);
+    border-left: 4px solid var(--gold-light);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .highlight-box h3,
+  .highlight-box h4 { margin-top: 4px; }
+
+  /* ─── Tables ─── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 18px 0;
+    border-radius: 6px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    background: rgba(8,6,18,0.35);
+  }
+  th {
+    background: var(--table-head);
+    color: var(--accent);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--gold);
+    font-size: 0.87em;
+    letter-spacing: 0.3px;
+  }
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(74,58,32,0.38);
+    vertical-align: top;
+    color: var(--text);
+  }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.025); }
+  tr:hover td            { background: rgba(184,134,11,0.06);   }
 
   /* ─── Code ─── */
   code {
-    background: #2a1e08; color: #ffd966;
-    padding: 2px 6px; border-radius: 3px;
-    font-family: 'Courier New', monospace; font-size: 0.88em;
+    background: #1c1530;
+    color: var(--highlight);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88em;
   }
 
-  /* ─── Scrollbar ─── */
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #120d05; }
+  /* ─── Scroll Box ─── */
+  .scroll-box {
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 12px 16px 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: rgba(0,0,0,0.14);
+    margin: 12px 0;
+  }
+  .scroll-box::-webkit-scrollbar { width: 6px; }
+  .scroll-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ─── Dasha Grid ─── */
+  .dasha-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .dasha-card {
+    background: var(--mid);
+    border: 1px solid var(--border2);
+    border-top: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 14px 18px;
+    transition: box-shadow 0.22s;
+  }
+  .dasha-card:hover {
+    box-shadow: 0 4px 18px rgba(184,134,11,0.18);
+  }
+  .dasha-card .period {
+    font-size: 0.79em;
+    color: var(--muted);
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+  .dasha-card .title {
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.98em;
+    margin-bottom: 8px;
+  }
+  .dasha-card .body {
+    font-size: 0.87em;
+    line-height: 1.72;
+    color: var(--text);
+  }
+
+  /* ─── Custom Scrollbar ─── */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--sidebar-bg); }
   ::-webkit-scrollbar-thumb { background: #5a420e; border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
   /* ─── Responsive ─── */
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .layout { flex-direction: column; }
     .sidebar {
       position: static; width: 100%; max-width: 100%;
-      height: auto; border-right: none; border-bottom: 2px solid #b8860b;
+      height: auto; max-height: 42vh;
+      border-right: none; border-bottom: 2px solid var(--gold);
     }
-    .main { padding: 24px 16px 60px; }
-    .card { padding: 24px 16px; }
+    .main  { padding: 26px 18px 60px; }
+    .card  { padding: 26px 18px; }
     .lang-toggle { top: 10px; right: 10px; padding: 8px 16px; font-size: 0.82rem; }
+    h2 { margin-top: 38px; }
+  }
+  @media (max-width: 600px) {
+    .main  { padding: 18px 10px 50px; }
+    .card  { padding: 18px 12px; }
+    h1  { font-size: 1.5rem; }
+    h2  { font-size: 1.12em; }
+    .dasha-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Print ─── */
+  @media print {
+    body       { background: #fff; color: #000; }
+    .sidebar   { display: none; }
+    .lang-toggle { display: none; }
+    h2         { color: #333; border-color: #888; }
+    blockquote { background: #f8f8f8; }
+    a          { color: #000; }
+    .card      { box-shadow: none; border-color: #ccc; background: #fff; }
+    .highlight-box { background: #f8f8f8; border-color: #ccc; }
+    th         { background: #eee; color: #000; }
   }
 </style>
 </head>
@@ -201,9 +390,10 @@
 
   <!-- Sticky Sidebar — shows TOC for active language -->
   <nav class="sidebar">
-    <h2>&#9733; Contents</h2>
-    <div id="tocEn" class="toc"><p><em>—</em></p></div>
-    <div id="tocHi" class="toc" style="display:none"><p><em>—</em></p></div>
+    <div class="sidebar-title">✦ Contents</div>
+    <div class="sidebar-subtitle" id="tocSubtitle">Table of Contents</div>
+    <div id="tocEn"><p><em style="color:var(--muted);font-size:0.78rem">Loading…</em></p></div>
+    <div id="tocHi" style="display:none"><p><em style="color:var(--muted);font-size:0.78rem">Loading…</em></p></div>
   </nav>
 
   <!-- Main Content -->
@@ -2829,39 +3019,215 @@ The native's chart is not a "meteor" chart (early explosive success followed by 
 <script>
   var currentLang = 'en';
 
+  /* ── Build TOC from h2/h3 headings inside a content div ── */
+  function buildTOC(lang) {
+    var contentId = (lang === 'en') ? 'contentEn' : 'contentHi';
+    var tocId     = (lang === 'en') ? 'tocEn'     : 'tocHi';
+    var content   = document.getElementById(contentId);
+    var tocEl     = document.getElementById(tocId);
+    if (!content || !tocEl) return;
+
+    var headings = content.querySelectorAll('h2, h3');
+    if (!headings.length) { tocEl.innerHTML = '<p><em>—</em></p>'; return; }
+
+    var ul = document.createElement('ul');
+    var currentTopLi = null;
+    var subUl = null;
+    /* Counter map to de-duplicate auto-generated IDs */
+    var idCount = {};
+
+    headings.forEach(function(h) {
+      /* Ensure the heading has an id for deep-linking */
+      if (!h.id) {
+        var base = 'toc-auto-' + h.textContent.trim()
+          .replace(/[^\w\u0900-\u097F]+/g, '-')
+          .replace(/^-|-$/g, '')
+          .slice(0, 50);
+        /* Append incrementing suffix to avoid duplicate ids */
+        idCount[base] = (idCount[base] || 0) + 1;
+        h.id = idCount[base] === 1 ? base : (base + '-' + idCount[base]);
+      }
+      var labelText = h.textContent.trim();
+      if (labelText.length > 62) labelText = labelText.slice(0, 59) + '…';
+
+      var a  = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = labelText;
+      if (h.tagName === 'H3') a.className = 'toc-h3';
+
+      var li = document.createElement('li');
+      li.appendChild(a);
+
+      if (h.tagName === 'H2') {
+        currentTopLi = li;
+        subUl = null;
+        ul.appendChild(li);
+      } else {
+        if (!subUl) {
+          subUl = document.createElement('ul');
+          (currentTopLi || ul).appendChild(subUl);
+        }
+        subUl.appendChild(li);
+      }
+    });
+
+    var wrapper       = document.createElement('div');
+    wrapper.className = 'toc';
+    wrapper.appendChild(ul);
+    tocEl.innerHTML   = '';
+    tocEl.appendChild(wrapper);
+  }
+
+  /* ── Convert qualifying dasha antardasha tables → card grid ── */
+  function convertDashaTables() {
+    document.querySelectorAll('.card table').forEach(function(tbl) {
+      var headers = tbl.querySelectorAll('th');
+      if (!headers.length) return;
+      var firstTh = headers[0].textContent.trim().toLowerCase();
+      /* Match English and Hindi header variants */
+      var isDashaTable = (firstTh === 'antardasha' ||
+                          firstTh === 'antardashā' ||
+                          firstTh === 'अंतर्दशा');
+      if (!isDashaTable) return;
+
+      /* Only convert tables with 4+ data rows */
+      /* Prefer tbody rows; fall back to rows that contain only <td> (not <th>) cells */
+      var rows = tbl.querySelectorAll('tbody tr');
+      if (!rows.length) {
+        rows = Array.prototype.filter.call(
+          tbl.querySelectorAll('tr'),
+          function(r) { return r.querySelector('td') !== null; }
+        );
+      }
+      if (rows.length < 4) return;
+
+      var grid = document.createElement('div');
+      grid.className = 'dasha-grid';
+
+      rows.forEach(function(row) {
+        var cells = row.querySelectorAll('td');
+        if (cells.length < 2) return;
+
+        var card     = document.createElement('div');
+        card.className = 'dasha-card';
+
+        var titleEl  = document.createElement('div');
+        titleEl.className   = 'title';
+        titleEl.textContent = cells[0].textContent.trim();
+
+        var periodEl = document.createElement('div');
+        periodEl.className   = 'period';
+        periodEl.textContent = cells[1].textContent.trim();
+
+        var bodyEl   = document.createElement('div');
+        bodyEl.className = 'body';
+        bodyEl.innerHTML = cells[2] ? cells[2].innerHTML : '';
+
+        card.appendChild(titleEl);
+        card.appendChild(periodEl);
+        card.appendChild(bodyEl);
+        grid.appendChild(card);
+      });
+
+      /* Replace the table (or its .table-wrap parent) with the card grid */
+      var target = tbl.parentElement.classList.contains('table-wrap')
+                   ? tbl.parentElement
+                   : tbl;
+      target.parentNode.replaceChild(grid, target);
+    });
+  }
+
+  /* ── Wrap bare tables in .table-wrap if not already wrapped ── */
+  function wrapTables() {
+    document.querySelectorAll('.card table').forEach(function(tbl) {
+      if (!tbl.parentElement.classList.contains('table-wrap')) {
+        var wrap      = document.createElement('div');
+        wrap.className = 'table-wrap';
+        tbl.parentNode.insertBefore(wrap, tbl);
+        wrap.appendChild(tbl);
+      }
+    });
+  }
+
+  /* ── Apply scroll-box to long dasha / remedy / prediction sections ── */
+  function applyScrollBoxes() {
+    var SCROLL_KEYWORDS = [
+      'remedy', 'remedies', 'उपाय',
+      'dasha system', 'दशा प्रणाली',
+      'life predictions', 'जीवन भविष्यवाणियाँ',
+      'lifestyle', 'जीवनशैली'
+    ];
+    /*
+     * Minimum number of sibling DOM nodes a section must have before we
+     * apply a scroll-box container. This prevents tiny sections from getting
+     * unnecessary overflow wrappers (e.g. a section with just one paragraph).
+     */
+    var MIN_NODES_FOR_SCROLL_BOX = 5;
+
+    document.querySelectorAll('.card h2').forEach(function(h2) {
+      var text = h2.textContent.toLowerCase();
+      var matches = SCROLL_KEYWORDS.some(function(kw) { return text.includes(kw); });
+      if (!matches) return;
+
+      /* Collect sibling nodes until next h2 */
+      var toMove = [];
+      var el = h2.nextSibling;
+      while (el && el.nodeName !== 'H2') {
+        toMove.push(el);
+        el = el.nextSibling;
+      }
+      /* Only wrap if there's substantial content */
+      if (toMove.length < MIN_NODES_FOR_SCROLL_BOX) return;
+
+      var box       = document.createElement('div');
+      box.className = 'scroll-box';
+      h2.parentNode.insertBefore(box, toMove[0]);
+      toMove.forEach(function(node) { box.appendChild(node); });
+    });
+  }
+
+  /* ── Language toggle ── */
   function toggleLang() {
-    var enContent  = document.getElementById('contentEn');
-    var hiContent  = document.getElementById('contentHi');
-    var tocEn      = document.getElementById('tocEn');
-    var tocHi      = document.getElementById('tocHi');
-    var btnLabel   = document.getElementById('btnLabel');
-    var btnArrow   = document.getElementById('btnArrow');
+    var enContent   = document.getElementById('contentEn');
+    var hiContent   = document.getElementById('contentHi');
+    var tocEn       = document.getElementById('tocEn');
+    var tocHi       = document.getElementById('tocHi');
+    var btnLabel    = document.getElementById('btnLabel');
+    var btnArrow    = document.getElementById('btnArrow');
+    var tocSubtitle = document.getElementById('tocSubtitle');
 
     if (currentLang === 'en') {
-      // Switch to Hindi
       enContent.classList.add('hidden');
       hiContent.classList.remove('hidden');
       tocEn.style.display = 'none';
       tocHi.style.display = '';
-      btnLabel.textContent = 'Read in English';
-      btnArrow.style.transform = 'rotate(180deg)';
+      btnLabel.textContent          = 'Read in English';
+      btnArrow.style.transform      = 'rotate(180deg)';
+      if (tocSubtitle) tocSubtitle.textContent = 'विषय-सूची';
       document.documentElement.lang = 'hi';
       currentLang = 'hi';
     } else {
-      // Switch to English
       hiContent.classList.add('hidden');
       enContent.classList.remove('hidden');
       tocHi.style.display = 'none';
       tocEn.style.display = '';
-      btnLabel.textContent = 'हिंदी में पढ़ें';
-      btnArrow.style.transform = 'rotate(0deg)';
+      btnLabel.textContent          = 'हिंदी में पढ़ें';
+      btnArrow.style.transform      = 'rotate(0deg)';
+      if (tocSubtitle) tocSubtitle.textContent = 'Table of Contents';
       document.documentElement.lang = 'en';
       currentLang = 'en';
     }
-
-    // Scroll to top of card on switch
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  /* ── Initialise once DOM is ready ── */
+  document.addEventListener('DOMContentLoaded', function() {
+    convertDashaTables();   /* convert large dasha tables → card grids first */
+    wrapTables();           /* wrap remaining tables */
+    buildTOC('en');         /* build both language TOCs */
+    buildTOC('hi');
+    applyScrollBoxes();     /* add scroll containers to long sections */
+  });
 </script>
 
 </body>
