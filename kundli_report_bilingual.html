@@ -1,0 +1,2868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kundli Report — Abhishek Singh | Bilingual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Noto Sans Devanagari for Hindi; loaded with font-display:swap for offline fallback -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+  /* ─── Reset ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  /* ─── Base dark theme ─── */
+  body {
+    font-family: 'Georgia', 'Noto Sans Devanagari', serif;
+    background: #1a1209;
+    color: #f0e4c8;
+    line-height: 1.85;
+  }
+
+  /* ─── Hindi content uses Devanagari font ─── */
+  .lang-hi,
+  .lang-hi * {
+    font-family: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', serif;
+    line-height: 2.0;
+  }
+
+  /* ─── Layout ─── */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ─── Sticky sidebar ─── */
+  .sidebar {
+    width: 260px;
+    min-width: 220px;
+    max-width: 300px;
+    background: #120d05;
+    border-right: 2px solid #b8860b;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 14px;
+    flex-shrink: 0;
+  }
+  .sidebar h2 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #d4a017;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #b8860b;
+  }
+  .sidebar .toc ul { list-style: none; padding-left: 0; }
+  .sidebar .toc ul ul { padding-left: 12px; border-left: 1px solid #3a2a0a; margin-top: 3px; }
+  .sidebar .toc li { margin: 3px 0; }
+  .sidebar .toc a {
+    color: #c8a86e; text-decoration: none; font-size: 0.80rem;
+    line-height: 1.4; display: block; padding: 2px 4px; border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .sidebar .toc a:hover { background: #2a1e08; color: #ffd966; }
+
+  /* ─── Language toggle button ─── */
+  .lang-toggle {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 1000;
+    background: linear-gradient(135deg, #b8860b, #d4a017);
+    color: #1a1209;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+    transition: all 0.25s ease;
+    font-family: 'Georgia', 'Noto Sans Devanagari', serif;
+  }
+  .lang-toggle:hover {
+    background: linear-gradient(135deg, #d4a017, #ffd966);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.6);
+    transform: translateY(-1px);
+  }
+  .lang-toggle .arrow { display: inline-block; transition: transform 0.3s; }
+
+  /* ─── Main area ─── */
+  .main {
+    flex: 1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+  }
+
+  /* ─── Card container ─── */
+  .card {
+    background: #211607;
+    border: 1px solid #3a2a0a;
+    border-radius: 10px;
+    padding: 40px 44px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+  }
+
+  /* ─── Language sections: smooth fade ─── */
+  .lang-section {
+    transition: opacity 0.35s ease;
+  }
+  .lang-section.hidden {
+    display: none;
+  }
+
+  /* ─── Headings ─── */
+  h1 {
+    font-size: 2rem; color: #ffd966;
+    border-bottom: 3px solid #b8860b;
+    padding-bottom: 12px; margin-bottom: 24px; margin-top: 8px;
+  }
+  h2 {
+    font-size: 1.45rem; color: #e8c060;
+    border-bottom: 1.5px solid #7a5c10;
+    padding-bottom: 8px; margin-top: 48px; margin-bottom: 18px;
+  }
+  h3 { font-size: 1.15rem; color: #d4a855; margin-top: 32px; margin-bottom: 12px; }
+  h4 { font-size: 1rem; color: #c89640; margin-top: 24px; margin-bottom: 8px; }
+  h5, h6 { font-size: 0.95rem; color: #b08030; margin-top: 16px; margin-bottom: 6px; }
+
+  /* ─── Text ─── */
+  p { margin-bottom: 14px; }
+  ul, ol { margin: 10px 0 14px 24px; }
+  li { margin-bottom: 6px; }
+  strong { color: #ffd966; }
+  em { color: #d4a855; }
+
+  /* ─── Keyword highlights ─── */
+  .green  { color: #52c478; font-weight: bold; }
+  .red    { color: #e86060; font-weight: bold; }
+  .yellow { color: #f0c040; font-weight: bold; }
+
+  /* ─── Tables ─── */
+  table { width: 100%; border-collapse: collapse; margin: 20px 0 28px; font-size: 0.9rem; background: #1c1005; }
+  th { background: #3a2a08; color: #ffd966; font-weight: bold; padding: 10px 14px; border: 1px solid #5a420e; text-align: left; }
+  td { padding: 8px 14px; border: 1px solid #3a2a0a; color: #e0d0b0; vertical-align: top; }
+  tr:nth-child(even) td { background: #231808; }
+  tr:hover td { background: #2c1e0a; }
+
+  /* ─── Blockquotes ─── */
+  blockquote {
+    border-left: 4px solid #b8860b;
+    margin: 16px 0; padding: 10px 20px;
+    background: #1c1308; color: #d4b880;
+    font-style: italic; border-radius: 0 6px 6px 0;
+  }
+
+  /* ─── HR ─── */
+  hr { border: none; border-top: 1px solid #3a2a0a; margin: 36px 0; }
+
+  /* ─── Code ─── */
+  code {
+    background: #2a1e08; color: #ffd966;
+    padding: 2px 6px; border-radius: 3px;
+    font-family: 'Courier New', monospace; font-size: 0.88em;
+  }
+
+  /* ─── Scrollbar ─── */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #120d05; }
+  ::-webkit-scrollbar-thumb { background: #5a420e; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .layout { flex-direction: column; }
+    .sidebar {
+      position: static; width: 100%; max-width: 100%;
+      height: auto; border-right: none; border-bottom: 2px solid #b8860b;
+    }
+    .main { padding: 24px 16px 60px; }
+    .card { padding: 24px 16px; }
+    .lang-toggle { top: 10px; right: 10px; padding: 8px 16px; font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── Language Toggle Button ─── -->
+<button class="lang-toggle" id="langBtn" onclick="toggleLang()" title="Switch Language / भाषा बदलें">
+  <span id="btnLabel">हिंदी में पढ़ें</span> <span class="arrow" id="btnArrow">⇄</span>
+</button>
+
+<div class="layout">
+
+  <!-- Sticky Sidebar — shows TOC for active language -->
+  <nav class="sidebar">
+    <h2>&#9733; Contents</h2>
+    <div id="tocEn" class="toc"><p><em>—</em></p></div>
+    <div id="tocHi" class="toc" style="display:none"><p><em>—</em></p></div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="card">
+
+      <!-- English Content -->
+      <div id="contentEn" class="lang-section lang-en">
+        <h1 id="premium-vedic-astrology-kundli-report">PREMIUM VEDIC ASTROLOGY KUNDLI REPORT</h1>
+<h3 id="abhishek-singh-a-master-level-analysis-grounded-in-11-classical-texts">Abhishek Singh — A Master-Level Analysis Grounded in 11 Classical Texts</h3>
+<hr />
+<p><strong>Native:</strong> Abhishek Singh<br />
+<strong>Date of Birth:</strong> 3 September 2000<br />
+<strong>Time of Birth:</strong> 00:00:18 IST (midnight)<br />
+<strong>Day:</strong> Sunday (Hindu Saturday — Shukla Panchami)<br />
+<strong>Place:</strong> Ayodhya, Uttar Pradesh<br />
+<strong>Latitude:</strong> 26°48′N | <strong>Longitude:</strong> 82°12′E<br />
+<strong>Ayanamsa:</strong> Lahiri (23°51′57″)<br />
+<strong>Report Date:</strong> 18 April 2026<br />
+<strong>Current Age:</strong> 25 years  </p>
+<hr />
+<blockquote>
+<p><em>Every statement in this report is derived directly from chart data with a specific planetary rule cited. No generic astrology has been used. Dasha timing governs all predictions.</em></p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">TABLE OF CONTENTS</h2>
+<ol>
+<li><a href="#section-1">Chart Foundation</a></li>
+<li><a href="#section-2">Planetary Deep Analysis</a></li>
+<li><a href="#section-3">House-Wise Analysis</a></li>
+<li><a href="#section-4"><span class='green'>Yoga</span>s — Validated Only</a></li>
+<li><a href="#section-5"><span class='red'>Dosha</span> Analysis</a></li>
+<li><a href="#section-6">Dasha System</a></li>
+<li><a href="#section-7">Life Predictions — Time-Based</a></li>
+<li><a href="#section-8">Planetary Hierarchy</a></li>
+<li><a href="#section-9">Remedies</a></li>
+<li><a href="#section-10">Final Synthesis</a></li>
+</ol>
+<hr />
+<p><a name="section-1"></a></p>
+<h2 id="section-1-chart-foundation">SECTION 1: CHART FOUNDATION</h2>
+<h3 id="11-ascendant-the-bodily-mental-framework">1.1 Ascendant — The Bodily &amp; Mental Framework</h3>
+<p><strong>Lagna:</strong> Gemini (Mithuna)<br />
+<strong>Lagna Degree:</strong> 01°09′09″ — Mrigashira Nakshatra, Pada 3<br />
+<strong>Lagna Lord:</strong> Mercury (Budha)</p>
+<p>Gemini rises at a very early degree — 01°09′ — placing it in <strong>Mrigashira Nakshatra (Pada 3)</strong>, ruled by Mars. Mrigashira is the "searching deer" — eternally restless, intellectually hungry, and unable to settle until it finds truth. The 3rd Pada of Mrigashira falls in Libra navamsha, adding a <span class='green'>strong</span> social intelligence and artistic sensitivity to the Gemini intellect.</p>
+<p><strong>Core character from Lagna:</strong>
+- <strong>Mutable Air:</strong> Highly adaptable mind, prone to absorbing multiple ideas simultaneously; can scatter energy across too many interests
+- <strong>Mercury rulership:</strong> The native lives through communication, information processing, and analysis; speech, writing, and intellect define identity
+- <strong>Mrigashira (Mars-ruled) on Lagna:</strong> An undercurrent of restlessness and searching; the native is never fully satisfied with current knowledge — perpetually questing
+- <strong>Lagna in Pada 3 (Libra navamsha):</strong> Social grace, partnerships, and aesthetics matter to the native's sense of self</p>
+<p><strong>Critical note:</strong> The Lagna lord Mercury is <strong><span class='red'>combust</span></strong> (within 10°39′ of the Sun) in the 3rd house. This means the very significator of the native's identity, intellect, and body is <span class='red'>weak</span>ened and overshadowed by solar energy. The native's personality, especially in youth, can feel eclipsed or undefined — clarity of identity develops only through deliberate effort.</p>
+<hr />
+<h3 id="12-planetary-positions-at-a-glance">1.2 Planetary Positions at a Glance</h3>
+<table>
+<thead>
+<tr>
+<th>Planet</th>
+<th>Sign</th>
+<th>House</th>
+<th>Degree</th>
+<th>Nakshatra</th>
+<th>Pada</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASC</td>
+<td>Gemini</td>
+<td>1</td>
+<td>01°09′</td>
+<td>Mrigashira</td>
+<td>3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Sun ☉</td>
+<td>Leo</td>
+<td>3</td>
+<td>16°43′</td>
+<td>Purva Phalguni</td>
+<td>2</td>
+<td><span class='green'>Own Sign</span> (Swakshetra)</td>
+</tr>
+<tr>
+<td>Moon ☽</td>
+<td>Libra</td>
+<td>5</td>
+<td>13°02′</td>
+<td>Swati</td>
+<td>2</td>
+<td><span class='yellow'>Neutral</span> sign</td>
+</tr>
+<tr>
+<td>Mars ♂</td>
+<td>Cancer</td>
+<td>2</td>
+<td>27°08′</td>
+<td>Ashlesha</td>
+<td>4</td>
+<td><strong><span class='red'>Debilitated</span> (Neecha)</strong></td>
+</tr>
+<tr>
+<td>Mercury ☿</td>
+<td>Leo</td>
+<td>3</td>
+<td>27°23′</td>
+<td>Uttara Phalguni</td>
+<td>1</td>
+<td><strong><span class='red'>Combust</span></strong> (friendly sign)</td>
+</tr>
+<tr>
+<td>Jupiter ♃</td>
+<td>Taurus</td>
+<td>12</td>
+<td>16°11′</td>
+<td>Rohini</td>
+<td>2</td>
+<td><span class='yellow'>Neutral</span> sign</td>
+</tr>
+<tr>
+<td>Venus ♀</td>
+<td>Virgo</td>
+<td>4</td>
+<td>09°22′</td>
+<td>Uttara Phalguni</td>
+<td>4</td>
+<td><strong><span class='red'>Debilitated</span></strong> + <strong>Digbala</strong></td>
+</tr>
+<tr>
+<td>Saturn ♄</td>
+<td>Taurus</td>
+<td>12</td>
+<td>07°02′</td>
+<td>Krittika</td>
+<td>4</td>
+<td>Friendly sign</td>
+</tr>
+<tr>
+<td>Rahu ☊</td>
+<td>Gemini</td>
+<td>1</td>
+<td>28°11′</td>
+<td>Punarvasu</td>
+<td>3</td>
+<td>Reportedly <span class='green'>exalted</span></td>
+</tr>
+<tr>
+<td>Ketu ☋</td>
+<td>Sagittarius</td>
+<td>7</td>
+<td>28°11′</td>
+<td>Uttarashadha</td>
+<td>1</td>
+<td>Reportedly <span class='green'>exalted</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Outer planets (traditional Vedic analysis excludes these from primary judgment):</strong>
+- Uranus (R): Capricorn, 8th house | Neptune (R): Capricorn, 8th house | Pluto: Scorpio, 6th house</p>
+<hr />
+<h3 id="13-functional-benefic-malefic-classification-gemini-lagna">1.3 Functional Benefic / Malefic Classification (Gemini Lagna)</h3>
+<p>For Gemini Lagna, house lordships are assigned as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Planet</th>
+<th>Rules Houses</th>
+<th>Functional Role</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mercury</strong></td>
+<td>1st + 4th</td>
+<td><strong>Most Benefic</strong></td>
+<td>Rules both Lagna (kendra + kona) and 4th (kendra); Lagna lord is always a first-tier benefic</td>
+</tr>
+<tr>
+<td><strong>Venus</strong></td>
+<td>5th + 12th</td>
+<td><strong>Benefic</strong> (<span class='yellow'>moderate</span>)</td>
+<td>5th lordship (trikona) dominant; 12th lordship reduces but doesn't negate</td>
+</tr>
+<tr>
+<td><strong>Saturn</strong></td>
+<td>8th + 9th</td>
+<td><strong><span class='yellow'>Moderate</span> / <span class='yellow'>Mixed</span></strong></td>
+<td>9th lordship (trikona = dharma) is highly auspicious; 8th lordship introduces obstacles; net result is context-dependent</td>
+</tr>
+<tr>
+<td><strong>Jupiter</strong></td>
+<td>7th + 10th</td>
+<td><strong>Functional Malefic</strong></td>
+<td>Kendradhipati <span class='red'>Dosha</span> — natural benefic ruling two kendras (7th and 10th) creates a taint; Jupiter gives materialistic results rather than purely spiritual ones for Gemini</td>
+</tr>
+<tr>
+<td><strong>Moon</strong></td>
+<td>2nd</td>
+<td><strong>Mild Benefic</strong></td>
+<td>2nd (Dhana bhava) lordship is <span class='yellow'>neutral</span>-positive</td>
+</tr>
+<tr>
+<td><strong>Sun</strong></td>
+<td>3rd</td>
+<td><strong>Mild Malefic</strong></td>
+<td>3rd is an upachaya (growth house) but also considered a dusthana (trouble house); 3rd lord is generally a mild functional malefic</td>
+</tr>
+<tr>
+<td><strong>Mars</strong></td>
+<td>6th + 11th</td>
+<td><strong>Functional Malefic</strong></td>
+<td>6th lordship (ripu, roga, rina — enemies, disease, debt) makes Mars harmful for Gemini Lagna</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key principle:</strong> Jupiter, the natural greatest benefic, becomes <strong>functionally problematic for Gemini Lagna</strong> due to kendradhipati <span class='red'>dosha</span>. Its placement in 12th house with Saturn compounds this.</p>
+<hr />
+<h3 id="14-paksha-bala-of-moon">1.4 Paksha Bala of Moon</h3>
+<p>The native was born on <strong>Shukla Panchami</strong> (5th day of the bright fortnight). Moon's Paksha Bala is growing but not at peak (peak = Purnima). Moon has <strong><span class='yellow'>moderate</span> Paksha Bala</strong> — approximately 42% of maximum lunar strength. This means the Moon is not at its <span class='red'>weak</span>est but lacks the full brilliance of a full-moon chart. Emotional stability is present but not rock-solid.</p>
+<hr />
+<h3 id="15-key-ashtakvarga-totals-by-house">1.5 Key Ashtakvarga Totals by House</h3>
+<p><em>(Sign 1=Aries/H11, Sign 2=Taurus/H12, Sign 3=Gemini/H1, Sign 4=Cancer/H2, Sign 5=Leo/H3, Sign 6=Virgo/H4, Sign 7=Libra/H5, Sign 8=Scorpio/H6, Sign 9=Sag/H7, Sign 10=Cap/H8, Sign 11=Aqu/H9, Sign 12=Pisces/H10)</em></p>
+<table>
+<thead>
+<tr>
+<th>House</th>
+<th>Sign</th>
+<th>SAV Score</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (Gemini)</td>
+<td>3</td>
+<td>29</td>
+<td><span class='yellow'>Moderate</span> self-strength</td>
+</tr>
+<tr>
+<td>2 (Cancer)</td>
+<td>4</td>
+<td>26</td>
+<td>Below-average wealth/family potential via transits</td>
+</tr>
+<tr>
+<td>3 (Leo)</td>
+<td>5</td>
+<td>32</td>
+<td><span class='green'>Strong</span> communication, courage</td>
+</tr>
+<tr>
+<td><strong>4 (Virgo)</strong></td>
+<td>6</td>
+<td><strong>22</strong></td>
+<td><strong><span class='red'>Weak</span>est house</strong> — home, mother, comforts under stress</td>
+</tr>
+<tr>
+<td>5 (Libra)</td>
+<td>7</td>
+<td>26</td>
+<td><span class='yellow'>Moderate</span> creativity and children</td>
+</tr>
+<tr>
+<td>6 (Scorpio)</td>
+<td>8</td>
+<td>25</td>
+<td>Average disease/enemy resilience</td>
+</tr>
+<tr>
+<td>7 (Sagittarius)</td>
+<td>9</td>
+<td>28</td>
+<td><span class='yellow'>Moderate</span> partnership support</td>
+</tr>
+<tr>
+<td>8 (Capricorn)</td>
+<td>10</td>
+<td>27</td>
+<td>Average longevity/transformation</td>
+</tr>
+<tr>
+<td>9 (Aquarius)</td>
+<td>11</td>
+<td>25</td>
+<td>Below-average fortune support</td>
+</tr>
+<tr>
+<td><strong>10 (Pisces)</strong></td>
+<td>12</td>
+<td><strong>37</strong></td>
+<td><strong><span class='green'>Strong</span>est house</strong> — career will eventually flourish enormously</td>
+</tr>
+<tr>
+<td>11 (Aries)</td>
+<td>1</td>
+<td>31</td>
+<td><span class='green'>Strong</span> gains and fulfillment</td>
+</tr>
+<tr>
+<td>12 (Taurus)</td>
+<td>2</td>
+<td>29</td>
+<td><span class='yellow'>Moderate</span> spiritual/foreign outcomes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critical insight:</strong> The 10th house (career, public recognition) has the chart's maximum Sarvashtakavarga score of <strong>37 points</strong> — this is exceptional. Despite 10th lord Jupiter being in 12th house, transits through Pisces will produce outstanding career results. The native is built for eventual public achievement.</p>
+<hr />
+<p><a name="section-2"></a></p>
+<h2 id="section-2-planetary-deep-analysis">SECTION 2: PLANETARY DEEP ANALYSIS</h2>
+<hr />
+<h3 id="21-the-sun-leo-3rd-house-1643-purva-phalguni-pada-2">2.1 THE SUN ☉ — Leo, 3rd House, 16°43′, Purva Phalguni Pada 2</h3>
+<p><strong>Placement:</strong> Sun is in Leo (<span class='green'>own sign</span>) in the 3rd house.</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> Swakshetra (<span class='green'>own sign</span>) — maximum sign-based strength. Sun in Leo is like a king in his throne room; this is the <span class='green'>strong</span>est possible sign placement for the Sun.
+- <strong>Digbala:</strong> Sun achieves directional strength in the 10th house. It is in the 3rd house here — so <strong>no Digbala</strong>.
+- <strong>Nakshatra:</strong> Purva Phalguni (Venus-ruled) — this nakshatra is associated with luxury, rest, pleasure, and artistry. A Sun that burns in Leo but rests in a Venus-nakshatra creates a paradox: the native has solar leadership qualities <span class='yellow'>mixed</span> with a Venusian need for enjoyment and recognition.
+- <strong>Pada 2:</strong> Falls in Taurus navamsha — further reinforcing material pleasures and a sensuous aesthetic.
+- <strong>Aspects received:</strong> Saturn from 12th house (3rd aspect) does NOT reach the 3rd house with its standard 3rd/7th/10th aspects from Taurus — Saturn from 12th aspects 2nd, 6th, and 9th houses. Ketu from 7th (9th aspect) reaches the 3rd house — <strong>Ketu aspects Sun and Mercury in 3rd house</strong>. This is significant.
+- <strong>Aspects cast:</strong> Sun aspects 9th house (Aquarius) with 7th house aspect.
+- <strong><span class='red'>Combust</span>ion:</strong> Sun at 16°43′, Mercury at 27°23′ in Leo → difference of 10°40′. Mercury is within the 14° <span class='red'>combust</span>ion zone. <strong>Sun is causing Mercury to <span class='red'>combust</span></strong> — Sun is the afflicting planet here, not <span class='red'>afflicted</span> itself.</p>
+<p><strong>Functional Role:</strong> Sun is 3rd lord (functional mild malefic). A 3rd lord in own house amplifies 3rd house themes — courage, communication, younger siblings, media, short travels, skills — but as a malefic lord in its own malefic house, it doesn't generate a <span class='green'>yoga</span>; it strengthens the themes of that house, both good and challenging.</p>
+<p><strong>Final Impact:</strong>
+- Exceptional confidence, authoritative communication, and creative self-expression
+- Deep pride — sometimes manifesting as stubbornness or ego sensitivity
+- Ketu's aspect on the Sun creates a subtle spiritual undercurrent; the native may periodically question the purpose of all this solar achievement
+- The Sun's aspect on 9th house (Aquarius) supports philosophical thinking and dharmic inclination; however, Saturn (9th lord) being in 12th introduces complexity to father-related matters
+- <strong>Real life:</strong> <span class='green'>Strong</span> voice, natural charisma, drawn to leadership in communication fields. Father's influence is complex — either distant, spiritually inclined, or based in a foreign/unconventional location. The native is more respected for what they <em>say</em> and <em>write</em> than for material possessions in early life.</p>
+<hr />
+<h3 id="22-the-moon-libra-5th-house-1302-swati-pada-2">2.2 THE MOON ☽ — Libra, 5th House, 13°02′, Swati Pada 2</h3>
+<p><strong>Placement:</strong> Moon is in Libra in the 5th house (Dharma trikona — house of intelligence, creativity, love affairs, children).</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> Libra is a Venus-ruled air sign; <span class='yellow'>neutral</span> for Moon. Moon in Libra has no sign-based affliction and no special strength.
+- <strong>Paksha Bala:</strong> <span class='yellow'>Moderate</span> (Shukla Panchami — see Section 1.4)
+- <strong>Digbala:</strong> Moon achieves directional strength in the 4th house. Moon is in 5th — <strong>no Digbala</strong>.
+- <strong>Nakshatra:</strong> Swati (Rahu-ruled) — Swati is the nakshatra of independence, commerce, and the wind. Swati Moon makes the native emotionally adaptable, socially charming, and drawn to independence in relationships. The mind roams freely, often unsettled, needing its own space.
+- <strong>Pada 2:</strong> Taurus navamsha — adds emotional stability and aesthetic appreciation; desire for sensory comfort.
+- <strong>Paksha Bala check:</strong> Not Kemadruma (Venus is in 12th from Moon = 4th house), so Kemadruma is not active.
+- <strong>Aspects RECEIVED:</strong>
+  1. <strong>Mars</strong> from Cancer (2nd house) casts its <strong>4th aspect</strong> onto Libra (5th house) — <strong><span class='red'>afflicted</span> Moon from <span class='red'>debilitated</span> Mars</strong>. This is the single most important affliction in the chart. <span class='red'>Debilitated</span> Mars aspecting Moon creates emotional volatility, suppressed anger, and impulsive emotional decisions, especially around family and relationships.
+  2. <strong>Rahu</strong> from Gemini (1st house) casts its <strong>5th aspect</strong> onto Libra (5th house) — Moon is aspected by Rahu. Rahu's influence on Moon amplifies craving, restlessness, and the tendency to pursue unfamiliar emotional territory; also creates a sharp but sometimes chaotic intellect.
+- <strong>Aspects cast:</strong> Moon aspects 11th house (Aries) — 7th aspect. This supports gains through social networking and public engagement.</p>
+<p><strong>Functional Role:</strong> Moon is 2nd lord (Dhana Bhava lord). Moon in 5th house creates a <strong>Dhana <span class='green'>Yoga</span></strong> potential (lord of 2nd in a trikona). Intelligence, speculation, and creative output can generate wealth. However, the double affliction (Mars aspect + Rahu aspect) requires this <span class='green'>yoga</span> to be carefully developed rather than automatically active.</p>
+<p><strong>Final Impact:</strong>
+- Emotionally perceptive but emotionally volatile; the native absorbs others' moods involuntarily (Swati + Rahu on Moon)
+- <span class='green'>Strong</span> intellectual creativity — Moon in 5th gives natural talent for analysis, learning, and original thinking
+- The Mars aspect creates family tension; mother's health or relationship with mother may have periodic friction
+- Rahu's stamp on Moon in 5th: unconventional romantic interests, attraction to the foreign and unusual; risk of emotional obsession in love
+- <strong>Real life:</strong> The 5th house Moon is the chart's hidden gem — it gives genuine intellectual brilliance, <span class='green'>strong</span> memory, and natural curiosity. When the Mars-Moon tension is consciously managed (through physical exercise channeling Mars), the Moon in 5th thrives, producing creative output, social popularity, and speculative success.</p>
+<hr />
+<h3 id="23-mars-cancer-2nd-house-2708-ashlesha-pada-4">2.3 MARS ♂ — Cancer, 2nd House, 27°08′, Ashlesha Pada 4</h3>
+<p><strong>Placement:</strong> Mars is in Cancer in the 2nd house.</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> NEECHA (debilitation). Mars is <span class='red'>debilitated</span> in Cancer — the most significant <span class='red'>weak</span>ness in this chart. Mars' natural fiery, aggressive, action-oriented energy is deeply uncomfortable in watery, emotional Cancer. The warrior is in the nursery.
+- <strong>Neecha Bhanga (cancellation) check:</strong>
+  - Condition 1: Lord of Cancer (Moon) must be in a kendra (1, 4, 7, 10) from Lagna or Moon. Moon is in Libra = 5th from Lagna, 1st from Moon. 5th is a trikona, not a kendra → Condition 1 <strong>NOT met</strong>.
+  - Condition 2: The planet <span class='green'>exalted</span> in Cancer (Jupiter, <span class='green'>exalted</span> at 5° Cancer) must be in a kendra. Jupiter is in Taurus = 12th house from Lagna, 8th from Moon. Neither is a kendra → Condition 2 <strong>NOT met</strong>.
+  - <strong>Neecha Bhanga is NOT operative.</strong> Mars debilitation stands fully.
+- <strong>Digbala:</strong> Mars achieves directional strength in the 10th house. Mars is in 2nd — <strong>no Digbala</strong>.
+- <strong>Nakshatra:</strong> Ashlesha (Mercury-ruled). Ashlesha is the serpent nakshatra — secretive, holding, possessive. Ashlesha Mars gives a sharp but concealed aggression; the native may not show anger openly but holds grievances. This is the 4th Pada (Scorpio navamsha) — deepening the intensity.
+- <strong>Aspects RECEIVED:</strong> Saturn from 12th house casts its <strong>3rd special aspect</strong> onto the 2nd house (Cancer). Saturn at 7°02′ Taurus, from 12th house, 3rd house from Taurus = Cancer (2nd house for Gemini Lagna). <strong>Saturn aspects <span class='red'>debilitated</span> Mars</strong>. Saturn's aspect on a <span class='red'>debilitated</span> Mars creates chronic suppression of energy, difficulty initiating action, and a tendency for frustration to build silently.
+- <strong>Aspects cast:</strong>
+  - 4th aspect (from Cancer): Libra = 5th house → <strong>Mars aspects Moon</strong> (already noted)
+  - 7th aspect (from Cancer): Capricorn = 8th house → Mars aspects 8th house
+  - 8th aspect (from Cancer): Aquarius = 9th house → Mars aspects 9th house (Aquarius)</p>
+<p><strong>Functional Role:</strong> Mars is 6th lord (primary functional malefic for Gemini) and 11th lord in the 2nd house. A malefic lord in the 2nd house affects speech (2nd = Vak), wealth accumulation (2nd = Dhana), and family harmony (2nd = Kutumba).</p>
+<p><strong>Final Impact:</strong>
+- <span class='red'>Debilitated</span> Mars in 2nd causes a harsh, cutting edge to speech — the native may say cutting things without intending full harm; words can wound
+- Family dynamics are difficult, particularly in childhood — Mars in 2nd creates friction within the family unit
+- Wealth accumulation is not smooth; the native may earn but also face sudden losses or poor retention of money (<span class='red'>debilitated</span> 11th lord Mars in 2nd)
+- Saturn's aspect further suppresses Mars' action-potential → The native may feel chronically low on physical energy or motivation, especially in cold months (Saturn + Mars = cold/dry combination)
+- <strong>Positive extraction:</strong> Ashlesha Mars in 2nd gives extraordinary persistence and determination when motivated; the native can accomplish through sheer tenacity what others abandon
+- <strong>Real life:</strong> Mars's debilitation is the chart's principal <span class='red'>weak</span>ness. Career delays, family disputes, and difficulty maintaining financial momentum in early life all trace back to this <span class='red'>debilitated</span> Mars in 2nd/Cancer.</p>
+<hr />
+<h3 id="24-mercury-leo-3rd-house-2723-uttara-phalguni-pada-1">2.4 MERCURY ☿ — Leo, 3rd House, 27°23′, Uttara Phalguni Pada 1</h3>
+<p><strong>Placement:</strong> Mercury is in Leo (3rd house) conjunct Sun.</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> Leo is ruled by the Sun. Mercury considers Sun a friend (one-way — Sun considers Mercury <span class='yellow'>neutral</span>). Mercury in a friend's sign is in "Mitra Kshetra" — friendly territory; not as <span class='green'>strong</span> as own or exaltation but acceptable. However:
+- <strong><span class='red'>COMBUST</span>ION:</strong> Mercury at 27°23′ Leo; Sun at 16°43′ Leo. Difference = <strong>10°40′</strong>. The <span class='red'>combust</span>ion zone for Mercury is within 14°. <strong>Mercury is fully <span class='red'>combust</span>.</strong> This is the 2nd critical <span class='red'>weak</span>ness of this chart. A <span class='red'>combust</span> planet loses its independence; its significations merge into solar energy and become distorted or suppressed.
+- <strong>Lagna Lord <span class='red'>combust</span>:</strong> Mercury is not just any planet — it is the <strong>Lagna Lord</strong> (ruler of the native's body, identity, intelligence, and overall life direction). A <span class='red'>combust</span> Lagna lord creates:
+  - Periodic identity confusion
+  - Physical vitality fluctuations
+  - The intellect is brilliant but burns out; like a candle too close to a larger flame
+  - The native's self-expression is often colored by ego/authority (solar) themes rather than pure Mercurial clarity
+- <strong>Digbala:</strong> Mercury achieves directional strength in the 1st house (Lagna). Mercury is in the 3rd house — <strong>no Digbala</strong>.
+- <strong>Nakshatra:</strong> Uttara Phalguni (Sun-ruled). This deepens the Mercury-Sun fusion. Uttara Phalguni is a nakshatra of social contracts, partnerships, and systematic success. Despite <span class='red'>combust</span>ion, the nakshatra gives Mercury a structured, methodical quality.
+- <strong>Aspects RECEIVED:</strong> Ketu from 7th casts its <strong>9th aspect</strong> onto 3rd house — <strong>Ketu aspects Sun and Mercury in 3rd house</strong>. Ketu on Mercury: flashes of insight, spiritual intelligence, detachment from ordinary logical frameworks. Ketu often gives either genius or periodic scattered thinking.
+- <strong>Aspects cast:</strong> Mercury (and Sun together) aspects 9th house (Aquarius) via 7th aspect.
+- <strong>Conjunction:</strong> Sun + Mercury in Leo = Budha-Aditya <span class='green'>Yoga</span> (traditionally — but <span class='red'>combust</span>ion diminishes this <span class='green'>yoga</span>'s full promise).</p>
+<p><strong>Functional Role:</strong> Mercury is the most important planet for Gemini Lagna — it rules both 1st and 4th houses. Its <span class='red'>combust</span>ion is a significant structural <span class='red'>weak</span>ness for the entire life's foundations.</p>
+<p><strong>Final Impact:</strong>
+- The native is genuinely intelligent — Uttara Phalguni Mercury in 3rd gives <span class='green'>strong</span> analytical and communicative ability — but this intelligence works in bursts rather than continuously; there are phases of mental brilliance and phases of mental fog
+- Budha-Aditya <span class='green'>Yoga</span> (Sun-Mercury conjunction) gives a reputation for intelligence and public recognition through communication, even with <span class='red'>combust</span>ion the <span class='green'>yoga</span> gives partial results
+- Nervous system sensitivity: Mercury (nervous system) <span class='red'>combust</span> in Leo (heat sign) creates tendency toward anxiety, overthinking, and burnout; the mind races
+- Lagna lord in 3rd house (not ideal) means the native's primary focus in life is on siblings, communication, short journeys, and skills rather than on self-development — they give energy to others rather than building internal fortitude first
+- <strong>Real life:</strong> Mercury in 3rd <span class='red'>combust</span> = excellent writer, communicator, or analyst who needs deliberate rest periods to prevent nervous exhaustion. The native's intelligence is real but irregular.</p>
+<hr />
+<h3 id="25-jupiter-taurus-12th-house-1611-rohini-pada-2">2.5 JUPITER ♃ — Taurus, 12th House, 16°11′, Rohini Pada 2</h3>
+<p><strong>Placement:</strong> Jupiter is in Taurus in the 12th house (Vyaya Bhava).</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> Taurus is Venus-ruled. Jupiter considers Venus a <span class='yellow'>neutral</span> (some traditions say friend). <span class='yellow'>Neutral</span> sign for Jupiter — <span class='yellow'>moderate</span> sign placement.
+- <strong>Digbala:</strong> Jupiter achieves directional strength in the 1st house. Jupiter is in 12th — <strong>no Digbala</strong>.
+- <strong>Nakshatra:</strong> Rohini (Moon-ruled) — Rohini is the most sensuous, beautiful nakshatra. The Moon's favorite resting place. Jupiter in Rohini gives aesthetic appreciation, love of beauty, and a desire for material stability in philosophical pursuits. Pada 2 falls in Taurus navamsha — deepening Jupiter's Rohini-Taurus materialistic bent.
+- <strong>Aspects RECEIVED:</strong> None from classical planets in this chart (Saturn is conjunct but not "aspecting" by different-house logic).
+- <strong>Aspects cast (from 12th house):</strong>
+  - 5th aspect: 12 + 5 - 1 = 4th house (Virgo) → <strong>Jupiter aspects Venus in 4th house</strong>
+  - 7th aspect: 12 + 7 - 1 = 6th house (Scorpio) → Jupiter aspects 6th house
+  - 9th aspect: 12 + 9 - 1 = 8th house (Capricorn) → Jupiter aspects 8th house
+- <strong>Conjunction:</strong> Jupiter conjunct Saturn in Taurus (12th house). This is the most complex conjunction of the chart. Jupiter (7th + 10th lord) and Saturn (8th + 9th lord) together in the 12th house create:
+  - A deeply philosophical, sometimes isolated, reflective mind
+  - Career (10th lord Jupiter) operating from the background / foreign territory / spiritual domain
+  - Marriage (7th lord Jupiter) associated with loss, foreign connections, or spiritual partnerships</p>
+<p><strong>Functional Role:</strong> Jupiter is a functional malefic for Gemini Lagna due to Kendradhipati <span class='red'>Dosha</span> (ruling 7th and 10th — two kendras). However, Jupiter in 12th house "dissolves" its kendradhipati malefic quality somewhat because the 12th house reduces a planet's direct worldly impact.</p>
+<p><strong>Ashtakvarga of Jupiter:</strong> Looking at the Jupiter Ashtakvarga in Taurus (Sign 2): <strong>5 points</strong> — <span class='yellow'>moderate</span>.</p>
+<p><strong>Final Impact:</strong>
+- Jupiter in 12th indicates a spiritual orientation, interest in meditation and inner life, possible foreign education or residence
+- 10th lord in 12th: Career may involve foreign countries, research, spirituality, healthcare, behind-the-scenes work, or large institutions (hospitals, temples, universities)
+- The native does not reach peak career success through conventional pathways; the climb requires patience and often happens in international or unconventional settings
+- Jupiter's aspect on 4th house (where <span class='red'>debilitated</span> Venus is) provides protective energy for home matters — Jupiter somewhat compensates for Venus's debilitation in the 4th house
+- Jupiter's aspect on 6th house protects health and provides resilience against enemies
+- <strong>Real life:</strong> Jupiter in 12th is one of the most spiritually significant placements — it gives genuine wisdom, compassion, and a sense of cosmic perspective. But materially, it delays conventional success until the native is willing to work in less visible domains (foreign, academic, spiritual, institutional).</p>
+<hr />
+<h3 id="26-venus-virgo-4th-house-0922-uttara-phalguni-pada-4">2.6 VENUS ♀ — Virgo, 4th House, 09°22′, Uttara Phalguni Pada 4</h3>
+<p><strong>Placement:</strong> Venus is in Virgo in the 4th house.</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> NEECHA (debilitation). Venus is <span class='red'>debilitated</span> in Virgo. Venus is <span class='green'>exalted</span> at 27° Pisces; <span class='red'>debilitated</span> at 27° Virgo. At 09°22′, Venus is in the early part of Virgo — the debilitation is full and active.
+- <strong>Neecha Bhanga check:</strong>
+  - Condition 1: Lord of Virgo (Mercury) must be in a kendra from Lagna or Moon. Mercury is in Leo (3rd house) — NOT a kendra → Condition 1 <strong>NOT met</strong>.
+  - Condition 2: Planet <span class='green'>exalted</span> in Virgo (Mercury, <span class='green'>exalted</span> at 15° Virgo) must be in kendra. Mercury in 3rd — NOT a kendra → Condition 2 <strong>NOT met</strong>.
+  - <strong>Neecha Bhanga is NOT operative</strong> for Venus. Debilitation stands.
+- <strong>DIGBALA:</strong> Moon and Venus achieve directional strength (Digbala) in the <strong>4th house</strong>. Venus IS in the 4th house → <strong>VENUS HAS FULL DIGBALA</strong>. This is a significant compensating factor. Digbala adds power to a planet comparable to exaltation in some respects.
+- <strong>Net result of Debilitation + Digbala:</strong> The two partially offset. Venus is <span class='red'>debilitated</span> in sign-quality but <span class='green'>strong</span> in directional power. Real-world result: Venus gives Digbala results in 4th house matters (home comforts, vehicles, aesthetic environment, mother relationship) but struggles in its full significations (relationships, arts, luxury). Think of it as a <span class='red'>weak</span>ened minister with maximum access to one department.
+- <strong>Nakshatra:</strong> Uttara Phalguni (Sun-ruled), Pada 4 (Pisces navamsha). Uttara Phalguni in Pisces navamsha gives compassion, idealism, and yearning for spiritual partnership. But Venus is <span class='green'>exalted</span> in Pisces (navamsha exaltation) — this is a hidden strength. <strong>Venus is <span class='red'>debilitated</span> in rashi but <span class='green'>exalted</span> in navamsha</strong> — this further reinforces that the native's romantic/artistic life improves dramatically with age and in deeper, spiritual relationships.
+- <strong>Aspects RECEIVED:</strong> Jupiter from 12th house (5th aspect) reaches 4th house — <strong>Jupiter protects Venus</strong>. This is the most important compensating factor: Jupiter's aspect on <span class='red'>debilitated</span> Venus in 4th provides wisdom, dharmic protection, and opportunity for redemption.
+- <strong>Aspects cast:</strong> Venus in 4th aspects 10th house (Pisces) with 7th aspect → Venus (5th lord, trikona) aspects career house. A trikona lord aspecting 10th house creates a natural Raja <span class='green'>Yoga</span> potential — creativity, art, and inspiration connect to career.</p>
+<p><strong>Functional Role:</strong> Venus is a functional benefic for Gemini Lagna (5th lord = trikona lord). Despite debilitation, Venus retains its role as a benefic force.</p>
+<p><strong>Final Impact:</strong>
+- Venus <span class='red'>debilitated</span> in 4th: Home environment in childhood has aesthetic shortcomings or emotional complications; mother's relationship is emotionally complex (<span class='red'>debilitated</span> Venus = 5th lord — 5th is 2nd from 4th, connected to mother's speech/finances)
+- Venus with Digbala in 4th: Nonetheless, the native has genuine aesthetic taste, loves home decoration, and builds a beautiful environment over time
+- Venus aspecting 10th house: Artistic, creative, or relationship-oriented elements will shape career
+- Navamsha exaltation of Venus: Love life and partnerships improve significantly after the native matures spiritually — the best relationships come after 30
+- <strong>Real life:</strong> Venus is a planet of delayed but genuine reward. The native may have difficult early romantic experiences but builds truly meaningful partnerships in the Saturn Mahadasha (post-2026) through maturity and self-understanding.</p>
+<hr />
+<h3 id="27-saturn-taurus-12th-house-0702-krittika-pada-4">2.7 SATURN ♄ — Taurus, 12th House, 07°02′, Krittika Pada 4</h3>
+<p><strong>Placement:</strong> Saturn is in Taurus (12th house), conjunct Jupiter.</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Dignity:</strong> Taurus is Venus-ruled. Saturn considers Venus a friend. Friendly sign for Saturn — <span class='yellow'>moderate</span>-to-good placement.
+- <strong>Digbala:</strong> Saturn achieves directional strength in the 7th house. Saturn is in 12th — <strong>no Digbala</strong>.
+- <strong>Nakshatra:</strong> Krittika (Sun-ruled), Pada 4 (Sagittarius navamsha). Krittika is the nakshatra of the sharp blade — cutting, purifying, and transforming. Saturn in Krittika gives a piercing mind that cuts through illusions but can be harsh in judgment, including self-judgment. Pada 4 (Sagittarius navamsha) connects Saturn to the dharmic fire of Sagittarius — this native will be tested through dharma and ethics.
+- <strong>Aspects cast (from 12th house, Taurus):</strong>
+  - 3rd special aspect: 3rd house from Taurus = Cancer (2nd house for Gemini lagna) → <strong>Saturn aspects <span class='red'>debilitated</span> Mars in 2nd house</strong>
+  - 7th aspect: 7th from Taurus = Scorpio (6th house) → Saturn aspects 6th house
+  - 10th special aspect: 10th from Taurus = Aquarius (9th house) → <strong>Saturn aspects its own 9th house</strong></p>
+<p><strong>Functional Role for Gemini Lagna:</strong>
+- As 9th lord: Saturn becomes the <strong>dharma significator</strong> — fortune, father, higher learning, spirituality, law
+- As 8th lord: Saturn carries obstruction, delays, hidden transformations
+- Saturn as 8th lord in 12th house forms <strong>Sarala Viparita Raja <span class='green'>Yoga</span></strong> (see Section 4)
+- Saturn is the ruler of the current Mahadasha (from January 26, 2026)</p>
+<p><strong>Final Impact:</strong>
+- Saturn in 12th with Jupiter: Deep philosophical orientation; the native thinks deeply about the purpose of suffering and liberation
+- Saturn's aspect on Mars in 2nd: This contact is very significant — Saturn disciplines Mars's speech impulse. This can mean the native either learns to speak very carefully and deliberately (positive) or keeps suppressing valid assertive expressions (negative)
+- Saturn's aspect on 9th house: Saturn as 9th lord aspecting its own house strengthens dharmic matters — the native gradually develops a <span class='green'>strong</span> ethical spine and interest in higher knowledge
+- Saturn's aspect on 6th house (7th aspect from 12th = 6th): This protects health through disciplined routine
+- <strong>Real life:</strong> Saturn in friendly sign in 12th, as the Mahadasha lord from 2026, is the planet that will define the next 19 years of this native's life. The quality of this Saturn determines everything from 2026 to 2045 — and it's reasonably well-placed, suggesting a period of serious work, gradual establishment, and spiritual deepening.</p>
+<hr />
+<h3 id="28-rahu-gemini-1st-house-2811-punarvasu-pada-3">2.8 RAHU ☊ — Gemini, 1st House, 28°11′, Punarvasu Pada 3</h3>
+<p><strong>Placement:</strong> Rahu in Gemini, conjunct Lagna (though at 28° versus Lagna at 01°, they are in the same sign but not closely conjunct by degree).</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Sign dignity:</strong> Rahu in Gemini — many classical texts place Rahu as <span class='green'>exalted</span> in Gemini (others say Taurus). If we accept the Gemini exaltation, <strong>Rahu is <span class='green'>exalted</span> in Lagna</strong> — this is an extremely powerful placement.
+- <strong>Nakshatra:</strong> Punarvasu (Jupiter-ruled), Pada 3 (Aquarius navamsha). Punarvasu means "return of light" or "the returning good." Rahu in Punarvasu gives a deep desire to restore, recover, and renew — the native has resilience to recover from setbacks. The Jupiter-ruled nakshatra gives Rahu some wisdom and expansive thinking.</p>
+<p><strong>Functional notes:</strong>
+- Rahu in Lagna magnifies the entire chart — ambitions are amplified, personality is intense, the native seeks to make a visible mark in the world
+- Rahu in Gemini absorbs and supercharges Mercurial qualities: communication, intellect, information-gathering, and duality (the native can hold multiple perspectives simultaneously)
+- Rahu's 5th aspect hits 5th house (Moon), and 9th aspect hits 9th house (Aquarius)</p>
+<p><strong>Final Impact:</strong>
+- The dominant driver of this native's early and mid life; Rahu-type obsession with intellect, communication, and name/fame
+- Unconventional thinking; the native challenges established norms in the domains of Mercury (education, communication, business logic)
+- Physically: Rahu in Lagna can create an unusual physical appearance or mannerism — often a sharp, intense gaze; possibly tall or thin frame
+- <strong>Real life:</strong> Rahu in <span class='green'>exalted</span> Gemini Lagna makes this native ambitious, sharp, and capable of operating in multiple domains simultaneously — but also restless and prone to chasing the next idea before completing the current one.</p>
+<hr />
+<h3 id="29-ketu-sagittarius-7th-house-2811-uttarashadha-pada-1">2.9 KETU ☋ — Sagittarius, 7th House, 28°11′, Uttarashadha Pada 1</h3>
+<p><strong>Placement:</strong> Ketu in Sagittarius in the 7th house (Kalatra Bhava).</p>
+<p><strong>Strength Assessment:</strong>
+- <strong>Sign:</strong> Sagittarius (Jupiter-ruled). Some traditions place Ketu as <span class='green'>exalted</span> in Sagittarius — if so, this is also a <span class='green'>strong</span>ly-placed Ketu.
+- <strong>Nakshatra:</strong> Uttarashadha (Sun-ruled), Pada 1 (Sagittarius navamsha). Uttarashadha is the nakshatra of invincible victory, ethics, and ultimate triumph. Ketu in Uttarashadha indicates the native has karmic completion of Sagittarian themes (dharma, philosophy, teaching, foreign travel) from a past life.</p>
+<p><strong>Final Impact:</strong>
+- Ketu in 7th is the most challenging placement for marriage/partnerships — it creates a sense of karmic detachment in relationships; partners may feel the native is "elsewhere" emotionally
+- The 7th house represents marriage, business partnerships, and open enemies — Ketu here makes the native either delay marriage significantly or attract unusually spiritual/philosophical partners
+- Ketu in Sagittarius gives previous-life mastery of philosophy and religion; the native has an intuitive grasp of dharmic principles
+- Ketu's 9th aspect falls on 3rd house (Sun + Mercury) — deepening the spiritual/philosophical coloring of the native's communication
+- <strong>Real life:</strong> Ketu in 7th, combined with 7th lord Jupiter in 12th, creates the most complex marital karma in this chart. The native must find a partner who understands their need for spiritual space.</p>
+<hr />
+<p><a name="section-3"></a></p>
+<h2 id="section-3-house-wise-analysis">SECTION 3: HOUSE-WISE ANALYSIS</h2>
+<hr />
+<h3 id="house-1-gemini-the-self-body-vitality">House 1 — Gemini (The Self, Body, Vitality)</h3>
+<p><strong>Lord:</strong> Mercury (in 3rd, <span class='red'>combust</span>)<br />
+<strong>Occupants:</strong> Rahu (28°11′)<br />
+<strong>Ashtakvarga:</strong> 29  </p>
+<p>Rahu in Lagna gives the native an intense, magnetic quality — people notice them immediately. The personality is sharp, intellectually restless, and somewhat unconventional. However, Mercury (lagna lord) being <span class='red'>combust</span> in the 3rd house means the native's sense of self is frequently absorbed into external activities (communication, siblings, skills) rather than internal self-development. There is a gap between how the native <em>appears</em> (dynamic, ambitious, Rahu) and who they internally are (Mercury: curious, analytical, gentle). Health-wise, Gemini Lagna rules the respiratory system and nervous system — with Mercury <span class='red'>combust</span>, watch for anxiety, respiratory sensitivity, and nervous exhaustion.</p>
+<p><strong>Real-life outcome:</strong> A striking personality whose intellectual brilliance is immediately visible; a restless person who reinvents their identity multiple times before finding authentic self-expression.</p>
+<hr />
+<h3 id="house-2-cancer-wealth-speech-family-face">House 2 — Cancer (Wealth, Speech, Family, Face)</h3>
+<p><strong>Lord:</strong> Moon (in 5th house)<br />
+<strong>Occupants:</strong> Mars (<span class='red'>debilitated</span>, 27°08′ Ashlesha)<br />
+<strong>Ashtakvarga:</strong> 26  </p>
+<p>This is the most economically <span class='red'>afflicted</span> house of the chart. <span class='red'>Debilitated</span> Mars in the 2nd house creates: (a) harsh, impulsive, or cutting speech, (b) family conflicts and possible instability in the joint family, (c) irregular wealth accumulation — money comes but leaves quickly or causes family tension. Saturn's 3rd aspect onto Mars here further suppresses the native's ability to speak up for themselves or assert financial claims. Mars in Ashlesha (serpent nakshatra) gives a secretive quality to speech — the native may not always say what they truly feel.</p>
+<p><strong>Cancer as 2nd house:</strong> Moon (2nd lord) in 5th house is actually a positive factor — it moves the wealth-lord into a creative, intelligent house. This creates a Dhana <span class='green'>Yoga</span> potential: wealth generated through intelligence, speculation, creative output, or education.</p>
+<p><strong>Real-life outcome:</strong> Financial struggles in the first 25 years; speech patterns that need conscious refinement (less impulsive, more considered); genuine improvement in finances once Moon's Antardasha activates during a favourable Mahadasha.</p>
+<hr />
+<h3 id="house-3-leo-courage-communication-siblings-skills-media">House 3 — Leo (Courage, Communication, Siblings, Skills, Media)</h3>
+<p><strong>Lord:</strong> Sun (in own house)<br />
+<strong>Occupants:</strong> Sun (16°43′), Mercury (<span class='red'>combust</span>, 27°23′)<br />
+<strong>Ashtakvarga:</strong> 32  </p>
+<p>This is one of the <span class='green'>strong</span>est houses of the chart. Sun in <span class='green'>own sign</span> (Leo) in the 3rd house gives extraordinary courage, confident communication, and a natural flair for self-expression in media, arts, and performance. The Sun as 3rd lord in the 3rd house fully activates the house's themes. Mercury (despite <span class='red'>combust</span>ion) adds intellectual depth to the Sun's warmth — this combination gives leadership in communication.</p>
+<p>However, the <span class='red'>combust</span>ion of Mercury here means the communication style can sometimes be too solar — too direct, too authoritative — missing the nuance that pure Mercury would provide.</p>
+<p><strong>Ketu's aspect on this house</strong> (from 7th house): Gives flashes of brilliant, intuitive communication but also periodic mental fog or spiritual withdrawal from active communication.</p>
+<p><strong>Real-life outcome:</strong> This house is this native's greatest asset. Writing, speaking, presenting, teaching, content creation, media, or any field demanding communication excellence — this is where the native excels. The Ashtakvarga score of 32 (second highest in the chart) confirms this house consistently delivers positive transit results. The native will be known for their communication.</p>
+<hr />
+<h3 id="house-4-virgo-home-mother-comforts-education-vehicles">House 4 — Virgo (Home, Mother, Comforts, Education, Vehicles)</h3>
+<p><strong>Lord:</strong> Mercury (in 3rd, <span class='red'>combust</span>)<br />
+<strong>Occupants:</strong> Venus (<span class='red'>debilitated</span>, 09°22′, with Digbala)<br />
+<strong>Ashtakvarga:</strong> 22 ← <span class='red'>WEAK</span>EST HOUSE  </p>
+<p>The 4th house has the chart's lowest Ashtakvarga score (22 points) and hosts a <span class='red'>debilitated</span> planet. This is the most consistently difficult area of the native's life. Venus <span class='red'>debilitated</span> in Virgo in 4th: home environment may lack stability in childhood; relationship with mother is emotionally complicated (mother may be critical, over-analytical, or emotionally distant — Virgo's mercurial over-analysis affecting maternal warmth). Comforts and conveyances come but are often associated with responsibility rather than pure pleasure.</p>
+<p><strong>Compensating factors:</strong> (a) Venus has Digbala here — directional strength in 4th house, so the native does eventually build a comfortable home environment through personal effort; (b) Jupiter from 12th aspects the 4th house — Jupiter's protective vision prevents the worst outcomes; (c) Venus in Uttara Phalguni Pada 4 (Pisces navamsha) gives the native an idealistic, beautiful vision for home life that eventually materializes.</p>
+<p><strong>Real-life outcome:</strong> Difficult home/maternal environment in childhood; the native builds their own home and comfort environment through adult effort. Education may have interruptions but eventually stabilizes. Vehicles are purchased but come with maintenance issues or accidents — caution needed.</p>
+<hr />
+<h3 id="house-5-libra-intelligence-creativity-love-children-speculation">House 5 — Libra (Intelligence, Creativity, Love, Children, Speculation)</h3>
+<p><strong>Lord:</strong> Venus (<span class='red'>debilitated</span> in 4th, with Digbala)<br />
+<strong>Occupants:</strong> Moon (13°02′, Swati Pada 2)<br />
+<strong>Ashtakvarga:</strong> 26  </p>
+<p>Moon in the 5th house (trikona) is intrinsically a wonderful placement for the mind, creativity, and emotional expression. The 5th house is the house of the soul (purva punya — merit from past lives), and Moon here gives natural access to one's deeper creative intelligence. This native is emotionally and intellectually creative — they generate genuine original ideas.</p>
+<p><strong>Afflictions:</strong> Mars (from 2nd) aspects Moon here (4th aspect); Rahu (from 1st) aspects Moon here (5th aspect). This double affliction means the creative intelligence is periodically disrupted — Mars brings impulsive emotional decisions, Rahu brings obsessive or scattered thinking. The native must consciously protect their mental space.</p>
+<p><strong>For children:</strong> Moon in 5th is supportive of having children, but the 5th lord Venus being <span class='red'>debilitated</span> introduces the possibility of delays. Best childbirth window: Venus Antardasha within Saturn Mahadasha (2032–2036).</p>
+<p><strong>Speculation:</strong> Moon in 5th gives some aptitude for speculative investments, but Mars's affliction means risk management is crucial — do not speculate impulsively.</p>
+<p><strong>Real-life outcome:</strong> One of the native's core gifts — creative, original thinking and emotional intelligence. Love life is passionate but complicated (Mars + Rahu influence on 5th Moon). The native falls deeply in love, often with unusual or foreign people (Rahu influence), and experiences intense emotional highs and lows before finding genuine partnership.</p>
+<hr />
+<h3 id="house-6-scorpio-disease-enemies-debts-service-legal-matters">House 6 — Scorpio (Disease, Enemies, Debts, Service, Legal Matters)</h3>
+<p><strong>Lord:</strong> Mars (<span class='red'>debilitated</span> in 2nd)<br />
+<strong>Occupants:</strong> None (classically; Pluto at 16°15′ in modern interpretation)<br />
+<strong>Ashtakvarga:</strong> 25  </p>
+<p>The 6th lord Mars is <span class='red'>debilitated</span> — this creates what's called a "<span class='red'>weak</span>ened 6th lord scenario." A <span class='red'>weak</span> 6th lord means enemies and diseases may be less overtly aggressive, but also means the native's capacity to actively fight and overcome challenges is reduced. The native may struggle to confront adversaries head-on; health issues may be chronic and low-grade rather than acute.</p>
+<p><strong>Jupiter's aspect on 6th house</strong> (from 12th): Jupiter's 7th aspect falls on Scorpio (6th house). This is exceptionally protective for health — Jupiter's wisdom and expansive healing energy protects the digestive system, liver, and immunity.</p>
+<p><strong>Mars in 2nd aspecting Moon in 5th</strong> means some of the 6th house's combative energy finds release through emotional outbursts rather than direct confrontation (2nd house path of communication is how 6th-house Mars expresses itself).</p>
+<p><strong>Real-life outcome:</strong> Chronic but manageable health issues (likely digestive or nervous system related); Jupiter's protective aspect keeps serious illness at bay. Enemies exist but are more passive (gossip, backstabbing) than active aggressors. Legal matters may occasionally arise but resolve in the native's favour through Jupiter's 6th house protection.</p>
+<hr />
+<h3 id="house-7-sagittarius-marriage-partnerships-open-enemies">House 7 — Sagittarius (Marriage, Partnerships, Open Enemies)</h3>
+<p><strong>Lord:</strong> Jupiter (in 12th house)<br />
+<strong>Occupants:</strong> Ketu (28°11′)<br />
+<strong>Ashtakvarga:</strong> 28  </p>
+<p>This is the most complex house for marriage. Ketu in the 7th house is a significant karmic indicator for partnership: Ketu dissolves, detaches, and seeks liberation rather than binding. A Ketu-7th native either: (a) delays marriage significantly, (b) marries someone spiritually oriented or foreign, or (c) experiences one major loss/separation in partnership before finding the right match.</p>
+<p>The 7th lord Jupiter is in the 12th house — 12th from the 7th house (which represents end/loss of things from the 7th). This creates a structural <span class='red'>weak</span>ness in marriage: the lord of partnerships is in the house of dissolution. The native tends to invest energy in relationships behind closed doors or in foreign settings, and formal partnerships may feel restrictive.</p>
+<p><strong>Positive mitigators:</strong> (a) Ketu in Uttarashadha (invincible victory nakshatra) suggests that despite delays and detachment, the marriage that does occur has karmic depth and potential for genuine spiritual partnership; (b) Ashtakvarga of 28 in 7th house is decent — transiting planets through Sagittarius can activate this house positively.</p>
+<p><strong>Real-life outcome:</strong> Marriage is delayed — likely after age 28–30. The right partner will be philosophical, spiritual, or from a foreign/distant background. Business partnerships need very careful vetting as Ketu in 7th and Jupiter in 12th can create partners who disappear or transform unexpectedly.</p>
+<hr />
+<h3 id="house-8-capricorn-longevity-hidden-matters-transformation-research">House 8 — Capricorn (Longevity, Hidden Matters, Transformation, Research)</h3>
+<p><strong>Lord:</strong> Saturn (in 12th house)<br />
+<strong>Occupants:</strong> None (Uranus and Neptune as outer planets)<br />
+<strong>Ashtakvarga:</strong> 27  </p>
+<p>The 8th house is reasonably protected in this chart. Saturn (8th lord) is in 12th — forming Sarala Viparita Raja <span class='green'>Yoga</span> (see Section 4). Mars from 2nd aspects the 8th house with its 7th aspect. Jupiter from 12th aspects 8th house with its 9th aspect.</p>
+<p>Jupiter's aspect on 8th house is very important: it provides longevity protection, reduces sudden accidents, and gives the native hidden wisdom and research ability. The 8th house with Jupiter's aspect gives interest in occult sciences, Vedic astrology, tantra, or deep psychological research.</p>
+<p><strong>Real-life outcome:</strong> Reasonable longevity (Jupiter's protection). Hidden talents in research, occult, or deep investigation. The native may experience one or two intense transformative events (8th house nature) that completely reshape their worldview — these will be their most important growth catalysts.</p>
+<hr />
+<h3 id="house-9-aquarius-fortune-father-higher-learning-dharma-guru">House 9 — Aquarius (Fortune, Father, Higher Learning, Dharma, Guru)</h3>
+<p><strong>Lord:</strong> Saturn (in 12th house)<br />
+<strong>Occupants:</strong> None<br />
+<strong>Ashtakvarga:</strong> 25  </p>
+<p>The 9th house is empty but receives important aspects: Sun and Mercury from 3rd house (7th aspect) → Jupiter and Sun both illuminating the 9th house; Saturn (9th lord) aspects its own house from 12th (10th special aspect) — <strong>Saturn as 9th lord aspecting 9th house is very powerful for dharmic development</strong>. This native has a genuine relationship with higher law, justice, and philosophical truth.</p>
+<p>Rahu from 1st house (9th aspect) also hits the 9th house — introducing unconventional spiritual and philosophical influences. The native's path to dharma may be through technology, social innovation, or alternative spiritual traditions (Aquarius + Rahu combination).</p>
+<p><strong>Father:</strong> Sun (9th house ruler in the hierarchical sense, as natural karaka for father) is in 3rd house <span class='green'>own sign</span>. Father is courageous, communicative, and ego-driven. However, Saturn (9th lord) in 12th suggests the father may have been geographically distant, spiritually absorbed, or underwent significant personal transformation.</p>
+<p><strong>Real-life outcome:</strong> Genuine philosophical and spiritual growth; the native develops a unique, unconventional dharmic worldview. Possible interest in law, philosophy, technology ethics, or alternative spiritual practices. Fortune (9th house) develops steadily through Saturn's discipline — not quickly, but durably.</p>
+<hr />
+<h3 id="house-10-pisces-career-public-status-profession-social-contribution">House 10 — Pisces (Career, Public Status, Profession, Social Contribution)</h3>
+<p><strong>Lord:</strong> Jupiter (in 12th house)<br />
+<strong>Occupants:</strong> None<br />
+<strong>Ashtakvarga:</strong> 37 ← HIGHEST in the chart  </p>
+<p>This is the most powerful transit house in the entire chart — the 10th house (Pisces) accumulates the highest Sarvashtakavarga score of <strong>37 points</strong>. This is unusual and significant: it means that whenever planets transit through Pisces, they consistently generate positive career results for this native.</p>
+<p>10th lord Jupiter in 12th house: Career is pursued in unconventional, behind-the-scenes, foreign, or spiritual domains. The native is not a conventional 9-to-5 professional; they work in expansive, large-scale institutional or international settings.</p>
+<p>Venus (from 4th house) aspects the 10th house with its 7th aspect → The 5th lord (trikona) aspecting the 10th house creates a natural wealth-from-career <span class='green'>yoga</span>: creative output, artistic ability, or Venus-related fields (aesthetics, finance, arts, relationships) connect to professional achievement.</p>
+<p><strong>Real-life outcome:</strong> The native's career will take time to establish (10th lord in 12th suggests slow beginning) but when it arrives, it will be exceptional — the Ashtakvarga of 37 guarantees sustained transit support. Career in foreign countries, international organizations, spiritual or healing institutions, research, arts, or creative technology is highly probable. Peak career period: Saturn-Venus Antardasha (2032–2036) and Saturn-Rahu Antardasha (2039–2042).</p>
+<hr />
+<h3 id="house-11-aries-gains-fulfillment-of-desires-elder-siblings-networks">House 11 — Aries (Gains, Fulfillment of Desires, Elder Siblings, Networks)</h3>
+<p><strong>Lord:</strong> Mars (<span class='red'>debilitated</span> in 2nd)<br />
+<strong>Occupants:</strong> None<br />
+<strong>Ashtakvarga:</strong> 31  </p>
+<p>The 11th house Ashtakvarga score is 31 — <span class='green'>strong</span>. This means transiting planets through Aries consistently deliver gains. However, 11th lord Mars is <span class='red'>debilitated</span> in 2nd — gains come but are not retained easily; there is a leakage between earning and accumulating.</p>
+<p>Moon aspects 11th house (7th aspect from 5th house) → Moon (2nd lord) aspecting 11th house connects wealth and gains together — this is a positive Dhana <span class='green'>Yoga</span> signature.</p>
+<p><strong>Real-life outcome:</strong> The native has periods of <span class='green'>strong</span> financial inflow (especially when planets transit Aries, activated by a favorable Antardasha), but needs to build conscious financial management habits to prevent the <span class='red'>debilitated</span> Mars tendency to dissipate earnings. The 11th house is the native's natural gateway to wealth through networks and social connections.</p>
+<hr />
+<h3 id="house-12-taurus-expenses-losses-foreign-travel-spirituality-moksha">House 12 — Taurus (Expenses, Losses, Foreign Travel, Spirituality, Moksha)</h3>
+<p><strong>Lord:</strong> Venus (<span class='red'>debilitated</span> in 4th, with Digbala)<br />
+<strong>Occupants:</strong> Jupiter (16°11′) + Saturn (07°02′)<br />
+<strong>Ashtakvarga:</strong> 29  </p>
+<p>Two major planets occupy the 12th house — Jupiter and Saturn together in Taurus. This is both a spiritual blessing and a material challenge:
+- Spiritual blessing: 12th house with two significant planets creates deep inner life, meditative capacity, and potential for spiritual liberation in this lifetime
+- Material challenge: Expenses are consistently high; money leaves through spiritual pursuits, foreign travel, charity, or hidden losses
+- Jupiter in 12th: Long spiritual journeys; possible foreign residence; inner wisdom accumulates even as outer wealth fluctuates
+- Saturn in 12th: Disciplined spiritual practice; prison-like phases of isolation that ultimately purify; slow but deep spiritual transformation</p>
+<p><strong>Real-life outcome:</strong> The native will spend significantly on spiritual development, foreign travel, and retreat. This is not a "waste" — it is the correct investment for this chart. The 12th house is this native's engine of internal growth, and the Jupiter-Saturn conjunction here creates a profoundly deep inner life that will eventually manifest as outer wisdom.</p>
+<hr />
+<p><a name="section-4"></a></p>
+<h2 id="section-4-yogas-validated-only">SECTION 4: <span class='green'>YOGA</span>S — VALIDATED ONLY</h2>
+<p><em>Only <span class='green'>yoga</span>s that exist given actual planetary strength, placement, and mutual support are listed here. Textbook <span class='green'>yoga</span>s that are cancelled by <span class='red'>weak</span>ness are marked as invalid.</em></p>
+<hr />
+<h3 id="yoga-1-sarala-viparita-raja-yoga-active"><span class='green'>Yoga</span> 1: SARALA VIPARITA RAJA <span class='green'>YOGA</span> ✅ ACTIVE</h3>
+<p><strong>Rule:</strong> 8th lord placed in 12th house forms Sarala <span class='green'>Yoga</span> (a type of Viparita Raja <span class='green'>Yoga</span>).<br />
+<strong>Planets:</strong> Saturn (8th lord) in 12th house (Taurus).<br />
+<strong>Validity check:</strong> Saturn in friendly sign in 12th — placement is clean and un<span class='red'>afflicted</span> by <span class='green'>strong</span>er malefics. Jupiter conjunct Saturn adds wisdom to the <span class='green'>yoga</span> rather than corrupting it.<br />
+<strong>Classical effect (non-textbook):</strong> Sarala <span class='green'>Yoga</span> makes the native resilient against seemingly devastating setbacks. Just when circumstances appear to destroy the native's position, a reversal occurs in their favor. This <span class='green'>yoga</span> does not protect from difficulty — it ensures the native <em>survives and rises</em> after difficulty. The native has a phoenix quality.<br />
+<strong>Timing activation:</strong> Saturn Mahadasha (2026–2045) is when this <span class='green'>yoga</span> fully activates. The first major demonstration will be in Saturn-Saturn period (2026–2029) — an initial period of testing followed by resilience and recovery.<br />
+<strong>Validation strength: HIGH.</strong> Saturn well-placed in friendly sign in 12th; no cancellation factors.</p>
+<hr />
+<h3 id="yoga-2-partial-dhana-yoga-moon-as-2nd-lord-in-5th-trikona-active-qualified"><span class='green'>Yoga</span> 2: PARTIAL DHANA <span class='green'>YOGA</span> — Moon as 2nd Lord in 5th Trikona ✅ ACTIVE (qualified)</h3>
+<p><strong>Rule:</strong> Lord of 2nd house (Dhana Bhava) placed in a trikona (5th house) forms a Dhana <span class='green'>Yoga</span>.<br />
+<strong>Planets:</strong> Moon (2nd lord) in 5th house (Libra).<br />
+<strong>Validity check:</strong> Moon is <span class='red'>afflicted</span> by Mars (<span class='red'>debilitated</span> aspect) and Rahu (aspect). The affliction reduces the <span class='green'>yoga</span>'s potency from "full Dhana <span class='green'>Yoga</span>" to a "qualified Dhana <span class='green'>Yoga</span>" — wealth comes through intelligence and creativity (5th house) but with inconsistency and emotional spending patterns (Mars + Rahu on Moon).<br />
+<strong>Real effect:</strong> The native can generate significant wealth through intellectual work, creative output, and speculation — but requires emotional discipline to retain it.<br />
+<strong>Timing activation:</strong> Moon Antardasha within Saturn Mahadasha = Saturn-Moon period (December 2036 – July 2038) will give the most concentrated expression of wealth through intellectual/creative work.<br />
+<strong>Validation strength: <span class='yellow'>MODERATE</span>.</strong> <span class='green'>Yoga</span> exists but is qualified by Moon's afflictions.</p>
+<hr />
+<h3 id="yoga-3-partial-budha-aditya-yoga-sun-mercury-conjunction-in-leo-active-reduced"><span class='green'>Yoga</span> 3: PARTIAL BUDHA-ADITYA <span class='green'>YOGA</span> — Sun + Mercury Conjunction in Leo ✅ ACTIVE (reduced)</h3>
+<p><strong>Rule:</strong> Conjunction of Sun and Mercury forms Budha-Aditya <span class='green'>Yoga</span> — gives intelligence, learning, and recognition.<br />
+<strong>Planets:</strong> Sun (<span class='green'>own sign</span> Leo) + Mercury (<span class='red'>combust</span>) in 3rd house.<br />
+<strong>Validity check:</strong> Mercury's <span class='red'>combust</span>ion significantly reduces this <span class='green'>yoga</span>. The <span class='green'>yoga</span> is present but gives perhaps 40–50% of its classical results. What remains: the native IS recognized for intellect and communication; reputation in educational or communication fields is secured. But the full "famous intellect" quality requires Mercury's independence from the Sun, which <span class='red'>combust</span>ion removes.<br />
+<strong>Real effect:</strong> The native has a reputation for intelligent communication and will be recognized in their field — just not at the scale that a non-<span class='red'>combust</span> Budha-Aditya would produce.<br />
+<strong>Validation strength: <span class='yellow'>MODERATE</span>.</strong> <span class='green'>Yoga</span> present but <span class='red'>combust</span>ion reduces results.</p>
+<hr />
+<h3 id="yoga-4-venus-digbala-in-4th-house-directional-strength-active"><span class='green'>Yoga</span> 4: VENUS DIGBALA IN 4TH HOUSE — Directional Strength ✅ ACTIVE</h3>
+<p><strong>Rule:</strong> Venus achieves Digbala (directional strength) in the 4th house — north direction.<br />
+<strong>Planet:</strong> Venus (09°22′ Virgo) in 4th house.<br />
+<strong>Validity check:</strong> Despite debilitation in sign, Digbala is an independent strength source tied to direction, not sign. It fully operates.<br />
+<strong>Real effect:</strong> The native's home environment, despite challenges in early life, eventually becomes beautiful, comfortable, and a source of pride through personal effort. Venus's Digbala in 4th also gives aesthetic refinement in domestic tastes — the native has a genuine eye for beauty in the home.<br />
+<strong>Validation strength: FULL.</strong> Digbala operates independently of sign debilitation.</p>
+<hr />
+<h3 id="yoga-5-rahu-in-exaltation-in-lagna-active-school-dependent"><span class='green'>Yoga</span> 5: RAHU IN EXALTATION IN LAGNA ✅ ACTIVE (school-dependent)</h3>
+<p><strong>Rule:</strong> Rahu considered <span class='green'>exalted</span> in Gemini (confirmed by multiple classical traditions including Brihat Parasara Hora Shastra variants).<br />
+<strong>Planet:</strong> Rahu (28°11′ Gemini) in 1st house.<br />
+<strong>Validity check:</strong> Rahu in Lagna AND in exaltation creates maximum Rahu influence on the chart — ambition, worldly drive, unconventional intelligence, and desire for public recognition are all amplified.<br />
+<strong>Real effect:</strong> This native has a <span class='green'>strong</span>, almost irresistible drive toward accomplishment and recognition. Rahu in <span class='green'>exalted</span> Lagna ensures the native does not live an ordinary life — there will be extremes, both of achievement and of challenge. The world takes notice of this person.<br />
+<strong>Validation strength: HIGH</strong> (if Gemini exaltation accepted) / <span class='yellow'>MODERATE</span> (if debated). Either way, Rahu in Lagna is a dominant force.</p>
+<hr />
+<h3 id="yoga-6-venus-trikona-lord-aspecting-10th-house-active"><span class='green'>Yoga</span> 6: VENUS (TRIKONA LORD) ASPECTING 10TH HOUSE ✅ ACTIVE</h3>
+<p><strong>Rule:</strong> A trikona lord aspecting the 10th house creates career <span class='green'>yoga</span> potential.<br />
+<strong>Planet:</strong> Venus (5th lord) in 4th house aspects 10th house (Pisces) via 7th aspect.<br />
+<strong>Validity check:</strong> Venus is <span class='red'>debilitated</span> but has Digbala. The aspect on 10th is real and functional. 5th lord aspecting 10th creates the connection between creative intelligence and career.<br />
+<strong>Real effect:</strong> Creative, artistic, or Venus-related elements will genuinely contribute to career success. This is especially true in Pisces (10th house) — a deeply artistic, spiritual, and imaginative sign.<br />
+<strong>Validation strength: <span class='yellow'>MODERATE</span></strong> (debilitation reduces full force; Digbala partially restores).</p>
+<hr />
+<h3 id="yogas-that-do-not-apply-cancelledabsent"><span class='green'>YOGA</span>S THAT DO NOT APPLY (cancelled/absent):</h3>
+<ul>
+<li><strong>Gajakesari <span class='green'>Yoga</span></strong> (Jupiter-Moon in kendra from each other): Jupiter is in Taurus (12th house from Lagna), Moon in Libra (5th from Lagna). 12th to 5th is not a kendra relationship. <strong>ABSENT.</strong></li>
+<li><strong>Full Viparita Raja <span class='green'>Yoga</span> (Vimala):</strong> Requires 12th lord in 6th, 8th, or 12th. Venus (12th lord) is in 4th — <strong>ABSENT.</strong></li>
+<li><strong>Full Neecha Bhanga Raja <span class='green'>Yoga</span> for Mars or Venus:</strong> No cancellation rules met for either — <strong>ABSENT.</strong></li>
+<li><strong>Pancha Mahapurusha <span class='green'>Yoga</span>:</strong> Requires a planet in own or <span class='green'>exalted</span> sign in a kendra (1, 4, 7, 10). Sun is in <span class='green'>own sign</span> but in 3rd (not kendra). Saturn and Jupiter are in 12th (not kendra). Mars is <span class='red'>debilitated</span>. Mercury is <span class='red'>combust</span>. <strong>NONE OF THE FIVE ACTIVE.</strong></li>
+</ul>
+<hr />
+<p><a name="section-5"></a></p>
+<h2 id="section-5-dosha-analysis">SECTION 5: <span class='red'>DOSHA</span> ANALYSIS</h2>
+<hr />
+<h3 id="51-manglik-dosha">5.1 MANGLIK <span class='red'>DOSHA</span></h3>
+<p><strong>Definition:</strong> Mars placed in 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus causes Manglik <span class='red'>Dosha</span>.</p>
+<p><strong>Assessment from Lagna (Gemini):</strong><br />
+Mars is in Cancer = <strong>2nd house from Lagna</strong> → Manglik house = <strong><span class='red'>Dosha</span> present from Lagna.</strong></p>
+<p><strong>Assessment from Moon (Libra):</strong><br />
+Mars in Cancer = <strong>10th house from Moon</strong> → NOT a Manglik house (10th is not in the list 1/2/4/7/8/12) → <strong>No <span class='red'>Dosha</span> from Moon.</strong></p>
+<p><strong>Assessment from Venus (Virgo/4th house):</strong><br />
+Mars in Cancer = Cancer is 11th from Virgo → <strong>NOT a Manglik house → No <span class='red'>Dosha</span> from Venus.</strong></p>
+<p><strong><span class='red'>Dosha</span> is present only from Lagna</strong> — this is a <strong>partial or mild Manglik <span class='red'>Dosha</span></strong> by classical standards.</p>
+<p><strong>Severity factors:</strong>
+- Mars in 2nd (not in 7th or 8th, which are the most severe positions) → <strong>Reduced severity</strong>
+- Mars is <span class='red'>DEBILITATED</span> in Cancer → A <span class='red'>weak</span>ened planet produces a <span class='red'>weak</span>ened <span class='red'>dosha</span>. The Manglik effect is further diminished
+- Saturn aspects Mars from 12th (3rd special aspect) → Saturn's dampening influence on Mars further reduces the <span class='red'>dosha</span>'s intensity
+- Mars in Ashlesha Nakshatra (Mercury-ruled) → The Mercurial nakshatra further softens Mars's aggression</p>
+<p><strong>Cancellation check:</strong><br />
+Classical cancellation rules for Manglik <span class='red'>Dosha</span> include:
+1. Mars conjunct or aspected by Jupiter → Jupiter does NOT aspect Mars (Jupiter from 12th uses 5th/7th/9th aspects = 4th/6th/8th houses, not 2nd house). <strong>NOT cancelled by Jupiter.</strong>
+2. Mars in <span class='green'>own sign</span> or exaltation → Mars is <span class='red'>DEBILITATED</span> (opposite). <strong>No cancellation.</strong>
+3. If the prospective spouse also has Manglik <span class='red'>Dosha</span>, the <span class='red'>dosha</span>s cancel each other → Cannot be determined without spouse's chart.</p>
+<p><strong>Final Verdict on Manglik <span class='red'>Dosha</span>:</strong><br />
+<strong>Severity: LOW.</strong> Manglik <span class='red'>Dosha</span> is technically present from Lagna (Mars in 2nd), but Mars's debilitation, the absence of <span class='red'>dosha</span> from Moon and Venus, and Saturn's subduing aspect make this a mild concern. The primary marital challenge in this chart is NOT Manglik <span class='red'>Dosha</span> — it is the 7th lord in 12th and Ketu in 7th, which represent karmic/spiritual challenges in partnership.</p>
+<p><strong>Real impact on marriage:</strong> The Mars in 2nd Manglik influence primarily manifests as harsh speech and family friction within marriage (2nd house = speech and family) — not as partner harm or separation. The native should consciously develop patience and diplomatic communication within relationships.</p>
+<hr />
+<h3 id="52-kaal-sarp-dosha">5.2 KAAL SARP <span class='red'>DOSHA</span></h3>
+<p><strong>Definition:</strong> All 7 classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) must lie between Rahu and Ketu (on one side of the Rahu-Ketu axis) for Kaal Sarp <span class='red'>Dosha</span> to be present.</p>
+<p><strong>Rahu-Ketu axis:</strong><br />
+- Rahu: 28°11′ Gemini (1st house)<br />
+- Ketu: 28°11′ Sagittarius (7th house)  </p>
+<p><strong>Planets between Rahu and Ketu (Gemini to Sagittarius via Cancer-Leo-Virgo-Libra-Scorpio):</strong>
+- Mars: Cancer → ✅ On the Cancer-side (between Rahu and Ketu)
+- Sun: Leo → ✅ On the Cancer-side
+- Mercury: Leo → ✅ On the Cancer-side
+- Venus: Virgo → ✅ On the Cancer-side
+- Moon: Libra → ✅ On the Cancer-side
+<em>(5 planets on the Cancer-side)</em></p>
+<p><strong>Planets between Ketu and Rahu (Sagittarius to Gemini via Capricorn-Aquarius-Pisces-Aries-Taurus):</strong>
+- Saturn: Taurus → ✅ On the Capricorn-side
+- Jupiter: Taurus → ✅ On the Capricorn-side
+<em>(2 planets on the Capricorn-side)</em></p>
+<p><strong>Verdict: KAAL SARP <span class='red'>DOSHA</span> IS NOT PRESENT.</strong></p>
+<p>The requirement that ALL classical planets be on one side of the Rahu-Ketu axis is NOT met. Jupiter and Saturn are on the opposite side from the other five planets.</p>
+<p><strong>However — Partial Serpentine Imbalance:</strong><br />
+Five planets on one side creates a significant planetary weight imbalance. This is sometimes called a "Partial Kaal Sarp" by modern practitioners. The effects are milder than full KSD:
+- The native may feel that despite effort, certain areas of life seem blocked by an invisible force (the nodes' gravity pulling all light planets together)
+- Periods of intense focus followed by periods of complete disruption (nodal periods — Rahu and Ketu Mahadashas/Antardashas)
+- The two "escaped" planets (Jupiter and Saturn) in the 12th house become particularly important as they operate outside the serpent's grip — they represent the native's independent resources: wisdom, patience, and endurance</p>
+<p><strong>Severity: ABSENT (full KSD) / LOW-<span class='yellow'>MODERATE</span> (partial imbalance)</strong></p>
+<hr />
+<h3 id="53-pitra-dosha">5.3 PITRA <span class='red'>DOSHA</span></h3>
+<p><strong>Definition:</strong> Pitra <span class='red'>Dosha</span> relates to ancestral karma and is indicated by: (a) Sun <span class='red'>afflicted</span> by Rahu/Ketu/Saturn, (b) 9th house <span class='red'>afflicted</span>, (c) Sun or 9th lord in debilitation/enemy sign.</p>
+<p><strong>Assessment:</strong></p>
+<p><strong>Sun:</strong> In <span class='green'>own sign</span> Leo — Sun is <span class='green'>STRONG</span>. No sign-based affliction. <strong>No Pitra <span class='red'>Dosha</span> from Sun's dignity.</strong></p>
+<p><strong>Rahu's aspect on 9th house:</strong> Rahu (from 1st house) casts its 9th aspect onto the 9th house (Aquarius). This is a <strong>mild Pitra <span class='red'>Dosha</span> indicator</strong> — Rahu influencing the 9th house suggests disruption in ancestral dharmic patterns.</p>
+<p><strong>9th lord Saturn in 12th house:</strong> Saturn (9th lord) is in 12th — displaced from its own house. This creates distance between the native and traditional dharmic structures (father, guru, ancestral practices). <strong>Mild Pitra <span class='red'>Dosha</span> indicator.</strong></p>
+<p><strong>Sun aspecting 9th house</strong> (via 7th aspect from 3rd house): Sun does illuminate the 9th house. This is a mitigating factor.</p>
+<p><strong>Ketu's aspect on Sun:</strong> Ketu from 7th (9th aspect) reaches 3rd house (where Sun is). Ketu on Sun creates mild karmic complexity in the native's solar significations — father, authority, and ancestral lineage have karmic unresolved patterns.</p>
+<p><strong>Verdict: PITRA <span class='red'>DOSHA</span> — MILD</strong><br />
+Severity: LOW-<span class='yellow'>MODERATE</span>.<br />
+The ancestral karma is not severe but present. This manifests as: periodic disconnection from traditional family values, possible misunderstandings with father, or feeling that ancestral wisdom is inaccessible. Not physically dangerous.</p>
+<p><strong>Remedy:</strong> Tarpan (water offerings to ancestors) on Amavasya (new moon days), especially in Pitru Paksha (September-October). Sun worship on Sundays. Donating food/grain on behalf of ancestors.</p>
+<hr />
+<h3 id="54-shani-sade-sati">5.4 SHANI SADE SATI</h3>
+<p><strong>Definition:</strong> Sade Sati is the 7.5-year period when Saturn transits through the sign before the Moon sign (rising), the Moon sign itself (peak), and the sign after the Moon sign (setting).</p>
+<p><strong>Moon Sign:</strong> Libra.<br />
+- <strong>12th from Moon (Virgo):</strong> Rising phase<br />
+- <strong>Moon sign (Libra):</strong> Peak phase<br />
+- <strong>2nd from Moon (Scorpio):</strong> Setting phase  </p>
+<p><strong>Past Sade Sati (as per Sade Sati table):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Duration</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rising (Virgo)</td>
+<td>Sep 2009 – Nov 2011 / May–Aug 2012</td>
+<td>Age 9–12</td>
+</tr>
+<tr>
+<td>Peak (Libra)</td>
+<td>Nov 2011 – May 2012 / Aug 2012 – Nov 2014</td>
+<td>Age 11–14</td>
+</tr>
+<tr>
+<td>Setting (Scorpio)</td>
+<td>Nov 2014 – Jan 2017 / Jun–Oct 2017</td>
+<td>Age 14–17</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The native experienced Sade Sati from approximately age 9 to age 17</strong> — through formative school years. This was also the Jupiter Mahadasha (2010 onwards). The combination of Sade Sati Peak with Jupiter Mahadasha (functional malefic for Gemini) during adolescence created:
+- Academic/social disruptions in middle school and high school
+- Identity confusion (typical of Sade Sati Peak — Moon sign gets maximum Saturn pressure)
+- Family tensions (Mars in 2nd + Sade Sati Peak = domestic friction)
+- But Jupiter's 16-year Mahadasha also provided the philosophical framework that allowed the native to survive these years with their fundamental character intact</p>
+<p><strong>Current Sade Sati status (April 2026):</strong><br />
+Saturn has moved well past Scorpio. The <strong>Kantak Shani</strong> (Saturn in Capricorn, 4th from Libra Moon) was active from January 2020 – April 2022 and July 2022 – January 2023. That period is past.</p>
+<p><strong>Currently: NO SADE SATI IN EFFECT.</strong></p>
+<p>However, with Saturn now in the Mahadasha from January 2026, the <strong>Saturn Mahadasha itself behaves somewhat like a Sade Sati</strong> in its internal intensity — not geographically (transit) based, but dashawise.</p>
+<p><strong>Next Sade Sati:</strong> October 2038 (Virgo Rising) — when the native will be 38 years old.</p>
+<p><strong>Assessment:</strong> The previous Sade Sati (2009–2017) was the formative challenge. It shaped the native's resilience. The current Saturn Mahadasha (2026–2045) will be intense but is not a Sade Sati — with proper awareness and remedies, it can be navigated productively.</p>
+<hr />
+<p><a name="section-6"></a></p>
+<h2 id="section-6-dasha-system">SECTION 6: DASHA SYSTEM</h2>
+<hr />
+<h3 id="61-vimshottari-dasha-overview">6.1 Vimshottari Dasha Overview</h3>
+<p><strong>Dasha Balance at Birth:</strong> Rahu 9 Years 4 Months 23 Days</p>
+<p>Full Mahadasha Sequence:</p>
+<table>
+<thead>
+<tr>
+<th>Mahadasha</th>
+<th>Planet</th>
+<th>Start</th>
+<th>End</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rahu</td>
+<td>☊</td>
+<td>3 Sep 2000</td>
+<td>26 Jan 2010</td>
+<td>18 years</td>
+</tr>
+<tr>
+<td>Jupiter</td>
+<td>♃</td>
+<td>26 Jan 2010</td>
+<td>26 Jan 2026</td>
+<td>16 years</td>
+</tr>
+<tr>
+<td><strong>Saturn</strong></td>
+<td><strong>♄</strong></td>
+<td><strong>26 Jan 2026</strong></td>
+<td><strong>26 Jan 2045</strong></td>
+<td><strong>19 years</strong></td>
+</tr>
+<tr>
+<td>Mercury</td>
+<td>☿</td>
+<td>26 Jan 2045</td>
+<td>26 Jan 2062</td>
+<td>17 years</td>
+</tr>
+<tr>
+<td>Ketu</td>
+<td>☋</td>
+<td>26 Jan 2062</td>
+<td>26 Jan 2069</td>
+<td>7 years</td>
+</tr>
+<tr>
+<td>Venus</td>
+<td>♀</td>
+<td>26 Jan 2069</td>
+<td>26 Jan 2089</td>
+<td>20 years</td>
+</tr>
+<tr>
+<td>Sun</td>
+<td>☉</td>
+<td>26 Jan 2089</td>
+<td>26 Jan 2095</td>
+<td>6 years</td>
+</tr>
+<tr>
+<td>Moon</td>
+<td>☽</td>
+<td>26 Jan 2095</td>
+<td>26 Jan 2105</td>
+<td>10 years</td>
+</tr>
+<tr>
+<td>Mars</td>
+<td>♂</td>
+<td>26 Jan 2105</td>
+<td>26 Jan 2112</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="62-rahu-mahadasha-analysis-20002010-birth-to-age-910">6.2 Rahu Mahadasha Analysis (2000–2010, Birth to Age 9–10)</h3>
+<p><strong>Planet's role:</strong> Rahu in <span class='green'>exalted</span> Gemini Lagna. Rahu in Punarvasu Nakshatra (Jupiter-ruled).<br />
+<strong>Nature of period:</strong> The native was born into the tail end of Rahu Mahadasha (only ~9 years 5 months of Rahu MD at birth, and the full 18-year period had started before birth based on dasha balance). The portion the native experienced: birth to age ~9.5.</p>
+<p>This was childhood. Rahu in <span class='green'>exalted</span> Lagna as Mahadasha lord: childhood was characterized by unusual sensitivity, high intelligence, and an environment that was either stimulating or overstimulating. The first Sade Sati began at the very end of Rahu Mahadasha (Sep 2009) and carried into Jupiter's period.</p>
+<p><strong>Antardasha sequence within Rahu MD (relevant to native's life):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Antardasha</th>
+<th>Period</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rahu-Rahu</td>
+<td>Sep 2000 – (early dates unclear from data; approx. until Jan 2002)</td>
+<td>Birth to age 1–2: foundational Rahu themes set</td>
+</tr>
+<tr>
+<td>Rahu-Jupiter</td>
+<td>until mid-2002</td>
+<td>age 2: expansion of consciousness</td>
+</tr>
+<tr>
+<td>Rahu-Saturn</td>
+<td>8 Jan 2000 → 26 Jul 2002</td>
+<td>Formative discipline; early family structure</td>
+</tr>
+<tr>
+<td>Rahu-Mercury</td>
+<td>26 Jul 2002 → 14 Aug 2003</td>
+<td>Intellectual awakening; early learning</td>
+</tr>
+<tr>
+<td>Rahu-Ketu</td>
+<td>14 Aug 2003 → 14 Aug 2006</td>
+<td>Karmic influx; spiritual sensitivity in childhood</td>
+</tr>
+<tr>
+<td>Rahu-Venus</td>
+<td>14 Aug 2006 → 8 Jul 2007</td>
+<td>Aesthetic and social development</td>
+</tr>
+<tr>
+<td>Rahu-Sun</td>
+<td>8 Jul 2007 → 8 Jan 2009</td>
+<td>School performance and confidence building</td>
+</tr>
+<tr>
+<td>Rahu-Moon</td>
+<td>8 Jan 2009 → 26 Jan 2010</td>
+<td>Emotional turbulence; onset of Sade Sati coincides</td>
+</tr>
+<tr>
+<td>Rahu-Mars</td>
+<td>ends 26 Jan 2010</td>
+<td>Active, restless childhood energy</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="63-jupiter-mahadasha-analysis-20102026-age-1025">6.3 Jupiter Mahadasha Analysis (2010–2026, Age 10–25)</h3>
+<p><strong>Planet's role for Gemini Lagna:</strong><br />
+Jupiter is the <strong>functional malefic</strong> (kendradhipati, ruling 7th and 10th). Jupiter is in <strong>12th house</strong> in Taurus. Jupiter's Mahadasha is the longest planetary period the native has completed thus far — 16 years.</p>
+<p><strong>Character of Jupiter MD for Gemini Lagna in 12th house:</strong>
+- Education expands dramatically but may take unconventional routes (12th house = foreign education, self-study, institutional study)
+- Spiritual awakening — Jupiter in 12th activates inner philosophical questioning
+- Career intentions form but execution is slow (10th lord in 12th = career works behind the scenes or through foreign/institutional channels)
+- Marriage window opens but Ketu in 7th + Jupiter in 12th as 7th lord creates complications
+- Financial growth happens but expenses also increase proportionally (12th house)</p>
+<p><strong>Antardasha analysis for Jupiter Mahadasha:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Antardasha</th>
+<th>Period</th>
+<th>Key Effects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jup-Jup</td>
+<td>26 Jan 2010 → 14 Mar 2012</td>
+<td>Higher education begins; philosophical awakening; Sade Sati Peak running — tensions between expansion (Jupiter) and Saturn's transit through Libra (Sade Sati Peak) create identity challenge</td>
+</tr>
+<tr>
+<td>Jup-Sat</td>
+<td>14 Mar 2012 → 26 Sep 2014</td>
+<td>Disciplined study; career groundwork; Sade Sati Setting phase begins — some relief after peak pressure</td>
+</tr>
+<tr>
+<td>Jup-Mer</td>
+<td>26 Sep 2014 → 2 Jan 2017</td>
+<td><strong>Mercury Antardasha: Significant.</strong> Mercury is <span class='red'>combust</span> Lagna lord — this period can bring intellectual brilliance but also confusion; Sade Sati Setting phase ends (Jan 2017); communication skills peak; potential for travel/studies abroad</td>
+</tr>
+<tr>
+<td>Jup-Ket</td>
+<td>2 Jan 2017 → 8 Dec 2017</td>
+<td>Ketu period within Jupiter MD: spiritual acceleration; detachment from conventional career paths; may have felt "lost" briefly but was actually gaining inner clarity</td>
+</tr>
+<tr>
+<td>Jup-Ven</td>
+<td>8 Dec 2017 → 8 Aug 2020</td>
+<td><strong>Venus Antardasha in Jupiter MD: Important for relationships.</strong> Venus <span class='red'>debilitated</span> but with Digbala. First serious romantic relationship likely occurred here. Career related to aesthetics or creative work explored. COVID period (2020) creates disruption at the end</td>
+</tr>
+<tr>
+<td>Jup-Sun</td>
+<td>8 Aug 2020 → 26 May 2021</td>
+<td>Sun-Sun energy: confidence, public recognition opportunities; Sun in <span class='green'>own sign</span> activates solar leadership</td>
+</tr>
+<tr>
+<td>Jup-Moon</td>
+<td>26 May 2021 → 26 Sep 2022</td>
+<td>Moon Antardasha: Emotional intensity; creative peak; social expansion; possible speculative activity</td>
+</tr>
+<tr>
+<td>Jup-Mars</td>
+<td>26 Sep 2022 → 2 Sep 2023</td>
+<td>Mars <span class='red'>debilitated</span> Antardasha within Jupiter MD: potentially difficult period — <span class='red'>debilitated</span> Mars can cause disputes, accidents (minor), or financial setbacks; action-orientation without results</td>
+</tr>
+<tr>
+<td>Jup-Rahu</td>
+<td>2 Sep 2023 → 26 Jan 2026</td>
+<td><strong>Rahu Antardasha in Jupiter MD (current until Jan 2026):</strong> Rahu amplifies Jupiter's expansive energy — sudden opportunities, foreign connections, unconventional career moves; ambition at maximum; can be both breakthrough and chaotic</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Past trend inference:</strong> The Jupiter Mahadasha brought educational growth, spiritual searching, relationship experiments, and career exploration — but not yet concrete financial establishment. The 10th lord in 12th created a "career in development" phase lasting until now. Jupiter-Rahu Antardasha (Sep 2023 – Jan 2026) was likely the most eventful recent period — major external opportunities and changes of direction.</p>
+<hr />
+<h3 id="64-saturn-mahadasha-current-period-26-jan-2026-26-jan-2045">6.4 Saturn Mahadasha — CURRENT PERIOD (26 Jan 2026 – 26 Jan 2045)</h3>
+<p><strong>This is the defining 19-year chapter of this native's life.</strong></p>
+<p><strong>Saturn's functional role for Gemini Lagna:</strong>
+- 8th lord: Transformation, obstacles, hidden knowledge
+- 9th lord: Dharma, fortune, father, higher learning, law, philosophy
+- Saturn in Taurus (friendly sign) in 12th house
+- Sarala Viparita Raja <span class='green'>Yoga</span> active</p>
+<p><strong>Overall Saturn Mahadasha character:</strong>
+This period will be the native's <strong>foundation-building era</strong>. Saturn demands sustained effort, patience, and adherence to dharma. For a Gemini Lagna native with Saturn as 9th lord in friendly sign in 12th, this Mahadasha activates:
+1. Deep philosophical inquiry (9th lord)
+2. Work in isolated, foreign, or institutional settings (12th house)
+3. Gradual but durable career establishment (Saturn as 9th lord — fortune through sustained effort)
+4. Viparita Raja <span class='green'>Yoga</span> gifts: unexpected reversals of fortune in the native's favor after testing periods</p>
+<p><strong>Full Saturn Mahadasha Antardasha Timeline:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Antardasha</th>
+<th>Period</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sat-Sat</strong></td>
+<td><strong>26 Jan 2026 → 29 Jan 2029</strong></td>
+<td>Double Saturn: intense discipline; laying foundations; possible isolation, health discipline needed; career restructuring; foreign residence possible; spiritual deepening</td>
+</tr>
+<tr>
+<td>Sat-Mer</td>
+<td>29 Jan 2029 → 8 Oct 2031</td>
+<td>Mercury Antardasha: Intellectual work + Saturn discipline = excellent for writing, research, certification; Lagna lord activated; health of nervous system needs attention</td>
+</tr>
+<tr>
+<td>Sat-Ket</td>
+<td>8 Oct 2031 → 17 Nov 2032</td>
+<td>Ketu period: spiritual acceleration; detachment; possible loss of a relationship or role; but karmic completion</td>
+</tr>
+<tr>
+<td>Sat-Ven</td>
+<td>17 Nov 2032 → 17 Jan 2036</td>
+<td><strong>MAJOR PERIOD: Venus Antardasha in Saturn MD.</strong> Venus (5th trikona lord with Digbala) in Saturn's disciplined Mahadasha = peak creative-professional period; marriage highly probable here; financial expansion; artistic recognition; 10th house (Pisces, score 37) transit support maximum</td>
+</tr>
+<tr>
+<td>Sat-Sun</td>
+<td>17 Jan 2036 → 29 Dec 2036</td>
+<td>Solar burst of recognition; public profile elevation</td>
+</tr>
+<tr>
+<td>Sat-Moon</td>
+<td>29 Dec 2036 → 29 Jul 2038</td>
+<td>Emotional fulfillment; family expansion; speculative gains; Moon's Dhana <span class='green'>Yoga</span> activates</td>
+</tr>
+<tr>
+<td>Sat-Mars</td>
+<td>29 Jul 2038 → 8 Sep 2039</td>
+<td><span class='red'>Debilitated</span> Mars Antardasha: health precautions needed; avoid conflict; debts possible; but Sarala <span class='green'>Yoga</span> provides protection</td>
+</tr>
+<tr>
+<td>Sat-Rahu</td>
+<td>8 Sep 2039 → 14 Jul 2042</td>
+<td>Rahu in <span class='green'>exalted</span> Lagna + Saturn 9th lord: foreign opportunities, technology, unconventional career peak; maximum ambition realization period</td>
+</tr>
+<tr>
+<td>Sat-Jup</td>
+<td>14 Jul 2042 → 26 Jan 2045</td>
+<td>Closing of Saturn MD: philosophical consolidation; institutional recognition; possible teaching/mentoring role</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="65-mercury-mahadasha-preview-20452062-age-4461">6.5 Mercury Mahadasha Preview (2045–2062, Age 44–61)</h3>
+<p>Mercury is the Lagna lord — in own category the most important planet. However, Mercury is <span class='red'>combust</span>. This 17-year period will be characterized by:
+- High intellectual activity
+- Communication leadership
+- Health challenges requiring attention (nervous system, respiratory)
+- The native reaches the peak of their communicative/intellectual legacy during this period
+- Mercury Antardasha sequences within this MD will show the <span class='red'>combust</span>ion effects modulating with other planet energies</p>
+<p><strong>The Mercury Mahadasha in later life is when the native's full intellectual legacy manifests</strong> — writings, teachings, systems of knowledge.</p>
+<hr />
+<p><a name="section-7"></a></p>
+<h2 id="section-7-life-predictions-time-based">SECTION 7: LIFE PREDICTIONS — TIME-BASED</h2>
+<p><em>All predictions are dasha-driven and cross-validated with house analysis.</em></p>
+<hr />
+<h3 id="71-career">7.1 CAREER</h3>
+<p><strong>House configuration:</strong> 10th house Pisces (lord Jupiter in 12th); Venus aspects 10th; Ashtakvarga = 37 (exceptional).</p>
+<p><strong>Pattern:</strong>
+- <strong>2000–2010 (Rahu MD):</strong> Childhood; career awareness developing; Rahu-type fascination with information, communication
+- <strong>2010–2026 (Jupiter MD):</strong> Education phase; career exploration; unconventional paths (Jupiter in 12th = research, foreign, spiritual institutions); Jupiter-Rahu Antardasha (Sep 2023–Jan 2026) likely brought the first major career breakthrough or significant opportunity
+- <strong>Current (Saturn-Saturn, Jan 2026–Jan 2029):</strong> Career is in the "foundation-laying" phase — the native is working hard in a structured role, possibly in a foreign organization, research institution, or large company. Delays may feel frustrating, but Saturn is methodically building competence. Do not change careers impulsively during this period.
+- <strong>Saturn-Venus (Nov 2032–Jan 2036):</strong> PEAK career window of the native's first major life phase. Venus (5th lord) in Saturn's (9th lord) Mahadasha activates a near-Raja <span class='green'>Yoga</span> pattern. International recognition, creative professional achievement, and financial consolidation all converge. With 10th house Ashtakvarga = 37, any planet transiting Pisces during this window will deliver outstanding professional results.
+- <strong>Saturn-Rahu (Sep 2039–Jul 2042):</strong> Second major career peak — potentially surpassing the first. Technology, global platforms, or unconventional career structures (Rahu's domain) combine with Saturn's established foundation for maximum impact.</p>
+<p><strong>Career domains indicated:</strong>
+- Foreign or international organizations (10th lord Jupiter in 12th)
+- Research, analytics, data science, or deep knowledge work (Saturn + Jupiter in 12th)
+- Writing, publishing, communication technology (3rd house strength + Mercury + Sun)
+- Creative industries with structured/institutional backing (Venus 5th lord aspecting 10th)
+- Philosophy, law, higher education, spirituality (Saturn as 9th lord)</p>
+<hr />
+<h3 id="72-wealth">7.2 WEALTH</h3>
+<p><strong>House configuration:</strong> 2nd house Cancer (Mars <span class='red'>debilitated</span>); 11th house Aries (lord Mars <span class='red'>debilitated</span>); Moon (2nd lord) in 5th; Ashtakvarga 11th house = 31.</p>
+<p><strong>Pattern:</strong>
+- <strong>Early life (2000–2026):</strong> Financial instability; money arrives but leaks out due to <span class='red'>debilitated</span> Mars as 11th lord and Mars in 2nd house. The native may earn well but struggle to retain and accumulate in the first 25 years.
+- <strong>Saturn-Venus (2032–2036):</strong> First major wealth accumulation phase — Venus (associated with luxury and comfort) in disciplined Saturn's Mahadasha activates the Dhana <span class='green'>Yoga</span> from Moon (2nd lord in 5th). Creative and intellectual work begins to generate consistent, significant income.
+- <strong>Saturn-Moon (Dec 2036–Jul 2038):</strong> Moon (2nd lord) Antardasha within Saturn MD: Dhana <span class='green'>Yoga</span> activates fully. This may be the single most prosperous 18-month window in the native's life up to age 60.
+- <strong>Mercury Mahadasha (2045–2062):</strong> Sustained intellectual wealth — publications, consultancy, intellectual property, knowledge businesses generate long-term financial security.</p>
+<p><strong>Financial management advice (Vedic perspective):</strong> The <span class='red'>debilitated</span> Mars as 11th lord creates a pattern of impulsive spending or financially unwise decisions made out of emotion. The Moon in 5th being <span class='red'>afflicted</span> by Mars means emotional triggers drive money decisions. The native must create financial systems and automation (Saturn's solution) to override impulse.</p>
+<hr />
+<h3 id="73-marriage-and-relationships">7.3 MARRIAGE AND RELATIONSHIPS</h3>
+<p><strong>House configuration:</strong> 7th house Sagittarius (Ketu); 7th lord Jupiter in 12th; Venus (natural karaka) <span class='red'>debilitated</span> in 4th with Digbala; Moon (emotional significator) <span class='red'>afflicted</span> in 5th.</p>
+<p><strong>This is the most complex area of the native's life.</strong> Let us map it precisely:</p>
+<ul>
+<li><strong>Jupiter Mahadasha romantic history:</strong></li>
+<li><strong>Jup-Ven (Dec 2017–Aug 2020):</strong> First major romantic relationship. Venus (significator) Antardasha within Jupiter (7th lord) Mahadasha = the most concentrated "relationship window" in Jupiter's period. Venus is <span class='red'>debilitated</span> — this first relationship was likely emotionally significant but ultimately painful, teaching important lessons. Partner may have been someone from a different background (Ketu in 7th = foreign, spiritual, or unusual background).</li>
+<li>
+<p><strong>Jup-Rahu (Sep 2023–Jan 2026):</strong> Second relationship opportunity or deepening of existing relationship. Rahu amplifies desire; the native may be attracted to someone unconventional, foreign, or from a very different social world.</p>
+</li>
+<li>
+<p><strong>Saturn Mahadasha marriage window:</strong></p>
+</li>
+<li><strong>Saturn-Venus (Nov 2032–Jan 2036) is the PRIMARY marriage window.</strong> Saturn (disciplined commitment) + Venus (love, partnership) = formalization of relationship. Saturn-Venus Antardasha lasting 3+ years gives sufficient time for courtship and commitment. This is the window most <span class='green'>strong</span>ly supported by both the 7th house lord cycle and Venus's activation.</li>
+<li>
+<p>Saturn-Moon (Dec 2036–Jul 2038): If marriage occurred in Saturn-Venus, this period brings family expansion (children) and domestic happiness.</p>
+</li>
+<li>
+<p><strong>Partner profile (based on 7th house indicators):</strong></p>
+</li>
+<li>Ketu in Sagittarius 7th house + 7th lord Jupiter in Taurus 12th → Partner will be: philosophically/spiritually oriented, possibly from a different cultural or geographic background, older in wisdom if not in age, associated with foreign lands or hidden/spiritual knowledge</li>
+<li>Jupiter's Rohini Nakshatra (Moon-ruled) → Partner will be beautiful, sensuous, and materially comfort-seeking but also emotionally deep</li>
+<li>
+<p>Uttarashadha Ketu in 7th → Partner has a karmic past connection with the native (a soul-level meeting)</p>
+</li>
+<li>
+<p><strong>Critical caution for marriage:</strong> The combination of Ketu in 7th and 7th lord in 12th is a <span class='green'>strong</span> indicator of a <strong>non-conventional marriage</strong> or a <strong>delayed but deeply karmic partnership</strong>. The native should not rush into marriage due to family or social pressure (particularly in the Saturn-Saturn period of 2026–2029 when such pressure may be felt). Wait for the Saturn-Venus window for the best marital outcome.</p>
+</li>
+</ul>
+<hr />
+<h3 id="74-health">7.4 HEALTH</h3>
+<p><strong>Indicators:</strong> Lagna = Gemini (respiratory, nervous system); Mercury <span class='red'>combust</span> (nervous system <span class='red'>weak</span>ness); Mars <span class='red'>debilitated</span> in 2nd (face, teeth, digestive system — Cancer rules stomach); Venus <span class='red'>debilitated</span> in 4th (Virgo rules digestive system, intestines); Jupiter aspects 6th (protection).</p>
+<p><strong>Vulnerable areas:</strong>
+1. <strong>Nervous system / Anxiety:</strong> Mercury <span class='red'>combust</span> Lagna lord in Leo (fire sign) → heat in the nervous system; tendency toward anxiety, overthinking, mental burnout. This is the primary health risk throughout life.
+2. <strong>Respiratory system:</strong> Gemini Lagna + Rahu in Lagna → respiratory sensitivity; possible allergies, breathing issues in polluted environments.
+3. <strong>Digestive system:</strong> Venus <span class='red'>debilitated</span> in Virgo (digestive sign) + Mars in Cancer (stomach sign) → digestive issues; possible irritable bowel tendency, stomach acidity. Saturn's aspect on Mars in Cancer (stomach) can cause chronic low-grade digestive complaints.
+4. <strong>Dental/oral health:</strong> Mars in 2nd house (2nd house rules teeth and mouth) <span class='red'>debilitated</span> → dental problems possible; regular dental care is important.
+5. <strong>Joints/bones:</strong> Saturn Mahadasha (2026–2045) → Saturn rules bones, knees, and structural integrity. Joint care (especially knees) becomes important after age 35.</p>
+<p><strong>Protective factors:</strong>
+- Jupiter's aspect on 6th house protects immune function and overall disease resistance
+- <span class='green'>Strong</span> Sun in <span class='green'>own sign</span> in 3rd → vitality reserves are substantial; the native recovers from illness better than average
+- Saturn in friendly sign → despite Mahadasha, Saturn does not create acute disease unless severely triggered</p>
+<p><strong>Health timeline:</strong>
+- <strong>2026–2029 (Sat-Sat):</strong> Most important health vigilance period. Saturn-Saturn can stress the body through overwork and anxiety. Regular sleep schedule, physical exercise, and digestive care are non-negotiable.
+- <strong>2029–2031 (Sat-Mer):</strong> Mental health focus — Mercury Antardasha stresses the nervous system; meditation, creative output, and intellectual rest are essential.
+- <strong>2038–2039 (Sat-Mars):</strong> Watch for acute events — <span class='red'>debilitated</span> Mars Antardasha in Saturn MD; possible injury risk, surgical possibility, or flare of chronic condition. Avoid risky physical activities and address any chronic issues before this period.</p>
+<hr />
+<h3 id="75-spiritual-growth">7.5 SPIRITUAL GROWTH</h3>
+<p><strong>Indicators:</strong> 9th house lord Saturn in 12th; Jupiter in 12th; Rahu in Lagna (spiritual seeker disguised as worldly achiever); Ketu in 7th (past-life dharmic practitioner); 12th house SAV = 29.</p>
+<p>The native has genuine spiritual depth embedded in the chart. Jupiter and Saturn together in the 12th house (moksha bhava) is one of the most profound combinations for spiritual evolution. Both the "guru" (Jupiter) and "yogi" (Saturn) are in the house of liberation, studying the nature of existence from behind the veil.</p>
+<p><strong>Spiritual path indicators:</strong>
+- Rahu in Gemini Lagna → Initial spiritual seeking is intellectual: philosophy, comparative religion, metaphysics
+- Jupiter in Rohini (Moon-ruled) → Spiritual path eventually moves from intellectual to devotional/emotional
+- Saturn in Krittika (Sun-ruled) → Ultimate spiritual maturity comes through discrimination, clarity, and fire-of-purification — a Jnana-<span class='green'>Yoga</span>/Karma-<span class='green'>Yoga</span> combination
+- Ketu in 7th in Uttarashadha → Victory in spiritual life comes through relationships — the native's greatest guru may be their life partner or a mentor encountered through partnership</p>
+<p><strong>Spiritual phases:</strong>
+- <strong>2017–2026 (Jup-Ket through Jup-Rahu):</strong> Spiritual intensification begins; questioning of established beliefs; possible encounter with unconventional spiritual teachers; meditation or inner work becomes important
+- <strong>2026–2029 (Sat-Sat):</strong> The "dark night of the soul" — Saturn in 12th as the Mahadasha lord forces the native to sit with discomfort and solitude. This is not depression — it is deep initiation. Those who navigate this phase with spiritual practice emerge transformed.
+- <strong>2031–2032 (Sat-Ket):</strong> Ketu Antardasha = most intense spiritual period in the Saturn Mahadasha; complete detachment from prior identity; possibility of formal spiritual initiation or meditation retreat
+- <strong>2045–2062 (Mercury MD):</strong> Spiritual knowledge crystallizes into teaching, writing, and systematic transmission to others</p>
+<hr />
+<p><a name="section-8"></a></p>
+<h2 id="section-8-planetary-hierarchy">SECTION 8: PLANETARY HIERARCHY</h2>
+<hr />
+<h3 id="tier-1-dominant-planets-life-drivers">Tier 1 — DOMINANT PLANETS (Life Drivers)</h3>
+<h4 id="rahu-primary-life-driver">🔴 RAHU — Primary Life Driver</h4>
+<p><strong>Why dominant:</strong> Rahu in <span class='green'>exalted</span> Gemini in Lagna is the single most dominant planetary force in this chart. It shapes the native's personality, ambitions, intellectual style, and relationship with the world more than any other planet. Every major life theme — career, identity, relationships, spirituality — is filtered through Rahu's lens of ambition, unconventionality, and karmic intensity.<br />
+<strong>Mahadasha ruled:</strong> Childhood period (2000–2010)<br />
+<strong>Life themes brought:</strong> Ambition, intellectual hunger, unconventional path, magnetism, worldly drive</p>
+<h4 id="saturn-current-and-future-life-driver-20262045">⚫ SATURN — Current and Future Life Driver (2026–2045)</h4>
+<p><strong>Why dominant:</strong> Saturn is the Mahadasha lord for the next 19 years. As 9th lord (fortune, dharma) in friendly sign in 12th, Saturn shapes the native's entire adult productive life. The Sarala Viparita Raja <span class='green'>Yoga</span> makes Saturn a resilient, bounce-back planet. Everything from career, relationships, spirituality, and health will be filtered through Saturn's energy from 2026.<br />
+<strong>Life themes brought:</strong> Discipline, endurance, wisdom through hardship, delayed but durable rewards</p>
+<h4 id="jupiter-past-dominant-period-ongoing-influence">🟡 JUPITER — Past Dominant Period + Ongoing Influence</h4>
+<p><strong>Why dominant:</strong> Jupiter ruled 16 years (2010–2026) — the entire young adult formation period. As 7th and 10th lord, it shaped education, career path, relationships, and philosophical worldview. Although functionally malefic for Gemini, Jupiter in 12th created profound philosophical depth and initiated the native's spiritual journey.<br />
+<strong>Life themes brought:</strong> Education, spiritual philosophy, relationship formation, career exploration, overseas connections</p>
+<hr />
+<h3 id="tier-2-supportive-planets">Tier 2 — SUPPORTIVE PLANETS</h3>
+<h4 id="moon-emotional-and-intellectual-engine">🌙 MOON — Emotional and Intellectual Engine</h4>
+<p><strong>Why supportive:</strong> Moon in 5th house trikona as 2nd lord creates genuine intelligence, emotional sensitivity, and the Dhana <span class='green'>Yoga</span> potential. Despite afflictions (Mars + Rahu aspects), Moon in Swati Nakshatra gives social adaptability and emotional resilience that consistently supports the native's functioning.<br />
+<strong>Key domains:</strong> Emotions, creativity, intelligence, social bonds, speculative ability</p>
+<h4 id="sun-confidence-and-communication-power">☉ SUN — Confidence and Communication Power</h4>
+<p><strong>Why supportive:</strong> Sun in <span class='green'>own sign</span> in 3rd house is the <span class='green'>strong</span>est sign-placed planet in the chart (<span class='green'>own sign</span> = maximum dignity). Sun as 3rd lord in Leo gives the native extraordinary communication confidence and personal authority in their immediate environment. It contributes to the Budha-Aditya <span class='green'>Yoga</span> and gives reputation through communication.<br />
+<strong>Key domains:</strong> Confidence, communication, recognition, courage, leadership voice</p>
+<hr />
+<h3 id="tier-3-problematic-planets">Tier 3 — PROBLEMATIC PLANETS</h3>
+<h4 id="mars-primary-weakness">♂ MARS — Primary <span class='red'>Weak</span>ness</h4>
+<p><strong>Why problematic:</strong> <span class='red'>Debilitated</span> in Cancer, no Neecha Bhanga, in 2nd house, aspecting Moon and 8th and 9th houses, aspected by Saturn. Mars is the chart's primary <span class='red'>weak</span> point. As both 6th lord (enemies/disease) and 11th lord (gains), its <span class='red'>weak</span>ness affects wealth accumulation and the body's fighting capacity.<br />
+<strong>Problem domains:</strong> Speech, family conflicts, wealth retention, physical energy inconsistency</p>
+<h4 id="mercury-compromised-strength">☿ MERCURY — Compromised Strength</h4>
+<p><strong>Why problematic:</strong> Despite being the Lagna lord (most important planet), Mercury is <span class='red'>combust</span> — its power is subsumed by the Sun. This creates a compromised self-identity, nervous system sensitivity, and inconsistent intellectual performance. Mercury as Lagna lord represents the native's core vitality, and its <span class='red'>combust</span>ion is a structural chart <span class='red'>weak</span>ness.<br />
+<strong>Problem domains:</strong> Identity clarity, nervous system, inconsistent intellectual output, communication burnout</p>
+<h4 id="venus-debilitated-but-not-defeated">♀ VENUS — <span class='red'>Debilitated</span> but Not Defeated</h4>
+<p><strong>Why partially problematic:</strong> Venus <span class='red'>debilitated</span> in Virgo in 4th house creates issues in home environment, romantic relationships, and artistic expression. Despite Digbala compensation, debilitation means Venus never fully delivers its natural Venusian gifts in this chart. It becomes a planet of <em>delayed and hard-earned</em> pleasure rather than natural abundance.<br />
+<strong>Problem domains:</strong> Early romantic life, home environment in youth, creative confidence</p>
+<hr />
+<h3 id="overall-planetary-power-ranking-from-strongest-to-weakest">OVERALL PLANETARY POWER RANKING (from <span class='green'>strong</span>est to <span class='red'>weak</span>est):</h3>
+<ol>
+<li><strong>Sun</strong> (<span class='green'>own sign</span> in 3rd) — <span class='green'>Strong</span>est dignified planet</li>
+<li><strong>Rahu</strong> (<span class='green'>exalted</span> in Lagna) — Maximum ambition and drive</li>
+<li><strong>Saturn</strong> (friendly sign, Sarala <span class='green'>Yoga</span>, current MD lord)</li>
+<li><strong>Moon</strong> (trikona placement, <span class='yellow'>moderate</span> strength)</li>
+<li><strong>Jupiter</strong> (<span class='yellow'>neutral</span> sign, 12th house — reduced worldly power but spiritual strength)</li>
+<li><strong>Ketu</strong> (possibly <span class='green'>exalted</span> in 7th, spiritually powerful)</li>
+<li><strong>Venus</strong> (<span class='red'>debilitated</span> but Digbala — <span class='yellow'>mixed</span>, context-dependent)</li>
+<li><strong>Mercury</strong> (friendly sign but <span class='red'>COMBUST</span> — severely compromised)</li>
+<li><strong>Mars</strong> (<span class='red'>DEBILITATED</span>, no cancellation — <span class='red'>weak</span>est planet)</li>
+</ol>
+<hr />
+<p><a name="section-9"></a></p>
+<h2 id="section-9-remedies">SECTION 9: REMEDIES</h2>
+<p><em>Remedies are prescribed specifically for this chart's <span class='red'>weak</span>nesses. No generic remedies.</em></p>
+<hr />
+<h3 id="91-mercury-remedies-priority-critical-combust-lagna-lord">9.1 MERCURY REMEDIES (Priority: CRITICAL — <span class='red'>Combust</span> Lagna Lord)</h3>
+<p><strong>Rationale:</strong> <span class='red'>Combust</span> Mercury as Lagna lord creates nervous system <span class='red'>weak</span>ness, identity confusion, and interrupted intellectual performance. Strengthening Mercury is the most important remedial act in this entire chart.</p>
+<p><strong>Mantras:</strong>
+- <strong>Beeja Mantra:</strong> <em>"Om Bum Budhaya Namah"</em> — 108 times every Wednesday before 8:00 AM
+- <strong>Stotra:</strong> Budha Ashtakam (8-verse hymn to Mercury) — recite on Wednesdays
+- <strong>Vedic Mantra:</strong> <em>"Om Udbudhyasvaagne Pratichetasa"</em> (RigVeda Hymn to Mercury/Agni as Illuminator) — 108 repetitions</p>
+<p><strong>Behavioral remedies:</strong>
+- Adopt a regular morning routine for reading and writing — give Mercury its domain of structured daily intellectual activity
+- Teach or explain concepts to others regularly — Mercury is strengthened when it flows through teaching
+- Avoid overstimulating environments, excessive screen time, and multi-tasking (these fragment Mercury further)
+- Maintain green plants at home and workspace (Mercury's color)
+- Feed green fodder (grass) to cows on Wednesdays
+- Donate green moong dal (lentils), green vegetables, or books to students on Wednesdays</p>
+<p><strong>Gemstone:</strong>
+- <strong>Emerald (Panna)</strong> — Natural emerald of minimum 3.5 carats in gold, worn on the right hand's little finger (Mercury's finger), preferably on a Wednesday morning during Mercury hora after chanting the Mercury mantra. <em>Test for 3–5 days first by wearing it temporarily before permanent use.</em>
+- Only recommended after personal testing — as Mercury is also 4th lord (home) and <span class='red'>combust</span>, the emerald should show improvements in mental clarity and reduced anxiety within the trial period.</p>
+<hr />
+<h3 id="92-mars-remedies-priority-high-debilitated-6th11th-lord">9.2 MARS REMEDIES (Priority: HIGH — <span class='red'>Debilitated</span> 6th/11th Lord)</h3>
+<p><strong>Rationale:</strong> <span class='red'>Debilitated</span> Mars in 2nd house causes harsh speech, family conflict, and wealth leakage. Mars also afflicts Moon through aspect.</p>
+<p><strong>Mantras:</strong>
+- <strong>Beeja Mantra:</strong> <em>"Om Ang Angarakaya Namah"</em> — 108 times every Tuesday
+- <strong>Hanuman Chalisa</strong> — Daily recitation; Hanuman is the deity of Mars and removes Mars-related obstacles
+- <em>"Om Namo Bhagavate Vasudevaya"</em> — 108 times daily (protective Vishnu mantra that pacifies an aggressive Mars)</p>
+<p><strong>Behavioral remedies:</strong>
+- Deliberate pause before speaking when emotionally triggered — 3 deep breaths before responding in any family or financial discussion (Mars in 2nd = speech + family affliction)
+- Physical exercise on Tuesdays — channeling Mars energy into physical activity reduces its destabilizing effect on speech and family
+- Donate red lentils (masoor dal) or red coral items on Tuesdays — do NOT donate blood in a harmful manner
+- Avoid arguments on Tuesdays and Saturdays
+- Feed dogs (Mars and Rahu signify dogs) on Tuesdays</p>
+<p><strong>On gemstones for Mars:</strong> Do NOT wear Red Coral (Moonga). Mars is <span class='red'>debilitated</span> and is a functional malefic (6th lord) for Gemini Lagna. Wearing coral would amplify a <span class='red'>weak</span>ened and functionally harmful planet — this could increase family disputes, accidents, and health issues.</p>
+<hr />
+<h3 id="93-venus-remedies-priority-moderate-debilitated-5th-lord">9.3 VENUS REMEDIES (Priority: <span class='yellow'>MODERATE</span> — <span class='red'>Debilitated</span> 5th Lord)</h3>
+<p><strong>Rationale:</strong> Venus <span class='red'>debilitated</span> in 4th house creates challenges in home, romance, and creative confidence. Must be approached carefully given Venus is also 12th lord.</p>
+<p><strong>Mantras:</strong>
+- <strong>Beeja Mantra:</strong> <em>"Om Shum Shukraya Namah"</em> — 108 times every Friday morning
+- <strong>Shri Suktam</strong> — Lakshmi-associated Vedic hymn for Venus energy; recite on Fridays
+- Goddess Lakshmi Puja on Fridays</p>
+<p><strong>Behavioral remedies:</strong>
+- Create beauty in your home environment deliberately — artwork, flowers, harmonious colors (white, cream, pink); Venus Digbala in 4th means effort invested in home aesthetics returns positive results
+- Offer fresh white flowers or milk to Goddess Lakshmi on Fridays
+- Support young women or girls in need (Venus's social expression)
+- Avoid excessive alcohol, sensual overindulgence, or impure relationships — <span class='red'>debilitated</span> Venus in 4th means these will destabilize the home environment severely</p>
+<p><strong>On gemstones for Venus:</strong> Do NOT wear Diamond (Heera). Venus is <span class='red'>debilitated</span> and while it is functionally benefic as 5th lord, diamond on a <span class='red'>debilitated</span> planet can amplify the debilitation effects rather than the <span class='green'>exalted</span> ones. Wait until after Saturn-Venus Antardasha (2032) when Venus has demonstrated its matured, strengthened expression — then reassess diamond gemstone recommendation.</p>
+<hr />
+<h3 id="94-saturn-remedies-priority-high-current-mahadasha-20262045">9.4 SATURN REMEDIES (Priority: HIGH — Current Mahadasha 2026–2045)</h3>
+<p><strong>Rationale:</strong> Saturn is the current Mahadasha lord for 19 years. Propitiating Saturn ensures the Mahadasha years are navigated with maximum benefit and minimum suffering.</p>
+<p><strong>Mantras:</strong>
+- <strong>Beeja Mantra:</strong> <em>"Om Sham Shanaischaraya Namah"</em> — 108 times every Saturday before 8:00 AM
+- <strong>Shani Stotra:</strong> Dashararatna Shani Stotra — recite on Saturdays
+- <strong>Mahamrityunjaya Mantra:</strong> <em>"Om Tryambakam Yajamahe..."</em> — 108 times daily during Saturn-Saturn Antardasha (2026–2029) for health and longevity protection</p>
+<p><strong>Behavioral remedies:</strong>
+- Weekly Hanuman Chalisa recitation on Saturdays — Hanuman pacifies both Mars and Saturn
+- Feed crows (Saturn's bird) black sesame seeds on Saturdays
+- Oil a Shami tree on Saturdays or offer black sesame oil at a Saturn temple (Shani temple)
+- Donate black cloth, black sesame (til), iron items, or dark lentils (urad dal) to the poor on Saturdays
+- Serve the elderly and differently-abled — Saturn's highest remedy is karma through service
+- Visit Tirupati, Shani Shingnapur, or any Shani temple and offer mustard oil on Saturday evenings</p>
+<p><strong>On Blue Sapphire (Neelam) for Saturn:</strong><br />
+Saturn rules 8th AND 9th for Gemini. The 9th lord quality makes Blue Sapphire potentially <span class='green'>beneficial</span>, but the 8th lord quality introduces significant risk. Blue Sapphire is the most powerful and dangerous gemstone in Vedic astrology.<br />
+<strong>Recommendation: Trial for 3 days before any permanent wearing.</strong> If the trial period (wearing in the right-hand middle finger in silver, during Saturn hora on a Saturday) produces clear positive energy — better sleep, improved focus, greater calm — then it may be considered. If ANY adverse symptom appears (insomnia, anxiety, anger, accidents), remove immediately and DO NOT wear.</p>
+<hr />
+<h3 id="95-remedies-for-pitra-dosha">9.5 REMEDIES FOR PITRA <span class='red'>DOSHA</span></h3>
+<p><strong>Rationale:</strong> Mild Pitra <span class='red'>Dosha</span> from Rahu aspecting 9th house and Ketu aspecting Sun.</p>
+<ul>
+<li>Perform Pitru Tarpan (water offering to ancestors) every Amavasya (new moon day)</li>
+<li>During Pitru Paksha (Shraddha fortnight, typically September-October): Offer Shraddha pinda for 3 generations of paternal ancestors</li>
+<li>Recite Gayatri Mantra — 108 times daily — for Sun's strength and Pitra <span class='red'>Dosha</span> relief</li>
+<li>Plant a Peepal tree and water it daily (Peepal is associated with ancestors)</li>
+<li>Feed Brahmins (learned teachers) on Ekadashi (11th lunar day)</li>
+</ul>
+<hr />
+<h3 id="96-lifestyle-corrections">9.6 LIFESTYLE CORRECTIONS</h3>
+<p>Based on this chart's overall structure:</p>
+<ol>
+<li>
+<p><strong>Sleep by 10:30 PM, wake by 6 AM</strong> — Mercury <span class='red'>combust</span> creates nervous system sensitivity that requires consistent sleep recovery. Irregular sleep accelerates Mercury's burnout tendency.</p>
+</li>
+<li>
+<p><strong>Daily exercise 30 minutes minimum</strong> — channeling <span class='red'>debilitated</span> Mars' energy into physical activity prevents it from destabilizing speech and relationships. Any form (<span class='green'>yoga</span>, walking, gym) is appropriate as long as it's consistent (Saturn's principle).</p>
+</li>
+<li>
+<p><strong>Meditation 20 minutes daily</strong> — Jupiter-Saturn in 12th house means the native has natural meditative depth; not using it is a waste of the chart's spiritual architecture. Even breath-awareness meditation substantially reduces Rahu-in-Lagna anxiety.</p>
+</li>
+<li>
+<p><strong>Weekly digital detox or communication fast</strong> — At least 4 hours per week completely offline. Mercury <span class='red'>combust</span> in Leo (communication overload) needs deliberate rest from information.</p>
+</li>
+<li>
+<p><strong>Financial ledger practice</strong> — Track all income and expenses weekly. <span class='red'>Debilitated</span> Mars as 11th lord leaks money through unconscious spending. Conscious tracking is the Saturn remedy for Mars-related financial <span class='red'>weak</span>ness.</p>
+</li>
+<li>
+<p><strong>Minimize family conflict engagement on Tuesdays and Saturdays</strong> — These are Mars and Saturn's days, and with Mars in 2nd (family/speech) and Saturn aspecting Mars, these days have maximum conflict potential. If unavoidable, speak after pausing 3 breaths.</p>
+</li>
+</ol>
+<hr />
+<p><a name="section-10"></a></p>
+<h2 id="section-10-final-synthesis">SECTION 10: FINAL SYNTHESIS</h2>
+<hr />
+<h3 id="101-core-personality-blueprint">10.1 CORE PERSONALITY BLUEPRINT</h3>
+<p>Abhishek Singh is, at the deepest level, a <strong>seeker clothed as an achiever</strong> — someone whose outer Rahu-in-Lagna magnetism and ambition is the skin, but whose inner Jupiter-Saturn-in-12th philosophical depth is the skeleton.</p>
+<p><strong>The personality can be mapped in three layers:</strong></p>
+<p><strong>Outer layer (visible to the world):</strong><br />
+Rahu in Gemini Lagna: Sharp, driven, intellectually restless, magnetic, unconventional. The native projects confidence and curiosity. People are drawn to their intelligence and intensity. This layer is the "face" — the quick wit, the rapid information processing, the social ease.</p>
+<p><strong>Middle layer (experienced in close relationships):</strong><br />
+Moon in Swati (Libra, 5th): Deeply sensitive, aesthetically attuned, emotionally complex. In private, the native is artistic, emotionally generous, but easily hurt by criticism. Mars-<span class='red'>afflicted</span> Moon means emotional triggers exist around family, money, and perceived injustice. In close relationships, the native is passionate but can become volatile when the <span class='red'>debilitated</span> Mars energy is not consciously managed.</p>
+<p><strong>Inner core (known to self, often hidden):</strong><br />
+Jupiter + Saturn in Taurus (12th): Profoundly philosophical, spiritually serious, and ultimately seeking something beyond conventional success. The native has a recurring inner question that all the Rahu ambition cannot fully silence: <em>"What is the purpose of all this?"</em> This inner philosophical hunger, combined with Saturn's patience, is the native's greatest long-term asset.</p>
+<hr />
+<h3 id="102-life-pattern">10.2 LIFE PATTERN</h3>
+<p><strong>Phase 1 (Birth–2010, Rahu MD):</strong> Restless childhood; high intellectual stimulation; unusual sensitivity for a child; identity forming around intelligence and communication; some instability in early home environment.</p>
+<p><strong>Phase 2 (2010–2026, Jupiter MD):</strong> Educational and philosophical expansion; multiple career/relationship experiments; spiritual searching; the "building the foundation through trial and error" phase; the first Sade Sati (2009–2017) imposes a crucible of identity refinement during adolescence; by the end of Jupiter MD (2023–2026), the native is beginning to find genuine direction.</p>
+<p><strong>Phase 3 (2026–2045, Saturn MD):</strong> The defining chapter. Hard work, discipline, and gradual but durable establishment in career, relationships, and spiritual life. The pattern here is: <strong>slow start → resilient endurance → breakthrough</strong>. The Sarala Viparita Raja <span class='green'>Yoga</span> ensures that setbacks in this period are reversed. By age 35–40, the native will have established something genuinely meaningful and lasting. Peak recognition arrives in Saturn-Venus (2032–2036) and Saturn-Rahu (2039–2042).</p>
+<p><strong>Phase 4 (2045–2062, Mercury MD):</strong> The intellectual legacy phase. Mercury as <span class='red'>combust</span> Lagna lord who gradually awakens through age and experience — in the Mercury Mahadasha (age 44–61), the native becomes a communicator, teacher, or thought leader whose work reaches its widest audience.</p>
+<p><strong>Overall Life Pattern:</strong> SLOW RISE → <span class='green'>STRONG</span> MIDDLE → ENDURING LEGACY<br />
+The native's chart is not a "meteor" chart (early explosive success followed by fading) — it is a "mountain" chart: the peak takes time to reach but, once reached, is permanent and visible from great distances.</p>
+<hr />
+<h3 id="103-key-strengths">10.3 KEY STRENGTHS</h3>
+<ol>
+<li>
+<p><strong>Intellectual power with depth:</strong> Sun in <span class='green'>own sign</span> (Leo) + Moon in 5th + Jupiter in 12th creates a rare combination of surface brilliance AND philosophical depth. The native can communicate complex ideas in accessible ways (Sun-Mercury in 3rd) while simultaneously understanding their deeper implications (Jupiter-Saturn in 12th).</p>
+</li>
+<li>
+<p><strong>Resilience through adversity:</strong> Sarala Viparita Raja <span class='green'>Yoga</span> (Saturn 8th lord in 12th) is the chart's insurance policy. This native has been tested repeatedly (Sade Sati in adolescence, <span class='red'>debilitated</span> planets) and each test has made them more capable. When others would give up, this native endures.</p>
+</li>
+<li>
+<p><strong>10th house career power:</strong> The Ashtakvarga score of 37 in the 10th house is the chart's secret weapon. No matter how challenging the planet placements seem, the universe consistently delivers career opportunities through favorable transits in Pisces. This ensures professional recognition eventually — it cannot be permanently suppressed.</p>
+</li>
+<li>
+<p><strong>Spiritual intelligence:</strong> Jupiter + Saturn in 12th house is one of the chart's most profound gifts. The native has the capacity for genuine wisdom, not merely acquired knowledge. This wisdom deepens with age and becomes the native's most enduring contribution.</p>
+</li>
+<li>
+<p><strong>Communication as a weapon:</strong> Sun in <span class='green'>own sign</span> + Mercury in 3rd + Ashtakvarga 32 in 3rd house = the <span class='green'>strong</span>est "communication engine" available in a chart. Whatever career the native chooses, their ability to communicate, teach, or write will be their primary professional differentiator.</p>
+</li>
+</ol>
+<hr />
+<h3 id="104-major-risks">10.4 MAJOR RISKS</h3>
+<ol>
+<li>
+<p><strong>Nervous exhaustion (Mercury <span class='red'>combust</span> Lagna lord + Rahu in Lagna):</strong> The relentless mental activity, combined with Rahu's amplification, can lead to genuine burnout if not managed. The risk is highest in Mercury Antardasha periods within any Mahadasha. Warning signs: insomnia, anxiety spirals, inability to concentrate. Remedy: mandatory rest, creative play, nature exposure.</p>
+</li>
+<li>
+<p><strong>Family and relationship friction (Mars <span class='red'>debilitated</span> in 2nd):</strong> The native's greatest interpersonal risk is harsh speech and financial decisions driven by emotion. This is not character — it is planetary pattern. With consciousness (pausing before speaking, financial discipline), this risk is manageable. Without consciousness, it creates repeated family conflicts and lost financial opportunities.</p>
+</li>
+<li>
+<p><strong>Marriage delay/difficulty (Ketu in 7th, Jupiter 7th lord in 12th):</strong> The most emotionally painful risk in this chart. The native may spend years searching for the right partner, experiencing relationships that are spiritually intense but practically incomplete. The solution is patience and waiting for the Saturn-Venus window (2032–2036) rather than forcing commitments in the Saturn-Saturn period (2026–2029).</p>
+</li>
+<li>
+<p><strong>Career in wrong domain (10th lord in 12th):</strong> If the native pursues a conventional 9-to-5 corporate career in a domestic setting, they will feel chronically unfulfilled and progress will be slow. Jupiter in 12th as 10th lord specifically indicates that the career must have some element of the 12th house — foreign, spiritual, institutional, research-based, or creative — to fully activate the 10th house's exceptional Ashtakvarga support.</p>
+</li>
+<li>
+<p><strong>Isolation (Jupiter-Saturn in 12th + Ketu in 7th):</strong> There is a risk of chronic loneliness — the native may not easily find companions who understand their intellectual depth and spiritual sensitivity simultaneously. This is a chart that needs conscious effort to build and maintain meaningful social connections, especially during the Saturn-Ketu Antardasha (2031–2032).</p>
+</li>
+</ol>
+<hr />
+<h3 id="105-most-influential-planets-in-life">10.5 MOST INFLUENTIAL PLANETS IN LIFE</h3>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Planet</th>
+<th>Domain of Influence</th>
+<th>Peak Period</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Rahu</strong></td>
+<td>Ambition, personality, intellectual drive</td>
+<td>2000–2010, and throughout as Lagna occupant</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Saturn</strong></td>
+<td>Career, discipline, spiritual growth, relationships</td>
+<td>2026–2045 (current Mahadasha)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Jupiter</strong></td>
+<td>Education, philosophy, relationships, foreign</td>
+<td>2010–2026</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Moon</strong></td>
+<td>Emotions, creativity, intelligence, health</td>
+<td>Throughout; peak in Sat-Moon 2036–2038</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Sun</strong></td>
+<td>Communication, confidence, recognition</td>
+<td>Throughout; supports 3rd house excellence</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="106-the-one-line-synthesis">10.6 THE ONE-LINE SYNTHESIS</h3>
+<p>This chart belongs to a <strong>highly intelligent, spiritually inclined, and ultimately resilient human being</strong> whose surface restlessness (Rahu-Lagna) hides a profound depth (Jupiter-Saturn-12th), whose greatest challenges are internal (<span class='red'>combust</span> Mercury = identity; <span class='red'>debilitated</span> Mars = speech), and whose greatest rewards — in career, relationships, and wisdom — are late but genuinely magnificent and built to last.</p>
+<p>The universe has designed this chart not for early peak but for <strong>enduring excellence</strong> — and the 10th house's Ashtakvarga score of 37 is the universe's written promise that the native will arrive.</p>
+<hr />
+<h2 id="appendix-chart-data-summary">APPENDIX: CHART DATA SUMMARY</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Abhishek Singh</td>
+</tr>
+<tr>
+<td>Date of Birth</td>
+<td>3 September 2000</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>00:00:18 IST</td>
+</tr>
+<tr>
+<td>Place</td>
+<td>Ayodhya, U.P. (26°48′N, 82°12′E)</td>
+</tr>
+<tr>
+<td>Lagna</td>
+<td>Gemini (01°09′)</td>
+</tr>
+<tr>
+<td>Moon Sign</td>
+<td>Libra</td>
+</tr>
+<tr>
+<td>Nakshatra</td>
+<td>Swati Pada 2 (Rahu-ruled)</td>
+</tr>
+<tr>
+<td>Tithi</td>
+<td>Shukla Panchami</td>
+</tr>
+<tr>
+<td>Ayanamsa</td>
+<td>Lahiri 23°51′57″</td>
+</tr>
+<tr>
+<td>Varna</td>
+<td>Sudra</td>
+</tr>
+<tr>
+<td>Gana</td>
+<td>Devta</td>
+</tr>
+<tr>
+<td>Nadi</td>
+<td>Antya</td>
+</tr>
+<tr>
+<td>Paya</td>
+<td>Silver</td>
+</tr>
+<tr>
+<td>Current Mahadasha</td>
+<td>Saturn (Jan 2026 – Jan 2045)</td>
+</tr>
+<tr>
+<td>Current Antardasha</td>
+<td>Saturn-Saturn (Jan 2026 – Jan 2029)</td>
+</tr>
+<tr>
+<td>Next major Sade Sati</td>
+<td>October 2038 (Rising)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>This report was generated using kundli_final_structured.json (primary chart data) and enriched_chunks.json (knowledge base from 11 classical Vedic astrology texts). All interpretations are derived from specific classical principles with chart-specific validation. Report date: 18 April 2026.</em></p>
+<hr />
+<p><strong>END OF REPORT</strong></p>
+      </div>
+
+      <!-- Hindi Content -->
+      <div id="contentHi" class="lang-section lang-hi hidden">
+        <h1 id="_1">प्रीमियम वैदिक ज्योतिष कुंडली रिपोर्ट</h1>
+<h3 id="11-">अभिषेक सिंह — 11 शास्त्रीय ग्रंथों पर आधारित मास्टर-स्तरीय विश्लेषण</h3>
+<hr />
+<p><strong>जातक:</strong> अभिषेक सिंह<br />
+<strong>जन्म तिथि:</strong> 3 सितम्बर 2000<br />
+<strong>जन्म समय:</strong> 00:00:18 IST (मध्यरात्रि)<br />
+<strong>वार:</strong> रविवार (हिंदू शनिवार — शुक्ल पंचमी)<br />
+<strong>स्थान:</strong> अयोध्या, उत्तर प्रदेश<br />
+<strong>अक्षांश:</strong> 26°48′N | <strong>देशांतर:</strong> 82°12′E<br />
+<strong>अयनांश:</strong> लाहिरी (23°51′57″)<br />
+<strong>रिपोर्ट तिथि:</strong> 18 अप्रैल 2026<br />
+<strong>वर्तमान आयु:</strong> 25 वर्ष  </p>
+<hr />
+<blockquote>
+<p><em>इस रिपोर्ट का प्रत्येक कथन सीधे कुंडली डेटा से लिया गया है, जिसमें एक विशिष्ट ग्रहीय नियम उद्धृत किया गया है। कोई सामान्य ज्योतिष प्रयुक्त नहीं हुई है। दशा-काल सभी भविष्यवाणियों का आधार है।</em></p>
+</blockquote>
+<hr />
+<h2 id="-">विषय-सूची</h2>
+<ol>
+<li><a href="#section-1">कुंडली आधार</a></li>
+<li><a href="#section-2">ग्रहों का गहन विश्लेषण</a></li>
+<li><a href="#section-3">भाव-वार विश्लेषण</a></li>
+<li><a href="#section-4"><span class='green'>योग</span> — केवल प्रमाणित</a></li>
+<li><a href="#section-5"><span class='red'>दोष</span> विश्लेषण</a></li>
+<li><a href="#section-6">दशा प्रणाली</a></li>
+<li><a href="#section-7">जीवन भविष्यवाणियाँ — समय-आधारित</a></li>
+<li><a href="#section-8">ग्रहों का पदानुक्रम</a></li>
+<li><a href="#section-9">उपाय</a></li>
+<li><a href="#section-10">अंतिम संश्लेषण</a></li>
+</ol>
+<hr />
+<p><a name="section-1"></a></p>
+<h2 id="1">खंड 1: कुंडली आधार</h2>
+<h3 id="11">1.1 लग्न — शरीर एवं मानसिक ढाँचा</h3>
+<p><strong>लग्न:</strong> मिथुन (Gemini)<br />
+<strong>लग्न अंश:</strong> 01°09′09″ — मृगशिरा नक्षत्र, पद 3<br />
+<strong>लग्नेश:</strong> बुध (Mercury)</p>
+<p>मिथुन लग्न अत्यंत प्रारंभिक अंश — 01°09′ — पर उदय होता है, जो इसे <strong>मृगशिरा नक्षत्र (पद 3)</strong> में, मंगल के शासन में स्थापित करता है। मृगशिरा "खोजने वाला हिरण" है — चिरकाल से अस्थिर, बौद्धिक रूप से भूखा और सत्य मिलने तक स्थिर न होने वाला। मृगशिरा का तीसरा पद तुला नवांश में पड़ता है, जो मिथुन बुद्धिमत्ता में प्रबल सामाजिक चतुराई और कलात्मक संवेदनशीलता जोड़ता है।</p>
+<p><strong>लग्न से मूल चरित्र:</strong>
+- <strong>चर वायु:</strong> अत्यंत अनुकूलनशील मन, एक साथ कई विचार आत्मसात करने की प्रवृत्ति; ऊर्जा कई रुचियों में बिखर सकती है
+- <strong>बुध का आधिपत्य:</strong> जातक संचार, सूचना-प्रसंस्करण और विश्लेषण के माध्यम से जीता है; वाणी, लेखन और बुद्धि ही पहचान है
+- <strong>मृगशिरा (मंगल-शासित) लग्न पर:</strong> बेचैनी और खोज की एक अंतर्धारा; जातक कभी वर्तमान ज्ञान से पूरी तरह संतुष्ट नहीं होता
+- <strong>लग्न पद 3 में (तुला नवांश):</strong> सामाजिक सौम्यता, साझेदारी और सौंदर्यशास्त्र जातक की आत्म-भावना के लिए महत्त्वपूर्ण हैं</p>
+<p><strong>महत्त्वपूर्ण टिप्पणी:</strong> लग्नेश बुध तीसरे भाव में सूर्य से <strong><span class='red'>दग्ध</span></strong> (10°39′ के भीतर) है। इसका अर्थ है जातक की पहचान, बुद्धि और शरीर का कारक <span class='red'>कमजोर</span> और सौर ऊर्जा से आच्छादित है। जातक का व्यक्तित्व, विशेषकर युवावस्था में, ग्रहण लगा हुआ या अपरिभाषित महसूस कर सकता है — पहचान की स्पष्टता केवल जानबूझकर प्रयास से विकसित होती है।</p>
+<hr />
+<h3 id="12-">1.2 ग्रह-स्थिति एक दृष्टि में</h3>
+<table>
+<thead>
+<tr>
+<th>ग्रह</th>
+<th>राशि</th>
+<th>भाव</th>
+<th>अंश</th>
+<th>नक्षत्र</th>
+<th>पद</th>
+<th>स्थिति</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASC</td>
+<td>मिथुन</td>
+<td>1</td>
+<td>01°09′</td>
+<td>मृगशिरा</td>
+<td>3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>सूर्य ☉</td>
+<td>सिंह</td>
+<td>3</td>
+<td>16°43′</td>
+<td>पूर्वा फाल्गुनी</td>
+<td>2</td>
+<td><span class='green'>स्वराशि</span> (स्वक्षेत्र)</td>
+</tr>
+<tr>
+<td>चंद्र ☽</td>
+<td>तुला</td>
+<td>5</td>
+<td>13°02′</td>
+<td>स्वाती</td>
+<td>2</td>
+<td>सम राशि</td>
+</tr>
+<tr>
+<td>मंगल ♂</td>
+<td>कर्क</td>
+<td>2</td>
+<td>27°08′</td>
+<td>आश्लेषा</td>
+<td>4</td>
+<td><strong><span class='red'>नीच</span> (<span class='red'>नीच</span>स्थ)</strong></td>
+</tr>
+<tr>
+<td>बुध ☿</td>
+<td>सिंह</td>
+<td>3</td>
+<td>27°23′</td>
+<td>उत्तरा फाल्गुनी</td>
+<td>1</td>
+<td><strong><span class='red'>दग्ध</span></strong> (मित्र राशि)</td>
+</tr>
+<tr>
+<td>बृहस्पति ♃</td>
+<td>वृषभ</td>
+<td>12</td>
+<td>16°11′</td>
+<td>रोहिणी</td>
+<td>2</td>
+<td>सम राशि</td>
+</tr>
+<tr>
+<td>शुक्र ♀</td>
+<td>कन्या</td>
+<td>4</td>
+<td>09°22′</td>
+<td>उत्तरा फाल्गुनी</td>
+<td>4</td>
+<td><strong><span class='red'>नीच</span></strong> + <strong>दिग्बली</strong></td>
+</tr>
+<tr>
+<td>शनि ♄</td>
+<td>वृषभ</td>
+<td>12</td>
+<td>07°02′</td>
+<td>कृत्तिका</td>
+<td>4</td>
+<td>मित्र राशि</td>
+</tr>
+<tr>
+<td>राहु ☊</td>
+<td>मिथुन</td>
+<td>1</td>
+<td>28°11′</td>
+<td>पुनर्वसु</td>
+<td>3</td>
+<td><span class='green'>उच्च</span> माना जाता है</td>
+</tr>
+<tr>
+<td>केतु ☋</td>
+<td>धनु</td>
+<td>7</td>
+<td>28°11′</td>
+<td>उत्तराषाढ़ा</td>
+<td>1</td>
+<td><span class='green'>उच्च</span> माना जाता है</td>
+</tr>
+</tbody>
+</table>
+<p><strong>बाह्य ग्रह (पारंपरिक वैदिक विश्लेषण में प्राथमिक नहीं):</strong>
+- यूरेनस (R): मकर, 8वाँ भाव | नेपच्यून (R): मकर, 8वाँ भाव | प्लूटो: वृश्चिक, 6ठा भाव</p>
+<hr />
+<h3 id="13">1.3 मिथुन लग्न के लिए कार्यात्मक <span class='green'>शुभ</span>/अ<span class='green'>शुभ</span> वर्गीकरण</h3>
+<table>
+<thead>
+<tr>
+<th>ग्रह</th>
+<th>भाव-आधिपत्य</th>
+<th>कार्यात्मक भूमिका</th>
+<th>तर्क</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>बुध</strong></td>
+<td>1+4</td>
+<td><strong>परम <span class='green'>शुभ</span></strong></td>
+<td>लग्न (केंद्र+कोण) और 4थे (केंद्र) दोनों का स्वामी</td>
+</tr>
+<tr>
+<td><strong>शुक्र</strong></td>
+<td>5+12</td>
+<td><strong><span class='green'>शुभ</span></strong> (<span class='yellow'>मध्यम</span>)</td>
+<td>5वें (त्रिकोण) का स्वामित्व प्रधान; 12वाँ स्वामित्व घटाता पर नकारता नहीं</td>
+</tr>
+<tr>
+<td><strong>शनि</strong></td>
+<td>8+9</td>
+<td><strong><span class='yellow'>मध्यम</span>/<span class='yellow'>मिश्रित</span></strong></td>
+<td>9वें (त्रिकोण=धर्म) का स्वामित्व अत्यंत <span class='green'>शुभ</span>; 8वें का स्वामित्व बाधाएँ लाता है</td>
+</tr>
+<tr>
+<td><strong>बृहस्पति</strong></td>
+<td>7+10</td>
+<td><strong>कार्यात्मक अ<span class='green'>शुभ</span></strong></td>
+<td>केंद्राधिपति <span class='red'>दोष</span> — दो केंद्रों (7, 10) का स्वामी नैसर्गिक <span class='green'>शुभ</span> को कलंकित करता है</td>
+</tr>
+<tr>
+<td><strong>चंद्र</strong></td>
+<td>2</td>
+<td><strong>सौम्य <span class='green'>शुभ</span></strong></td>
+<td>धन भाव का स्वामित्व <span class='yellow'>तटस्थ</span>-सकारात्मक</td>
+</tr>
+<tr>
+<td><strong>सूर्य</strong></td>
+<td>3</td>
+<td><strong>सौम्य अ<span class='green'>शुभ</span></strong></td>
+<td>तृतीय भाव उपचय है किंतु दुःस्थान भी; 3रा स्वामी सामान्यतः सौम्य अ<span class='green'>शुभ</span></td>
+</tr>
+<tr>
+<td><strong>मंगल</strong></td>
+<td>6+11</td>
+<td><strong>कार्यात्मक अ<span class='green'>शुभ</span></strong></td>
+<td>षष्ठ स्वामित्व (रिपु, रोग, ऋण) मंगल को मिथुन लग्न के लिए हानिकारक बनाता है</td>
+</tr>
+</tbody>
+</table>
+<p><strong>मुख्य सिद्धांत:</strong> बृहस्पति — नैसर्गिक महा<span class='green'>शुभ</span> — <strong>मिथुन लग्न के लिए कार्यात्मक रूप से समस्याग्रस्त</strong> है क्योंकि केंद्राधिपति <span class='red'>दोष</span> है। 12वें भाव में शनि के साथ स्थापना इसे और जटिल बनाती है।</p>
+<hr />
+<h3 id="14">1.4 चंद्र का पक्ष बल</h3>
+<p>जातक का जन्म <strong>शुक्ल पंचमी</strong> (शुक्ल पक्ष के 5वें दिन) को हुआ। चंद्र का पक्ष बल बढ़ रहा था किंतु शिखर पर नहीं (शिखर = पूर्णिमा)। चंद्र का <strong><span class='yellow'>मध्यम</span> पक्ष बल</strong> है — अधिकतम चंद्र बल का लगभग 42%। इसका अर्थ है कि चंद्र अपनी न्यूनतम स्थिति में नहीं है किंतु पूर्णिमा की पूर्ण दीप्ति से वंचित है। भावनात्मक स्थिरता है, किंतु पत्थर जैसी दृढ़ नहीं।</p>
+<hr />
+<h3 id="15-">1.5 मुख्य अष्टकवर्ग कुल भाव-वार</h3>
+<table>
+<thead>
+<tr>
+<th>भाव</th>
+<th>राशि</th>
+<th>SAV स्कोर</th>
+<th>व्याख्या</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (मिथुन)</td>
+<td>3</td>
+<td>29</td>
+<td><span class='yellow'>मध्यम</span> आत्म-बल</td>
+</tr>
+<tr>
+<td>2 (कर्क)</td>
+<td>4</td>
+<td>26</td>
+<td>गोचर से औसत से कम धन/परिवार संभावना</td>
+</tr>
+<tr>
+<td>3 (सिंह)</td>
+<td>5</td>
+<td>32</td>
+<td>प्रबल संचार, साहस</td>
+</tr>
+<tr>
+<td><strong>4 (कन्या)</strong></td>
+<td>6</td>
+<td><strong>22</strong></td>
+<td><strong>सबसे <span class='red'>कमजोर</span> भाव</strong> — घर, माता, सुख-सुविधाएँ तनाव में</td>
+</tr>
+<tr>
+<td>5 (तुला)</td>
+<td>7</td>
+<td>26</td>
+<td><span class='yellow'>मध्यम</span> रचनात्मकता और संतान</td>
+</tr>
+<tr>
+<td>6 (वृश्चिक)</td>
+<td>8</td>
+<td>25</td>
+<td>औसत रोग/शत्रु प्रतिरोध</td>
+</tr>
+<tr>
+<td>7 (धनु)</td>
+<td>9</td>
+<td>28</td>
+<td><span class='yellow'>मध्यम</span> साझेदारी समर्थन</td>
+</tr>
+<tr>
+<td>8 (मकर)</td>
+<td>10</td>
+<td>27</td>
+<td>औसत दीर्घायु/परिवर्तन</td>
+</tr>
+<tr>
+<td>9 (कुंभ)</td>
+<td>11</td>
+<td>25</td>
+<td>औसत से कम भाग्य समर्थन</td>
+</tr>
+<tr>
+<td><strong>10 (मीन)</strong></td>
+<td>12</td>
+<td><strong>37</strong></td>
+<td><strong>सबसे प्रबल भाव</strong> — करियर अंततः अत्यंत फला-फूला होगा</td>
+</tr>
+<tr>
+<td>11 (मेष)</td>
+<td>1</td>
+<td>31</td>
+<td>प्रबल लाभ और इच्छापूर्ति</td>
+</tr>
+<tr>
+<td>12 (वृषभ)</td>
+<td>2</td>
+<td>29</td>
+<td><span class='yellow'>मध्यम</span> आध्यात्मिक/विदेश परिणाम</td>
+</tr>
+</tbody>
+</table>
+<p><strong>महत्त्वपूर्ण अंतर्दृष्टि:</strong> 10वें भाव (करियर, सार्वजनिक प्रतिष्ठा) में सर्वाष्टकवर्ग का अधिकतम स्कोर <strong>37 अंक</strong> है — यह असाधारण है। 10वें लग्नेश बृहस्पति के 12वें भाव में होने के बावजूद, मीन राशि से गोचर उत्कृष्ट करियर परिणाम देगा।</p>
+<hr />
+<p><a name="section-2"></a></p>
+<h2 id="2">खंड 2: ग्रहों का गहन विश्लेषण</h2>
+<hr />
+<h3 id="21-1643-2">2.1 सूर्य ☉ — सिंह, तृतीय भाव, 16°43′, पूर्वा फाल्गुनी पद 2</h3>
+<p><strong>स्थिति:</strong> सूर्य सिंह (<span class='green'>स्वराशि</span>) में तृतीय भाव में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> स्वक्षेत्र — अधिकतम राशि-आधारित बल। सिंह में सूर्य राजा जैसा है।
+- <strong>दिग्बल:</strong> सूर्य 10वें भाव में दिग्बली होता है। यहाँ 3रे भाव में — <strong>दिग्बल नहीं</strong>।
+- <strong>नक्षत्र:</strong> पूर्वा फाल्गुनी (शुक्र-शासित) — विलासिता, विश्राम, आनंद और कलात्मकता से जुड़ा।
+- <strong>पद 2:</strong> वृषभ नवांश में — भौतिक सुख और संवेदनशील सौंदर्यशास्त्र को और मजबूत करता है।
+- <strong><span class='red'>दग्ध</span>:</strong> सूर्य 16°43′, बुध 27°23′ सिंह में → अंतर 10°40′। बुध 14° <span class='red'>दग्ध</span>ता क्षेत्र में है। <strong>सूर्य बुध को <span class='red'>दग्ध</span> कर रहा है</strong> — स्वयं प्रभावित नहीं।</p>
+<p><strong>कार्यात्मक भूमिका:</strong> सूर्य तृतीयेश (कार्यात्मक सौम्य अ<span class='green'>शुभ</span>) है। स्वगृही तृतीयेश तृतीय भाव के विषयों को बढ़ाता है — साहस, संचार, छोटे भाई-बहन, मीडिया, अल्पयात्रा, कौशल।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- असाधारण आत्मविश्वास, आधिकारिक संचार और रचनात्मक आत्म-अभिव्यक्ति
+- गहरा अहंकार — कभी-कभी जिद या अहम-संवेदनशीलता के रूप में
+- केतु का सूर्य पर दृष्टि एक सूक्ष्म आध्यात्मिक अंतर्धारा देती है
+- <strong>वास्तविक जीवन:</strong> प्रबल वाणी, प्राकृतिक करिश्मा, संचार क्षेत्रों में नेतृत्व की ओर आकर्षण।</p>
+<hr />
+<h3 id="22-1302-2">2.2 चंद्र ☽ — तुला, पंचम भाव, 13°02′, स्वाती पद 2</h3>
+<p><strong>स्थिति:</strong> चंद्र तुला में पंचम भाव में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> तुला शुक्र-शासित वायु राशि है; चंद्र के लिए सम।
+- <strong>पक्ष बल:</strong> <span class='yellow'>मध्यम</span> (शुक्ल पंचमी — खंड 1.4 देखें)
+- <strong>नक्षत्र:</strong> स्वाती (राहु-शासित) — स्वतंत्रता, व्यापार और वायु का नक्षत्र।
+- <strong>प्राप्त दृष्टियाँ:</strong>
+  1. <strong>मंगल</strong> (कर्क, 2रे भाव) से <strong>4थी दृष्टि</strong> तुला (5वाँ भाव) पर — <strong><span class='red'>नीच</span>स्थ मंगल द्वारा <span class='red'>पीड़ित</span> चंद्र।</strong> यह कुंडली में सबसे महत्त्वपूर्ण पीड़ा है।
+  2. <strong>राहु</strong> (मिथुन, 1ला भाव) से <strong>5वीं दृष्टि</strong> तुला पर — राहु-प्रभाव चंद्र पर तृष्णा और बेचैनी बढ़ाता है।</p>
+<p><strong>कार्यात्मक भूमिका:</strong> चंद्र धनेश (द्वितीय भाव का स्वामी) है। चंद्र पंचम में <strong>धन <span class='green'>योग</span></strong> की संभावना बनाता है।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- भावनात्मक रूप से अतिसंवेदनशील लेकिन भावनात्मक रूप से अस्थिर
+- प्रबल बौद्धिक रचनात्मकता — 5वें भाव का चंद्र मूल प्रतिभा देता है
+- मंगल की दृष्टि परिवार में तनाव उत्पन्न करती है; माता से संबंध कभी-कभी कठिन हो सकता है
+- <strong>वास्तविक जीवन:</strong> 5वें भाव का चंद्र कुंडली का छिपा रत्न है — वास्तविक बौद्धिक प्रतिभा, प्रबल स्मृति और स्वाभाविक जिज्ञासा।</p>
+<hr />
+<h3 id="23-2708-4">2.3 मंगल ♂ — कर्क, द्वितीय भाव, 27°08′, आश्लेषा पद 4</h3>
+<p><strong>स्थिति:</strong> मंगल कर्क में द्वितीय भाव में <span class='red'>नीच</span>स्थ है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> <span class='red'>नीच</span> (<span class='red'>नीच</span>भंग नहीं)। यह कुंडली की सबसे महत्त्वपूर्ण <span class='red'>कमजोर</span>ी है।
+- <strong><span class='red'>नीच</span>भंग जाँच:</strong> कोई भी शर्त पूरी नहीं होती। <strong><span class='red'>नीच</span>भंग सक्रिय नहीं है।</strong> मंगल का <span class='red'>नीच</span> भाव पूर्णतः बना हुआ है।
+- <strong>नक्षत्र:</strong> आश्लेषा (बुध-शासित) — सर्प नक्षत्र। गुप्त, रोककर रखने वाला, अधिकार जताने वाला। 4था पद (वृश्चिक नवांश) — तीव्रता को और गहरा करता है।</p>
+<p><strong>कार्यात्मक भूमिका:</strong> मंगल षष्ठेश और एकादशेश है।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- द्वितीय भाव में <span class='red'>नीच</span>स्थ मंगल वाणी को कर्कश बनाता है
+- पारिवारिक गतिशीलता कठिन है
+- धन-संचय सुचारू नहीं; कमाई होती है लेकिन जल्दी चली जाती है
+- <strong>वास्तविक जीवन:</strong> मंगल का <span class='red'>नीच</span> भाव कुंडली की मुख्य <span class='red'>कमजोर</span>ी है।</p>
+<hr />
+<h3 id="24-2723-1">2.4 बुध ☿ — सिंह, तृतीय भाव, 27°23′, उत्तरा फाल्गुनी पद 1</h3>
+<p><strong>स्थिति:</strong> बुध सिंह (तृतीय भाव) में सूर्य के साथ युति में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> मित्र राशि — स्वीकार्य, लेकिन:
+- <strong><span class='red'>दग्ध</span>ता:</strong> बुध 27°23′ सिंह; सूर्य 16°43′ सिंह। अंतर = <strong>10°40′</strong>। <strong>बुध पूर्णतः <span class='red'>दग्ध</span> है।</strong> यह कुंडली की दूसरी गंभीर <span class='red'>कमजोर</span>ी है।
+- <strong>लग्नेश <span class='red'>दग्ध</span>:</strong> बुध केवल कोई ग्रह नहीं — यह <strong>लग्नेश</strong> है। <span class='red'>दग्ध</span> लग्नेश बनाता है: आवधिक पहचान भ्रम; बौद्धिक उज्ज्वलता है लेकिन जल जाती है।
+- <strong>बुध-आदित्य <span class='green'>योग</span>:</strong> सूर्य + बुध की युति से यह <span class='green'>योग</span> बनता है — किंतु <span class='red'>दग्ध</span>ता इसे आंशिक बनाती है।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- जातक वास्तव में बुद्धिमान है — लेकिन बुद्धि निरंतर के बजाय झटकों में काम करती है
+- तंत्रिका तंत्र की संवेदनशीलता: चिंता, अत्यधिक सोच और मानसिक थकान की प्रवृत्ति
+- <strong>वास्तविक जीवन:</strong> उत्कृष्ट लेखक, संचारक या विश्लेषक जिसे जानबूझकर विश्राम की आवश्यकता है।</p>
+<hr />
+<h3 id="25-1611-2">2.5 बृहस्पति ♃ — वृषभ, द्वादश भाव, 16°11′, रोहिणी पद 2</h3>
+<p><strong>स्थिति:</strong> बृहस्पति वृषभ में द्वादश भाव में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> वृषभ शुक्र-शासित। बृहस्पति के लिए सम राशि।
+- <strong>नक्षत्र:</strong> रोहिणी (चंद्र-शासित) — सर्वाधिक संवेदनशील, सुंदर नक्षत्र।
+- <strong>युति:</strong> बृहस्पति-शनि वृषभ में (12वाँ भाव) — यह कुंडली का सबसे जटिल <span class='green'>योग</span> है।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- 12वें भाव में बृहस्पति: आध्यात्मिक रुझान, ध्यान में रुचि, संभावित विदेश शिक्षा या निवास
+- दशमेश 12वें में: करियर विदेश, शोध, आध्यात्मिकता, स्वास्थ्य या बड़े संस्थानों से संबंधित हो सकता है
+- <strong>वास्तविक जीवन:</strong> 12वें भाव का बृहस्पति सर्वाधिक आध्यात्मिक रूप से महत्त्वपूर्ण स्थान है।</p>
+<hr />
+<h3 id="26-0922-4">2.6 शुक्र ♀ — कन्या, चतुर्थ भाव, 09°22′, उत्तरा फाल्गुनी पद 4</h3>
+<p><strong>स्थिति:</strong> शुक्र कन्या में चतुर्थ भाव में <span class='red'>नीच</span>स्थ है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> <span class='red'>नीच</span>। शुक्र कन्या में <span class='red'>नीच</span>स्थ है।
+- <strong><span class='red'>नीच</span>भंग जाँच:</strong> कोई शर्त पूरी नहीं। <strong><span class='red'>नीच</span>भंग सक्रिय नहीं।</strong>
+- <strong>दिग्बल:</strong> चंद्र और शुक्र 4थे भाव में दिग्बली होते हैं। शुक्र 4थे भाव में है → <strong>शुक्र को पूर्ण दिग्बल है।</strong> यह महत्त्वपूर्ण प्रतिपूरक कारक है।
+- <strong>नेट परिणाम:</strong> शुक्र राशि-गुणवत्ता में <span class='red'>नीच</span> है लेकिन दिशात्मक शक्ति में प्रबल है।
+- <strong>नवांश:</strong> उत्तरा फाल्गुनी पद 4 (मीन नवांश) — शुक्र नवांश में <span class='green'>उच्च</span> है। <strong>शुक्र राशि में <span class='red'>नीच</span> है लेकिन नवांश में <span class='green'>उच्च</span></strong> — यह इंगित करता है कि प्रेम और साझेदारी का जीवन परिपक्वता के साथ नाटकीय रूप से सुधरता है।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- चतुर्थ में <span class='red'>नीच</span> शुक्र: बचपन में घर का वातावरण भावनात्मक रूप से जटिल
+- दिग्बली शुक्र: जातक प्रामाणिक सौंदर्य रुचि रखता है, घर को सुंदर बनाना पसंद करता है
+- <strong>वास्तविक जीवन:</strong> शुक्र विलंबित लेकिन वास्तविक पुरस्कार का ग्रह है। शनि महादशा के बाद (2026 के बाद) सार्थक साझेदारी।</p>
+<hr />
+<h3 id="27-0702-4">2.7 शनि ♄ — वृषभ, द्वादश भाव, 07°02′, कृत्तिका पद 4</h3>
+<p><strong>स्थिति:</strong> शनि वृषभ (12वाँ भाव) में बृहस्पति के साथ युति में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>गरिमा:</strong> वृषभ शुक्र-शासित। शनि के लिए मित्र राशि — <span class='yellow'>मध्यम</span>-से-अच्छी स्थापना।
+- <strong>कार्यात्मक भूमिका:</strong>
+  - नवमेश: शनि धर्म का महत्त्वपूर्ण कारक बनता है — भाग्य, पिता, <span class='green'>उच्च</span> शिक्षा, आध्यात्मिकता
+  - अष्टमेश: शनि बाधा, विलंब और छिपे परिवर्तन लाता है
+  - शनि अष्टमेश 12वें भाव में <strong>सरल विपरीत राज <span class='green'>योग</span></strong> बनाता है
+  - शनि जनवरी 2026 से वर्तमान महादशा का स्वामी है</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- 12वें भाव में शनि: गहरा दार्शनिक रुझान; पृथकता की चरणबद्ध अवधि जो अंततः पवित्र करती है
+- <strong>वास्तविक जीवन:</strong> शनि 2026 से 19 वर्षों के लिए इस जातक के जीवन को परिभाषित करने वाला ग्रह है।</p>
+<hr />
+<h3 id="28-2811-3">2.8 राहु ☊ — मिथुन, प्रथम भाव, 28°11′, पुनर्वसु पद 3</h3>
+<p><strong>स्थिति:</strong> राहु मिथुन में लग्न के साथ युति में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>राशि गरिमा:</strong> कई शास्त्रीय ग्रंथ राहु को मिथुन में <span class='green'>उच्च</span> मानते हैं। अगर हम मिथुन <span class='green'>उच्च</span> को स्वीकार करें, <strong>राहु लग्न में <span class='green'>उच्च</span> है</strong> — यह अत्यंत प्रबल स्थापना है।
+- <strong>नक्षत्र:</strong> पुनर्वसु (बृहस्पति-शासित) — "प्रकाश की वापसी।" इस नक्षत्र में राहु असफलताओं से उबरने की प्रबल इच्छा देता है।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- यह जातक के प्रारंभिक और मध्य जीवन का प्रमुख चालक है
+- अपरंपरागत सोच; स्थापित मानदंडों को चुनौती देता है
+- <strong>वास्तविक जीवन:</strong> <span class='green'>उच्च</span> मिथुन लग्न में राहु इस जातक को महत्त्वाकांक्षी, तीक्ष्ण और एकसाथ कई क्षेत्रों में संचालित करने में सक्षम बनाता है।</p>
+<hr />
+<h3 id="29-2811-1">2.9 केतु ☋ — धनु, सप्तम भाव, 28°11′, उत्तराषाढ़ा पद 1</h3>
+<p><strong>स्थिति:</strong> केतु धनु में 7वें भाव में है।</p>
+<p><strong>बल मूल्यांकन:</strong>
+- <strong>राशि:</strong> धनु (बृहस्पति-शासित)। कुछ परंपराएँ केतु को धनु में <span class='green'>उच्च</span> मानती हैं।
+- <strong>नक्षत्र:</strong> उत्तराषाढ़ा (सूर्य-शासित) — अजेय विजय, नैतिकता और अंतिम विजय का नक्षत्र।</p>
+<p><strong>अंतिम प्रभाव:</strong>
+- 7वें भाव में केतु विवाह/साझेदारी के लिए सबसे कठिन स्थापना है
+- 7वाँ भाव: केतु जातक को या तो विवाह में उल्लेखनीय विलंब देता है या असामान्य आध्यात्मिक/दार्शनिक साथी की ओर आकर्षित करता है
+- <strong>वास्तविक जीवन:</strong> 7वें में केतु + 7वें लग्नेश बृहस्पति 12वें में = इस कुंडली का सबसे जटिल वैवाहिक कर्म।</p>
+<hr />
+<p><a name="section-3"></a></p>
+<h2 id="3-">खंड 3: भाव-वार विश्लेषण</h2>
+<hr />
+<h3 id="1_1">भाव 1 — मिथुन (स्व, शरीर, जीवन शक्ति)</h3>
+<p><strong>स्वामी:</strong> बुध (3रे में, <span class='red'>दग्ध</span>)<br />
+<strong>निवासी:</strong> राहु (28°11′)<br />
+<strong>अष्टकवर्ग:</strong> 29  </p>
+<p>लग्न में राहु जातक को तीव्र, आकर्षक गुण देता है। व्यक्तित्व तीखा, बौद्धिक रूप से बेचैन और कुछ अपरंपरागत है। बुध (लग्नेश) तीसरे भाव में <span class='red'>दग्ध</span> होने से जातक की आत्म-भावना बाहरी गतिविधियों में अवशोषित रहती है। स्वास्थ्य: मिथुन लग्न श्वसन तंत्र और तंत्रिका तंत्र को नियंत्रित करता है — बुध <span class='red'>दग्ध</span> के साथ, चिंता, श्वसन संवेदनशीलता और तंत्रिका थकावट पर ध्यान दें।</p>
+<p><strong>वास्तविक परिणाम:</strong> एक प्रभावशाली व्यक्तित्व जिसकी बौद्धिक प्रतिभा तुरंत दिखती है; एक बेचैन व्यक्ति जो प्रामाणिक आत्म-अभिव्यक्ति खोजने से पहले कई बार अपनी पहचान को पुनः-परिभाषित करता है।</p>
+<hr />
+<h3 id="2_1">भाव 2 — कर्क (धन, वाणी, परिवार, चेहरा)</h3>
+<p><strong>स्वामी:</strong> चंद्र (5वें भाव में)<br />
+<strong>निवासी:</strong> मंगल (<span class='red'>नीच</span>, 27°08′ आश्लेषा)<br />
+<strong>अष्टकवर्ग:</strong> 26  </p>
+<p>यह कुंडली का आर्थिक रूप से सबसे <span class='red'>पीड़ित</span> भाव है। द्वितीय भाव में <span class='red'>नीच</span>स्थ मंगल बनाता है: (क) कठोर, आवेगपूर्ण वाणी, (ख) पारिवारिक संघर्ष, (ग) अनियमित धन-संचय। पहले 25 वर्षों में वित्तीय संघर्ष; वाणी के पैटर्न में सचेत परिष्कार की आवश्यकता।</p>
+<hr />
+<h3 id="3-_1">भाव 3 — सिंह (साहस, संचार, भाई-बहन, कौशल, मीडिया)</h3>
+<p><strong>स्वामी:</strong> सूर्य (स्वगृही)<br />
+<strong>निवासी:</strong> सूर्य (16°43′), बुध (<span class='red'>दग्ध</span>, 27°23′)<br />
+<strong>अष्टकवर्ग:</strong> 32  </p>
+<p>यह कुंडली के सबसे प्रबल भावों में से एक है। सिंह में <span class='green'>स्वराशि</span> सूर्य असाधारण साहस और आत्मविश्वासी संचार देता है। इस जातक का यह सबसे बड़ा गुण है। लेखन, बोलना, प्रस्तुति, अध्यापन, मीडिया — इन क्षेत्रों में जातक श्रेष्ठ है।</p>
+<hr />
+<h3 id="4">भाव 4 — कन्या (घर, माता, सुख, शिक्षा, वाहन)</h3>
+<p><strong>स्वामी:</strong> बुध (3रे में, <span class='red'>दग्ध</span>)<br />
+<strong>निवासी:</strong> शुक्र (<span class='red'>नीच</span>, 09°22′, दिग्बली)<br />
+<strong>अष्टकवर्ग:</strong> 22 ← सबसे <span class='red'>कमजोर</span> भाव  </p>
+<p>चतुर्थ भाव में सबसे कम अष्टकवर्ग स्कोर (22 अंक) है और एक <span class='red'>नीच</span>स्थ ग्रह है। बचपन में घर का वातावरण अस्थिर हो सकता है; माता से संबंध भावनात्मक रूप से जटिल। प्रतिपूरक कारक: (क) शुक्र को यहाँ दिग्बल; (ख) 12वें से बृहस्पति चतुर्थ पर दृष्टि डालता है।</p>
+<hr />
+<h3 id="5">भाव 5 — तुला (बुद्धि, रचनात्मकता, प्रेम, संतान, सट्टे)</h3>
+<p><strong>स्वामी:</strong> शुक्र (4थे में <span class='red'>नीच</span>, दिग्बली)<br />
+<strong>निवासी:</strong> चंद्र (13°02′, स्वाती पद 2)<br />
+<strong>अष्टकवर्ग:</strong> 26  </p>
+<p>5वें भाव में चंद्र मन, रचनात्मकता और भावनात्मक अभिव्यक्ति के लिए अंतर्निहित रूप से एक अद्भुत स्थापना है। यह जातक भावनात्मक और बौद्धिक रूप से रचनात्मक है। <strong>प्रेम जीवन:</strong> जोशीला लेकिन जटिल (मंगल + राहु 5वें चंद्र पर प्रभाव)।</p>
+<hr />
+<h3 id="6">भाव 6 — वृश्चिक (रोग, शत्रु, ऋण, सेवा, कानूनी)</h3>
+<p><strong>स्वामी:</strong> मंगल (2रे में <span class='red'>नीच</span>)<br />
+<strong>निवासी:</strong> कोई नहीं<br />
+<strong>अष्टकवर्ग:</strong> 25  </p>
+<p>षष्ठेश मंगल <span class='red'>नीच</span>स्थ है — शत्रु और रोग कम आक्रामक लेकिन जातक की प्रतिरोध क्षमता भी कम। बृहस्पति का 6वें भाव पर पहलू स्वास्थ्य के लिए असाधारण रूप से सुरक्षात्मक है।</p>
+<hr />
+<h3 id="7">भाव 7 — धनु (विवाह, साझेदारी, खुले शत्रु)</h3>
+<p><strong>स्वामी:</strong> बृहस्पति (12वें भाव में)<br />
+<strong>निवासी:</strong> केतु (28°11′)<br />
+<strong>अष्टकवर्ग:</strong> 28  </p>
+<p>विवाह के लिए सबसे जटिल भाव। 7वें में केतु: (क) विवाह में उल्लेखनीय विलंब, (ख) आध्यात्मिक या विदेशी साथी, (ग) भागीदारी में एक बड़ी हानि/वि<span class='green'>योग</span> से पहले सही मिलान। <strong>वास्तविक परिणाम:</strong> विवाह में देरी — संभवतः 28–30 वर्ष के बाद।</p>
+<hr />
+<h3 id="8">भाव 8 — मकर (दीर्घायु, छिपे मामले, परिवर्तन, शोध)</h3>
+<p><strong>स्वामी:</strong> शनि (12वें भाव में)<br />
+<strong>निवासी:</strong> कोई नहीं<br />
+<strong>अष्टकवर्ग:</strong> 27  </p>
+<p>8वाँ भाव इस कुंडली में यथोचित सुरक्षित है। बृहस्पति की 8वें पर दृष्टि दीर्घायु सुरक्षा, अचानक दुर्घटनाओं को कम करती है। जातक में ज्योतिष, तंत्र या गहन मनोवैज्ञानिक शोध में रुचि हो सकती है।</p>
+<hr />
+<h3 id="9">भाव 9 — कुंभ (भाग्य, पिता, <span class='green'>उच्च</span> शिक्षा, धर्म, गुरु)</h3>
+<p><strong>स्वामी:</strong> शनि (12वें भाव में)<br />
+<strong>निवासी:</strong> कोई नहीं<br />
+<strong>अष्टकवर्ग:</strong> 25  </p>
+<p>9वाँ भाव खाली है लेकिन महत्त्वपूर्ण दृष्टियाँ प्राप्त करता है। शनि (नवमेश) 12वें से अपने भाव पर दृष्टि डालता है — <strong>धार्मिक विकास के लिए बहुत शक्तिशाली।</strong> जातक का भाग्य शनि की अनुशासन के माध्यम से धीरे-धीरे विकसित होता है।</p>
+<hr />
+<h3 id="10">भाव 10 — मीन (करियर, सार्वजनिक प्रतिष्ठा, पेशा)</h3>
+<p><strong>स्वामी:</strong> बृहस्पति (12वें भाव में)<br />
+<strong>निवासी:</strong> कोई नहीं<br />
+<strong>अष्टकवर्ग:</strong> 37 ← सर्वोच्च  </p>
+<p>यह पूरी कुंडली में सबसे शक्तिशाली गोचर भाव है। दशमेश 12वें में: करियर अपरंपरागत, पर्दे के पीछे, विदेशी या आध्यात्मिक क्षेत्रों में आगे बढ़ता है। <strong>वास्तविक परिणाम:</strong> करियर स्थापित होने में समय लगेगा लेकिन आने पर असाधारण होगा।</p>
+<hr />
+<h3 id="11-_1">भाव 11 — मेष (लाभ, इच्छापूर्ति, बड़े भाई-बहन, नेटवर्क)</h3>
+<p><strong>स्वामी:</strong> मंगल (2रे में <span class='red'>नीच</span>)<br />
+<strong>निवासी:</strong> कोई नहीं<br />
+<strong>अष्टकवर्ग:</strong> 31  </p>
+<p>11वाँ भाव मजबूत है लेकिन एकादशेश मंगल <span class='red'>नीच</span>स्थ है — लाभ होता है लेकिन आसानी से बनाए नहीं रखा जाता। सचेत वित्तीय प्रबंधन आवश्यक है।</p>
+<hr />
+<h3 id="12">भाव 12 — वृषभ (व्यय, हानि, विदेश यात्रा, आध्यात्मिकता)</h3>
+<p><strong>स्वामी:</strong> शुक्र (4थे में <span class='red'>नीच</span>, दिग्बली)<br />
+<strong>निवासी:</strong> बृहस्पति (16°11′) + शनि (07°02′)<br />
+<strong>अष्टकवर्ग:</strong> 29  </p>
+<p>12वें भाव में दो प्रमुख ग्रह — बृहस्पति और शनि। आध्यात्मिक आशीर्वाद और भौतिक चुनौती दोनों। <strong>वास्तविक परिणाम:</strong> जातक आध्यात्मिक विकास, विदेश यात्रा और साधना पर महत्त्वपूर्ण व्यय करेगा — यह इस कुंडली के लिए सही निवेश है।</p>
+<hr />
+<p><a name="section-4"></a></p>
+<h2 id="4_1">खंड 4: <span class='green'>योग</span> — केवल प्रमाणित</h2>
+<p><em>केवल वे <span class='green'>योग</span> जो वास्तविक ग्रह-बल, स्थापना और पारस्परिक समर्थन से अस्तित्व में हैं, यहाँ सूचीबद्ध हैं।</em></p>
+<hr />
+<h3 id="1_2"><span class='green'>योग</span> 1: सरल विपरीत राज <span class='green'>योग</span> ✅ सक्रिय</h3>
+<p><strong>नियम:</strong> अष्टमेश 12वें भाव में स्थापित होने से सरल <span class='green'>योग</span> बनता है।<br />
+<strong>ग्रह:</strong> शनि (अष्टमेश) 12वें भाव में (वृषभ)।<br />
+<strong>शास्त्रीय प्रभाव:</strong> सरल <span class='green'>योग</span> जातक को विनाशकारी लगने वाले झटकों के खिलाफ लचीला बनाता है। जब परिस्थितियाँ जातक की स्थिति को नष्ट करने लगती हैं, तो उनके पक्ष में एक उलटफेर होता है। जातक में फ़ीनिक्स जैसा गुण है।<br />
+<strong>सक्रियण समय:</strong> शनि महादशा (2026–2045)।<br />
+<strong>मान्यता शक्ति: <span class='green'>उच्च</span>।</strong></p>
+<hr />
+<h3 id="2-2-5"><span class='green'>योग</span> 2: आंशिक धन <span class='green'>योग</span> — चंद्र 2रे लग्नेश के रूप में 5वें त्रिकोण में ✅ सक्रिय (<span class='green'>योग</span>्य)</h3>
+<p><strong>नियम:</strong> धन भाव (2रे भाव) का स्वामी त्रिकोण (5वाँ भाव) में स्थापित होने से धन <span class='green'>योग</span> बनता है।<br />
+<strong>ग्रह:</strong> चंद्र (2रा स्वामी) 5वें भाव (तुला) में।<br />
+<strong>वास्तविक प्रभाव:</strong> जातक बौद्धिक कार्य, रचनात्मक आउटपुट और सट्टेबाजी के माध्यम से महत्त्वपूर्ण धन उत्पन्न कर सकता है — लेकिन इसे बनाए रखने के लिए भावनात्मक अनुशासन की आवश्यकता है।<br />
+<strong>मान्यता शक्ति: <span class='yellow'>मध्यम</span>।</strong></p>
+<hr />
+<h3 id="3-_2"><span class='green'>योग</span> 3: आंशिक बुध-आदित्य <span class='green'>योग</span> — सूर्य + बुध युति सिंह में ✅ सक्रिय (घटा हुआ)</h3>
+<p><strong>नियम:</strong> सूर्य और बुध की युति बुध-आदित्य <span class='green'>योग</span> बनाती है।<br />
+<strong>वास्तविक प्रभाव:</strong> जातक की बुद्धि और संचार के लिए प्रतिष्ठा; उनके क्षेत्र में पहचान सुरक्षित है।<br />
+<strong>मान्यता शक्ति: <span class='yellow'>मध्यम</span>।</strong></p>
+<hr />
+<h3 id="4_2"><span class='green'>योग</span> 4: शुक्र दिग्बल चतुर्थ भाव में ✅ सक्रिय</h3>
+<p><strong>नियम:</strong> शुक्र 4थे भाव में दिग्बल प्राप्त करता है।<br />
+<strong>वास्तविक प्रभाव:</strong> जातक का घर का वातावरण, बचपन की चुनौतियों के बावजूद, व्यक्तिगत प्रयास से सुंदर और आरामदायक बनता है।<br />
+<strong>मान्यता शक्ति: पूर्ण।</strong></p>
+<hr />
+<h3 id="5-"><span class='green'>योग</span> 5: लग्न में <span class='green'>उच्च</span> राहु ✅ सक्रिय (परंपरा-निर्भर)</h3>
+<p><strong>नियम:</strong> राहु को मिथुन में <span class='green'>उच्च</span> माना जाता है।<br />
+<strong>वास्तविक प्रभाव:</strong> इस जातक में उपलब्धि और पहचान की प्रबल, लगभग अप्रतिरोध्य इच्छा है।<br />
+<strong>मान्यता शक्ति: <span class='green'>उच्च</span>।</strong></p>
+<hr />
+<h3 id="6-10"><span class='green'>योग</span> 6: शुक्र (त्रिकोण स्वामी) 10वें भाव पर दृष्टि ✅ सक्रिय</h3>
+<p><strong>नियम:</strong> त्रिकोण स्वामी की 10वें पर दृष्टि करियर <span class='green'>योग</span> संभावना बनाती है।<br />
+<strong>वास्तविक प्रभाव:</strong> रचनात्मक, कलात्मक या शुक्र-संबंधित तत्त्व करियर सफलता में <span class='green'>योग</span>दान देंगे।<br />
+<strong>मान्यता शक्ति: <span class='yellow'>मध्यम</span>।</strong></p>
+<hr />
+<h3 id="_2">अनुपस्थित <span class='green'>योग</span>:</h3>
+<ul>
+<li><strong>गजकेसरी <span class='green'>योग</span>:</strong> अनुपस्थित (बृहस्पति-चंद्र केंद्र में नहीं)</li>
+<li><strong>पूर्ण विपरीत राज <span class='green'>योग</span> (विमला):</strong> अनुपस्थित</li>
+<li><strong>पूर्ण <span class='red'>नीच</span>भंग राज <span class='green'>योग</span> (मंगल या शुक्र):</strong> अनुपस्थित</li>
+<li><strong>पंच महापुरुष <span class='green'>योग</span>:</strong> कोई भी सक्रिय नहीं</li>
+</ul>
+<hr />
+<p><a name="section-5"></a></p>
+<h2 id="5_1">खंड 5: <span class='red'>दोष</span> विश्लेषण</h2>
+<hr />
+<h3 id="51">5.1 मांगलिक <span class='red'>दोष</span></h3>
+<p><strong>परिभाषा:</strong> मंगल लग्न, 2रे, 4थे, 7वें, 8वें या 12वें भाव में होने से मांगलिक <span class='red'>दोष</span>।</p>
+<p><strong>लग्न (मिथुन) से मूल्यांकन:</strong><br />
+मंगल कर्क में = <strong>लग्न से 2रा भाव</strong> → मांगलिक भाव = <strong>लग्न से <span class='red'>दोष</span>।</strong></p>
+<p><strong>चंद्र (तुला) से मूल्यांकन:</strong><br />
+मंगल कर्क में = <strong>चंद्र से 10वाँ भाव</strong> → मांगलिक भाव नहीं → <strong>चंद्र से <span class='red'>दोष</span> नहीं।</strong></p>
+<p><strong>शुक्र (कन्या/4वाँ भाव) से मूल्यांकन:</strong><br />
+मंगल कर्क = कन्या से 11वाँ → <strong>मांगलिक भाव नहीं → शुक्र से <span class='red'>दोष</span> नहीं।</strong></p>
+<p><strong><span class='red'>दोष</span> केवल लग्न से है</strong> — यह <strong>आंशिक या सौम्य मांगलिक <span class='red'>दोष</span></strong> है।</p>
+<p><strong>गंभीरता:</strong> <span class='yellow'>मध्यम</span>। मंगल <span class='red'>नीच</span> है (अपनी प्रकृति कम शक्तिशाली), लेकिन <span class='red'>दोष</span> सक्रिय है।</p>
+<p><strong>उपाय:</strong> मंगलनाथ मंदिर (अयोध्या) में नियमित पूजा। मंगलवार को हनुमान चालीसा। विवाह से पहले कुंडली मिलान अनिवार्य।</p>
+<hr />
+<h3 id="52">5.2 काल सर्प <span class='red'>दोष</span></h3>
+<p><strong>परिभाषा:</strong> सभी 7 ग्रह राहु-केतु अक्ष के एक तरफ होने पर काल सर्प <span class='red'>दोष</span>।</p>
+<p><strong>राहु-केतु अक्ष:</strong><br />
+- राहु: 28°11′ मिथुन (1ला भाव)<br />
+- केतु: 28°11′ धनु (7वाँ भाव)  </p>
+<p><strong>निर्णय: काल सर्प <span class='red'>दोष</span> उपस्थित नहीं।</strong></p>
+<p>बृहस्पति और शनि विपरीत दिशा में हैं — सभी ग्रह एक तरफ नहीं।</p>
+<p><strong>आंशिक सर्पीय असंतुलन:</strong><br />
+5 ग्रह एक तरफ — महत्त्वपूर्ण ग्रहीय भार असंतुलन। <strong>गंभीरता: अनुपस्थित (पूर्ण KSD) / निम्न-<span class='yellow'>मध्यम</span> (आंशिक असंतुलन)</strong></p>
+<hr />
+<h3 id="53">5.3 पितृ <span class='red'>दोष</span></h3>
+<p><strong>निर्णय: पितृ <span class='red'>दोष</span> — सौम्य</strong><br />
+गंभीरता: निम्न-<span class='yellow'>मध्यम</span>।<br />
+यह रूप में प्रकट होता है: पारंपरिक पारिवारिक मूल्यों से आवधिक वि<span class='green'>योग</span>, पिता के साथ संभावित गलतफहमियाँ।</p>
+<p><strong>उपाय:</strong> अमावस्या पर तर्पण (पूर्वजों को जल अर्पण)। पितृ पक्ष में श्राद्ध पिंड। रविवार को सूर्य पूजा।</p>
+<hr />
+<h3 id="54">5.4 शनि साढ़े साती</h3>
+<p><strong>चंद्र राशि:</strong> तुला।  </p>
+<p><strong>पिछली साढ़े साती (लगभग आयु 9 से 17 तक) समाप्त हो चुकी है।</strong></p>
+<p><strong>वर्तमान स्थिति (अप्रैल 2026): कोई साढ़े साती नहीं।</strong></p>
+<p><strong>अगली साढ़े साती:</strong> अक्टूबर 2038 (कन्या राशि से उदय) — जब जातक 38 वर्ष के होंगे।</p>
+<hr />
+<p><a name="section-6"></a></p>
+<h2 id="6_1">खंड 6: दशा प्रणाली</h2>
+<hr />
+<h3 id="61">6.1 विंशोत्तरी दशा अवलोकन</h3>
+<p><strong>जन्म पर दशा शेष:</strong> राहु 9 वर्ष 4 माह 23 दिन</p>
+<table>
+<thead>
+<tr>
+<th>महादशा</th>
+<th>ग्रह</th>
+<th>प्रारंभ</th>
+<th>समाप्ति</th>
+<th>अवधि</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>राहु</td>
+<td>☊</td>
+<td>3 सि 2000</td>
+<td>26 ज 2010</td>
+<td>18 वर्ष</td>
+</tr>
+<tr>
+<td>बृहस्पति</td>
+<td>♃</td>
+<td>26 ज 2010</td>
+<td>26 ज 2026</td>
+<td>16 वर्ष</td>
+</tr>
+<tr>
+<td><strong>शनि</strong></td>
+<td><strong>♄</strong></td>
+<td><strong>26 ज 2026</strong></td>
+<td><strong>26 ज 2045</strong></td>
+<td><strong>19 वर्ष</strong></td>
+</tr>
+<tr>
+<td>बुध</td>
+<td>☿</td>
+<td>26 ज 2045</td>
+<td>26 ज 2062</td>
+<td>17 वर्ष</td>
+</tr>
+<tr>
+<td>केतु</td>
+<td>☋</td>
+<td>26 ज 2062</td>
+<td>26 ज 2069</td>
+<td>7 वर्ष</td>
+</tr>
+<tr>
+<td>शुक्र</td>
+<td>♀</td>
+<td>26 ज 2069</td>
+<td>26 ज 2089</td>
+<td>20 वर्ष</td>
+</tr>
+<tr>
+<td>सूर्य</td>
+<td>☉</td>
+<td>26 ज 2089</td>
+<td>26 ज 2095</td>
+<td>6 वर्ष</td>
+</tr>
+<tr>
+<td>चंद्र</td>
+<td>☽</td>
+<td>26 ज 2095</td>
+<td>26 ज 2105</td>
+<td>10 वर्ष</td>
+</tr>
+<tr>
+<td>मंगल</td>
+<td>♂</td>
+<td>26 ज 2105</td>
+<td>26 ज 2112</td>
+<td>7 वर्ष</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="62-20002010-910">6.2 राहु महादशा विश्लेषण (2000–2010, जन्म से आयु 9–10)</h3>
+<p>यह बचपन था। लग्न में <span class='green'>उच्च</span> राहु के साथ: बचपन असामान्य संवेदनशीलता, <span class='green'>उच्च</span> बुद्धिमत्ता और अत्यधिक उत्तेजना से भरे वातावरण की विशेषता वाला था।</p>
+<hr />
+<h3 id="63-20102026-1025">6.3 बृहस्पति महादशा विश्लेषण (2010–2026, आयु 10–25)</h3>
+<p><strong>मिथुन लग्न के लिए बृहस्पति कार्यात्मक अ<span class='green'>शुभ</span> है।</strong> 16-वर्षीय महादशा:
+- शिक्षा का असामान्य मार्गों से विस्तार
+- आध्यात्मिक जागृति
+- करियर का इरादा बनता है लेकिन निष्पादन धीमा
+- विवाह की खिड़की खुलती है किंतु केतु 7वें + बृहस्पति 12वें में जटिलताएँ</p>
+<table>
+<thead>
+<tr>
+<th>अंतर्दशा</th>
+<th>अवधि</th>
+<th>मुख्य प्रभाव</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>बृ-बृ</td>
+<td>26 ज 2010 → 14 म 2012</td>
+<td><span class='green'>उच्च</span> शिक्षा; दार्शनिक जागृति; साढ़े साती शिखर से तनाव</td>
+</tr>
+<tr>
+<td>बृ-श</td>
+<td>14 म 2012 → 26 स 2014</td>
+<td>अनुशासित अध्ययन; करियर की नींव</td>
+</tr>
+<tr>
+<td>बृ-बु</td>
+<td>26 स 2014 → 2 ज 2017</td>
+<td>बौद्धिक प्रतिभा; संचार कौशल शिखर पर</td>
+</tr>
+<tr>
+<td>बृ-के</td>
+<td>2 ज 2017 → 8 दि 2017</td>
+<td>आध्यात्मिक त्वरण; पारंपरिक करियर से अलगाव</td>
+</tr>
+<tr>
+<td>बृ-शु</td>
+<td>8 दि 2017 → 8 अग 2020</td>
+<td><strong>रिश्तों के लिए महत्त्वपूर्ण।</strong> पहला गंभीर प्रेम संबंध।</td>
+</tr>
+<tr>
+<td>बृ-सू</td>
+<td>8 अग 2020 → 26 मई 2021</td>
+<td>आत्मविश्वास; सार्वजनिक पहचान</td>
+</tr>
+<tr>
+<td>बृ-च</td>
+<td>26 मई 2021 → 26 स 2022</td>
+<td>भावनात्मक तीव्रता; रचनात्मक शिखर</td>
+</tr>
+<tr>
+<td>बृ-म</td>
+<td>26 स 2022 → 2 स 2023</td>
+<td><span class='red'>नीच</span>स्थ मंगल अंतर्दशा: संभावित विवाद, दुर्घटना या आर्थिक झटके</td>
+</tr>
+<tr>
+<td>बृ-रा</td>
+<td>2 स 2023 → 26 ज 2026</td>
+<td><strong>वर्तमान:</strong> अचानक अवसर, विदेशी संबंध, अपरंपरागत करियर चाल</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="64-26-2026-26-2045">6.4 शनि महादशा — वर्तमान काल (26 ज 2026 – 26 ज 2045)</h3>
+<p><strong>यह इस जातक के जीवन का परिभाषित 19-वर्षीय अध्याय है।</strong></p>
+<p>यह काल जातक का <strong>नींव-निर्माण युग</strong> होगा। शनि निरंतर प्रयास, धैर्य और धर्म के पालन की माँग करता है।</p>
+<table>
+<thead>
+<tr>
+<th>अंतर्दशा</th>
+<th>अवधि</th>
+<th>चरित्र</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>श-श</strong></td>
+<td><strong>26 ज 2026 → 29 ज 2029</strong></td>
+<td>दोहरा शनि: तीव्र अनुशासन; नींव रखना; गहन आध्यात्मिकता</td>
+</tr>
+<tr>
+<td>श-बु</td>
+<td>29 ज 2029 → 8 अक 2031</td>
+<td>बौद्धिक कार्य + शनि अनुशासन = लेखन, शोध के लिए उत्कृष्ट</td>
+</tr>
+<tr>
+<td>श-के</td>
+<td>8 अक 2031 → 17 नव 2032</td>
+<td>आध्यात्मिक त्वरण; कर्मिक पूर्णता</td>
+</tr>
+<tr>
+<td>श-शु</td>
+<td>17 नव 2032 → 17 ज 2036</td>
+<td><strong>प्रमुख काल: शुक्र अंतर्दशा।</strong> विवाह की प्राथमिक खिड़की; वित्तीय विस्तार</td>
+</tr>
+<tr>
+<td>श-सू</td>
+<td>17 ज 2036 → 29 दि 2036</td>
+<td>सौर पहचान का उभार; सार्वजनिक प्रोफाइल</td>
+</tr>
+<tr>
+<td>श-च</td>
+<td>29 दि 2036 → 29 जु 2038</td>
+<td>भावनात्मक तृप्ति; पारिवारिक विस्तार; धन <span class='green'>योग</span> सक्रिय</td>
+</tr>
+<tr>
+<td>श-म</td>
+<td>29 जु 2038 → 8 स 2039</td>
+<td><span class='red'>नीच</span>स्थ मंगल अंतर्दशा: स्वास्थ्य सावधानी; विवादों से बचें</td>
+</tr>
+<tr>
+<td>श-रा</td>
+<td>8 स 2039 → 14 जु 2042</td>
+<td>विदेशी अवसर; प्रौद्<span class='green'>योग</span>िकी; अपरंपरागत करियर शिखर</td>
+</tr>
+<tr>
+<td>श-बृ</td>
+<td>14 जु 2042 → 26 ज 2045</td>
+<td>शनि MD का समापन: दार्शनिक समेकन; संस्थागत पहचान</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="65-20452062-4461">6.5 बुध महादशा पूर्वावलोकन (2045–2062, आयु 44–61)</h3>
+<p>बुध लग्नेश है — <span class='red'>दग्ध</span> होने के बावजूद, यह 17-वर्षीय काल होगा:
+- <span class='green'>उच्च</span> बौद्धिक गतिविधि
+- संचार नेतृत्व
+- जातक के संचारात्मक/बौद्धिक विरासत का शिखर काल</p>
+<hr />
+<p><a name="section-7"></a></p>
+<h2 id="7-">खंड 7: जीवन भविष्यवाणियाँ — समय-आधारित</h2>
+<p><em>सभी भविष्यवाणियाँ दशा-चालित और भाव विश्लेषण से क्रॉस-वैलिडेटेड हैं।</em></p>
+<hr />
+<h3 id="71">7.1 करियर</h3>
+<ul>
+<li><strong>2000–2026:</strong> शिक्षा और अन्वेषण; अपरंपरागत मार्ग; पहली बड़ी सफलता बृहस्पति-राहु अंतर्दशा में</li>
+<li><strong>वर्तमान (श-श, ज 2026–ज 2029):</strong> नींव-निर्माण का चरण; संरचित भूमिका में कड़ी मेहनत</li>
+<li><strong>श-शु (नव 2032–ज 2036):</strong> पहले प्रमुख जीवन चरण की करियर शिखर खिड़की</li>
+<li><strong>श-रा (स 2039–जु 2042):</strong> दूसरा प्रमुख करियर शिखर</li>
+</ul>
+<p><strong>संकेतित करियर क्षेत्र:</strong>
+- विदेशी/अंतर्राष्ट्रीय संगठन
+- शोध, विश्लेषण, डेटा विज्ञान
+- लेखन, प्रकाशन, संचार प्रौद्<span class='green'>योग</span>िकी
+- दर्शन, कानून, <span class='green'>उच्च</span> शिक्षा, आध्यात्मिकता</p>
+<hr />
+<h3 id="72">7.2 धन</h3>
+<ul>
+<li><strong>प्रारंभिक जीवन (2000–2026):</strong> वित्तीय अस्थिरता; पैसा आता है लेकिन निकल जाता है</li>
+<li><strong>श-शु (2032–2036):</strong> पहला प्रमुख धन-संचय चरण</li>
+<li><strong>श-च (दि 2036–जु 2038):</strong> धन <span class='green'>योग</span> पूरी तरह सक्रिय — संभवतः सबसे समृद्ध 18 महीने</li>
+<li><strong>बुध MD (2045–2062):</strong> निरंतर बौद्धिक धन — प्रकाशन, परामर्श, बौद्धिक संपदा</li>
+</ul>
+<p><strong>वित्तीय प्रबंधन सलाह:</strong> <span class='red'>नीच</span>स्थ मंगल एकादशेश अचेतन खर्च के माध्यम से पैसा लीक करता है। जातक को वित्तीय प्रणाली और स्वचालन बनाना चाहिए।</p>
+<hr />
+<h3 id="73">7.3 विवाह और रिश्ते</h3>
+<p><strong>यह जातक के जीवन का सबसे जटिल क्षेत्र है।</strong></p>
+<ul>
+<li><strong>बृ-शु (दि 2017–अग 2020):</strong> पहला महत्त्वपूर्ण प्रेम संबंध। भावनात्मक रूप से महत्त्वपूर्ण लेकिन अंततः पीड़ादायक।</li>
+<li><strong>बृ-रा (स 2023–ज 2026):</strong> दूसरा संबंध अवसर; राहु इच्छा को बढ़ाता है</li>
+<li><strong>विवाह की प्राथमिक खिड़की:</strong> श-शु (नव 2032–ज 2036)</li>
+<li><strong>साथी प्रोफाइल:</strong> दार्शनिक/आध्यात्मिक रूप से उन्मुख, संभवतः विभिन्न सांस्कृतिक या भौगोलिक पृष्ठभूमि से, विदेशी भूमि या छिपे/आध्यात्मिक ज्ञान से जुड़े</li>
+<li><strong>महत्त्वपूर्ण सावधानी:</strong> श-श काल (2026–2029) में पारिवारिक दबाव में विवाह न करें।</li>
+</ul>
+<hr />
+<h3 id="74">7.4 स्वास्थ्य</h3>
+<p><strong>संवेदनशील क्षेत्र:</strong>
+1. तंत्रिका तंत्र / चिंता: बुध <span class='red'>दग्ध</span> लग्नेश — प्राथमिक स्वास्थ्य जोखिम
+2. श्वसन तंत्र: मिथुन लग्न + लग्न में राहु
+3. पाचन तंत्र: कन्या में <span class='red'>नीच</span> शुक्र + कर्क में मंगल
+4. दंत/मौखिक स्वास्थ्य: 2रे भाव में <span class='red'>नीच</span>स्थ मंगल
+5. जोड़/हड्डियाँ: शनि महादशा — 35 के बाद घुटनों की देखभाल</p>
+<p><strong>स्वास्थ्य समयरेखा:</strong>
+- <strong>2026–2029 (श-श):</strong> सबसे महत्त्वपूर्ण स्वास्थ्य सतर्कता काल
+- <strong>2029–2031 (श-बु):</strong> मानसिक स्वास्थ्य पर ध्यान
+- <strong>2038–2039 (श-म):</strong> तीव्र घटनाओं पर नजर रखें</p>
+<hr />
+<h3 id="75">7.5 आध्यात्मिक विकास</h3>
+<p><strong>आध्यात्मिक पथ संकेतक:</strong>
+- राहु मिथुन लग्न → प्रारंभिक आध्यात्मिक खोज बौद्धिक है: दर्शन, तुलनात्मक धर्म
+- रोहिणी में बृहस्पति → आध्यात्मिक पथ बौद्धिक से भक्ति/भावनात्मक की ओर
+- कृत्तिका में शनि → अंतिम आध्यात्मिक परिपक्वता विवेक, स्पष्टता और अग्नि-शुद्धि के माध्यम से</p>
+<p><strong>आध्यात्मिक चरण:</strong>
+- <strong>2026–2029 (श-श):</strong> "आत्मा की अंधेरी रात" — गहन दीक्षा
+- <strong>2031–2032 (श-के):</strong> शनि MD में सबसे तीव्र आध्यात्मिक काल
+- <strong>2045–2062 (बुध MD):</strong> आध्यात्मिक ज्ञान अध्यापन और व्यवस्थित प्रसारण में</p>
+<hr />
+<p><a name="section-8"></a></p>
+<h2 id="8_1">खंड 8: ग्रहों का पदानुक्रम</h2>
+<hr />
+<h3 id="1_3">स्तर 1 — प्रमुख ग्रह (जीवन चालक)</h3>
+<h4 id="_3">🔴 राहु — प्राथमिक जीवन चालक</h4>
+<p><strong>क्यों प्रमुख:</strong> <span class='green'>उच्च</span> मिथुन लग्न में राहु इस कुंडली में एकल सबसे प्रमुख ग्रहीय शक्ति है। यह जातक की व्यक्तित्व, महत्त्वाकांक्षा और दुनिया के साथ संबंध को आकार देता है।<br />
+<strong>जीवन विषय:</strong> महत्त्वाकांक्षा, बौद्धिक भूख, अपरंपरागत पथ, चुम्बकत्व</p>
+<h4 id="20262045">⚫ शनि — वर्तमान और भविष्य के जीवन चालक (2026–2045)</h4>
+<p><strong>क्यों प्रमुख:</strong> शनि अगले 19 वर्षों के लिए महादशा स्वामी है। सरल विपरीत राज <span class='green'>योग</span> शनि को लचीला ग्रह बनाता है।<br />
+<strong>जीवन विषय:</strong> अनुशासन, धीरज, कठिनाई के माध्यम से ज्ञान, देरी से लेकिन टिकाऊ पुरस्कार</p>
+<h4 id="_4">🟡 बृहस्पति — पिछली प्रमुख अवधि + निरंतर प्रभाव</h4>
+<p><strong>क्यों प्रमुख:</strong> बृहस्पति ने 16 वर्ष (2010–2026) शासन किया।<br />
+<strong>जीवन विषय:</strong> शिक्षा, आध्यात्मिक दर्शन, संबंध निर्माण, करियर अन्वेषण</p>
+<hr />
+<h3 id="2_2">स्तर 2 — सहायक ग्रह</h3>
+<h4 id="_5">🌙 चंद्र — भावनात्मक और बौद्धिक इंजन</h4>
+<p>5वें भाव में तृकोण स्थापना और 2रे स्वामी के रूप में — वास्तविक बुद्धिमत्ता और धन <span class='green'>योग</span>। <strong>मुख्य क्षेत्र:</strong> भावनाएँ, रचनात्मकता, बुद्धि, सामाजिक बंधन</p>
+<h4 id="_6">☉ सूर्य — आत्मविश्वास और संचार शक्ति</h4>
+<p>3रे भाव में <span class='green'>स्वराशि</span> में सूर्य — कुंडली में सबसे मजबूत राशि-स्थापित ग्रह। <strong>मुख्य क्षेत्र:</strong> आत्मविश्वास, संचार, पहचान, साहस</p>
+<hr />
+<h3 id="3">स्तर 3 — समस्याग्रस्त ग्रह</h3>
+<h4 id="_7">♂ मंगल — प्राथमिक <span class='red'>कमजोर</span>ी</h4>
+<p>कर्क में <span class='red'>नीच</span>, कोई <span class='red'>नीच</span>भंग नहीं, 2रे में, चंद्र और 8वें और 9वें पर दृष्टि।<br />
+<strong>समस्या क्षेत्र:</strong> वाणी, पारिवारिक संघर्ष, धन प्रतिधारण, शारीरिक ऊर्जा असंगतता</p>
+<h4 id="_8">☿ बुध — समझौता शक्ति</h4>
+<p>लग्नेश होने के बावजूद <span class='red'>दग्ध</span>।<br />
+<strong>समस्या क्षेत्र:</strong> पहचान स्पष्टता, तंत्रिका तंत्र, असंगत बौद्धिक आउटपुट</p>
+<h4 id="_9">♀ शुक्र — <span class='red'>नीच</span> लेकिन पराजित नहीं</h4>
+<p>कन्या में <span class='red'>नीच</span> + दिग्बली।<br />
+<strong>समस्या क्षेत्र:</strong> प्रारंभिक प्रेम जीवन, बचपन में घर का वातावरण, रचनात्मक आत्मविश्वास</p>
+<hr />
+<h3 id="_10">समग्र ग्रह शक्ति रैंकिंग (सबसे प्रबल से सबसे <span class='red'>कमजोर</span>):</h3>
+<ol>
+<li><strong>सूर्य</strong> (3रे में <span class='green'>स्वराशि</span>) — सबसे मजबूत गरिमा वाला ग्रह</li>
+<li><strong>राहु</strong> (लग्न में <span class='green'>उच्च</span>) — अधिकतम महत्त्वाकांक्षा और ऊर्जा</li>
+<li><strong>शनि</strong> (मित्र राशि, सरल <span class='green'>योग</span>, वर्तमान MD स्वामी)</li>
+<li><strong>चंद्र</strong> (त्रिकोण स्थापना, <span class='yellow'>मध्यम</span> बल)</li>
+<li><strong>बृहस्पति</strong> (सम राशि, 12वाँ भाव — घटी भौतिक शक्ति)</li>
+<li><strong>केतु</strong> (संभवतः 7वें में <span class='green'>उच्च</span>, आध्यात्मिक रूप से शक्तिशाली)</li>
+<li><strong>शुक्र</strong> (<span class='red'>नीच</span> लेकिन दिग्बल — <span class='yellow'>मिश्रित</span>, संदर्भ-निर्भर)</li>
+<li><strong>बुध</strong> (मित्र राशि लेकिन <span class='red'>दग्ध</span> — गंभीर रूप से समझौताग्रस्त)</li>
+<li><strong>मंगल</strong> (<span class='red'>नीच</span>, कोई रद्दीकरण नहीं — सबसे <span class='red'>कमजोर</span> ग्रह)</li>
+</ol>
+<hr />
+<p><a name="section-9"></a></p>
+<h2 id="9_1">खंड 9: उपाय</h2>
+<p><em>उपाय विशेष रूप से इस कुंडली की <span class='red'>कमजोर</span>ियों के लिए निर्धारित किए गए हैं।</em></p>
+<hr />
+<h3 id="91">9.1 बुध उपाय (प्राथमिकता: महत्त्वपूर्ण — <span class='red'>दग्ध</span> लग्नेश)</h3>
+<p><strong>मंत्र:</strong>
+- <strong>बीज मंत्र:</strong> <em>"ॐ बुं बुधाय नमः"</em> — प्रत्येक बुधवार सुबह 8:00 बजे से पहले 108 बार
+- <strong>स्तोत्र:</strong> बुध अष्टकम — बुधवार को पाठ
+- <strong>वैदिक मंत्र:</strong> <em>"ॐ उद्बुध्यस्वाग्ने प्रतिचेतसा"</em> — 108 बार</p>
+<p><strong>व्यवहार उपाय:</strong>
+- नियमित पठन और लेखन की दिनचर्या अपनाएँ
+- दूसरों को नियमित रूप से अवधारणाएँ सिखाएँ
+- अत्यधिक स्क्रीन समय और मल्टीटास्किंग से बचें
+- घर और कार्यस्थल पर हरे पौधे रखें
+- बुधवार को हरी मूँग, हरी सब्जियाँ या किताबें छात्रों को दान करें</p>
+<p><strong>रत्न:</strong>
+- <strong>पन्ना (Emerald)</strong> — न्यूनतम 3.5 कैरेट का प्राकृतिक पन्ना; बुधवार सुबह बुध होरा में दाएँ हाथ की छोटी उँगली में।</p>
+<hr />
+<h3 id="92">9.2 मंगल उपाय (प्राथमिकता: <span class='green'>उच्च</span> — <span class='red'>नीच</span>स्थ षष्ठ/एकादशेश)</h3>
+<p><strong>मंत्र:</strong>
+- <strong>बीज मंत्र:</strong> <em>"ॐ अं अंगारकाय नमः"</em> — प्रत्येक मंगलवार 108 बार
+- <strong>हनुमान चालीसा</strong> — दैनिक पाठ
+- <em>"ॐ नमो भगवते वासुदेवाय"</em> — 108 बार दैनिक</p>
+<p><strong>व्यवहार उपाय:</strong>
+- भावनात्मक रूप से उत्तेजित होने पर बोलने से पहले जानबूझकर रुकें — 3 गहरी साँसें
+- मंगलवार को शारीरिक व्यायाम
+- मंगलवार को लाल मसूर दाल दान करें
+- मंगलवार और शनिवार को झगड़े से बचें</p>
+<p><strong>रत्न:</strong> लाल मूँगा (Moonga) न पहनें। मंगल <span class='red'>नीच</span>स्थ और कार्यात्मक अ<span class='green'>शुभ</span> (षष्ठेश) है।</p>
+<hr />
+<h3 id="93">9.3 शुक्र उपाय (प्राथमिकता: <span class='yellow'>मध्यम</span> — <span class='red'>नीच</span>स्थ पंचमेश)</h3>
+<p><strong>मंत्र:</strong>
+- <strong>बीज मंत्र:</strong> <em>"ॐ शुं शुक्राय नमः"</em> — प्रत्येक शुक्रवार सुबह 108 बार
+- <strong>श्री सूक्तम</strong> — लक्ष्मी संबंधित वैदिक स्तोत्र; शुक्रवार को पाठ
+- शुक्रवार को माँ लक्ष्मी की पूजा</p>
+<p><strong>व्यवहार उपाय:</strong>
+- घर में जानबूझकर सौंदर्य बनाएँ — कलाकृति, फूल, सामंजस्यपूर्ण रंग
+- शुक्रवार को ताजे सफेद फूल या दूध देवी लक्ष्मी को अर्पित करें
+- जरूरतमंद युवतियों या लड़कियों का समर्थन करें
+- अत्यधिक मद्यपान और अशुद्ध संबंधों से बचें</p>
+<p><strong>रत्न:</strong> हीरा (Diamond) न पहनें। शनि-शुक्र अंतर्दशा (2032) के बाद पुनर्मूल्यांकन।</p>
+<hr />
+<h3 id="94-20262045">9.4 शनि उपाय (प्राथमिकता: <span class='green'>उच्च</span> — वर्तमान महादशा 2026–2045)</h3>
+<p><strong>मंत्र:</strong>
+- <strong>बीज मंत्र:</strong> <em>"ॐ शं शनैश्चराय नमः"</em> — प्रत्येक शनिवार सुबह 8:00 बजे से पहले 108 बार
+- <strong>शनि स्तोत्र:</strong> दशाररत्न शनि स्तोत्र — शनिवार को पाठ
+- <strong>महामृत्युंजय मंत्र:</strong> <em>"ॐ त्र्यम्बकम् यजामहे..."</em> — श-श अंतर्दशा के दौरान दैनिक 108 बार</p>
+<p><strong>व्यवहार उपाय:</strong>
+- शनिवार को साप्ताहिक हनुमान चालीसा
+- शनिवार को कौवों को काले तिल खिलाएँ
+- शनिवार को शमी वृक्ष पर तेल चढ़ाएँ
+- गरीबों को काला कपड़ा, काले तिल, लोहे की वस्तुएँ या उड़द दाल दान करें
+- बुजुर्गों और दिव्यांगों की सेवा — शनि का सर्वोच्च उपाय</p>
+<p><strong>नीलम (Blue Sapphire):</strong> 3 दिन का परीक्षण अनिवार्य। किसी भी प्रतिकूल लक्षण पर तुरंत उतार दें।</p>
+<hr />
+<h3 id="95">9.5 पितृ <span class='red'>दोष</span> के उपाय</h3>
+<ul>
+<li>प्रत्येक अमावस्या को पितृ तर्पण</li>
+<li>पितृ पक्ष में 3 पीढ़ियों के पितरों के लिए श्राद्ध पिंड अर्पण</li>
+<li>दैनिक 108 बार गायत्री मंत्र</li>
+<li>पीपल का पेड़ लगाएँ और प्रतिदिन जल दें</li>
+<li>एकादशी को विद्वान ब्राह्मणों को भोजन कराएँ</li>
+</ul>
+<hr />
+<h3 id="96">9.6 जीवन शैली सुधार</h3>
+<ol>
+<li><strong>रात 10:30 बजे तक सोएँ, सुबह 6 बजे उठें</strong> — बुध <span class='red'>दग्ध</span> तंत्रिका तंत्र को नियमित नींद की आवश्यकता है</li>
+<li><strong>दैनिक 30 मिनट व्यायाम</strong> — <span class='red'>नीच</span>स्थ मंगल की ऊर्जा को शारीरिक गतिविधि में लगाएँ</li>
+<li><strong>दैनिक 20 मिनट ध्यान</strong> — 12वें भाव में बृहस्पति-शनि प्राकृतिक ध्यान गहराई देते हैं</li>
+<li><strong>साप्ताहिक डिजिटल डिटॉक्स</strong> — कम से कम 4 घंटे प्रति सप्ताह पूरी तरह ऑफलाइन</li>
+<li><strong>वित्तीय खाता-बही अभ्यास</strong> — साप्ताहिक आय-व्यय ट्रैकिंग</li>
+<li><strong>मंगलवार और शनिवार को पारिवारिक संघर्ष कम करें</strong> — बोलने से पहले 3 साँसें</li>
+</ol>
+<hr />
+<p><a name="section-10"></a></p>
+<h2 id="10_1">खंड 10: अंतिम संश्लेषण</h2>
+<hr />
+<h3 id="101">10.1 मूल व्यक्तित्व ब्लूप्रिंट</h3>
+<p>अभिषेक सिंह, गहराई से, एक <strong>साधक हैं जो उपलब्धिकर्ता के वेश में हैं</strong> — जिनका बाहरी राहु-लग्न का आकर्षण और महत्त्वाकांक्षा त्वचा है, लेकिन आंतरिक बृहस्पति-शनि-12वें का दार्शनिक गहराई कंकाल है।</p>
+<p><strong>व्यक्तित्व तीन परतों में:</strong></p>
+<p><strong>बाहरी परत (दुनिया को दिखाई देती है):</strong><br />
+लग्न में राहु: तीखे, प्रेरित, बौद्धिक रूप से बेचैन, चुम्बकीय। लोग उनकी बुद्धिमत्ता और तीव्रता की ओर आकर्षित होते हैं।</p>
+<p><strong>मध्य परत (घनिष्ठ संबंधों में अनुभव):</strong><br />
+5वें में स्वाती (तुला) चंद्र: गहरे संवेदनशील, सौंदर्यात्मक रूप से जागरूक, भावनात्मक रूप से जटिल। करीबी लोगों के लिए, वे कलात्मक और भावनात्मक रूप से उदार हैं।</p>
+<p><strong>आंतरिक मूल (स्वयं को ज्ञात, अक्सर छिपा):</strong><br />
+12वें में वृषभ में बृहस्पति + शनि: गहन दार्शनिक, आध्यात्मिक रूप से गंभीर। एक आवर्ती आंतरिक प्रश्न जिसे सभी राहु महत्त्वाकांक्षा पूरी तरह शांत नहीं कर सकती: <em>"इस सबका उद्देश्य क्या है?"</em></p>
+<hr />
+<h3 id="102">10.2 जीवन पैटर्न</h3>
+<p><strong>चरण 1 (जन्म–2010, राहु MD):</strong> बेचैन बचपन; <span class='green'>उच्च</span> बौद्धिक उत्तेजना; बुद्धि और संचार के आसपास पहचान निर्माण।</p>
+<p><strong>चरण 2 (2010–2026, बृहस्पति MD):</strong> शैक्षिक और दार्शनिक विस्तार; कई करियर/संबंध प्र<span class='green'>योग</span>; पहली साढ़े साती (2009–2017) किशोरावस्था में पहचान शोधन की कसौटी लगाती है।</p>
+<p><strong>चरण 3 (2026–2045, शनि MD):</strong> परिभाषित अध्याय। कड़ी मेहनत, अनुशासन और करियर, संबंधों और आध्यात्मिक जीवन में धीरे-धीरे लेकिन टिकाऊ स्थापना। <strong>धीमी शुरुआत → लचीला धीरज → सफलता।</strong> 35–40 की आयु तक, जातक कुछ सार्थक और स्थायी स्थापित करेंगे।</p>
+<p><strong>चरण 4 (2045–2062, बुध MD):</strong> बौद्धिक विरासत चरण। बुध कालांतर में एक संचारक, शिक्षक या विचार-नेता बन जाता है।</p>
+<p><strong>समग्र जीवन पैटर्न:</strong> धीमा उदय → प्रबल मध्य → स्थायी विरासत<br />
+यह कुंडली "उल्का" कुंडली नहीं है — यह "पर्वत" कुंडली है।</p>
+<hr />
+<h3 id="103">10.3 प्रमुख शक्तियाँ</h3>
+<ol>
+<li><strong>गहराई के साथ बौद्धिक शक्ति:</strong> सिंह में <span class='green'>स्वराशि</span> सूर्य + 5वें में चंद्र + 12वें में बृहस्पति — सतह की प्रतिभा और दार्शनिक गहराई का दुर्लभ संयोजन</li>
+<li><strong>विपत्ति के माध्यम से लचीलापन:</strong> सरल विपरीत राज <span class='green'>योग</span> — कुंडली की बीमा पॉलिसी</li>
+<li><strong>10वें भाव की करियर शक्ति:</strong> 37 का अष्टकवर्ग स्कोर — ब्रह्मांड का लिखित वादा कि जातक पहुँचेंगे</li>
+<li><strong>आध्यात्मिक बुद्धिमत्ता:</strong> 12वें में बृहस्पति + शनि — वास्तविक ज्ञान, केवल अर्जित ज्ञान नहीं</li>
+<li><strong>संचार एक हथियार के रूप में:</strong> 3रे भाव में <span class='green'>स्वराशि</span> सूर्य + बुध + 32 अष्टकवर्ग</li>
+</ol>
+<hr />
+<h3 id="104">10.4 प्रमुख जोखिम</h3>
+<ol>
+<li><strong>तंत्रिका थकान:</strong> बुध <span class='red'>दग्ध</span> + लग्न में राहु — सबसे <span class='green'>उच्च</span> जोखिम बुध अंतर्दशा काल में</li>
+<li><strong>पारिवारिक और संबंध घर्षण:</strong> 2रे में <span class='red'>नीच</span>स्थ मंगल — जातक का सबसे बड़ा पारस्परिक जोखिम</li>
+<li><strong>विवाह विलंब/कठिनाई:</strong> 7वें में केतु + 12वें में 7वें लग्नेश बृहस्पति — सबसे भावनात्मक रूप से दर्दनाक जोखिम</li>
+<li><strong>गलत करियर क्षेत्र:</strong> पारंपरिक 9-से-5 कॉर्पोरेट करियर में कालानुक्रमिक असंतोष होगा</li>
+<li><strong>अलगाव:</strong> 12वें में बृहस्पति-शनि + 7वें में केतु — सचेत प्रयास से सार्थक सामाजिक संबंध बनाएँ</li>
+</ol>
+<hr />
+<h3 id="105">10.5 जीवन में सर्वाधिक प्रभावशाली ग्रह</h3>
+<table>
+<thead>
+<tr>
+<th>रैंक</th>
+<th>ग्रह</th>
+<th>प्रभाव क्षेत्र</th>
+<th>शिखर काल</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>राहु</strong></td>
+<td>महत्त्वाकांक्षा, व्यक्तित्व, बौद्धिक प्रेरणा</td>
+<td>2000–2010, और लग्न में निवासी के रूप में</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>शनि</strong></td>
+<td>करियर, अनुशासन, आध्यात्मिक विकास</td>
+<td>2026–2045 (वर्तमान महादशा)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>बृहस्पति</strong></td>
+<td>शिक्षा, दर्शन, संबंध, विदेश</td>
+<td>2010–2026</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>चंद्र</strong></td>
+<td>भावनाएँ, रचनात्मकता, बुद्धि, स्वास्थ्य</td>
+<td>श-च 2036–2038 में शिखर</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>सूर्य</strong></td>
+<td>संचार, आत्मविश्वास, पहचान</td>
+<td>3रे भाव की श्रेष्ठता का समर्थन</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="106-">10.6 एक-पंक्ति संश्लेषण</h3>
+<p>यह कुंडली एक <strong>अत्यंत बुद्धिमान, आध्यात्मिक रूप से झुके, और अंततः लचीले मनुष्य</strong> की है जिनकी सतह की बेचैनी (राहु-लग्न) गहरी गहराई (बृहस्पति-शनि-12वाँ) छिपाती है, जिनकी सबसे बड़ी चुनौतियाँ आंतरिक हैं (<span class='red'>दग्ध</span> बुध = पहचान; <span class='red'>नीच</span> मंगल = वाणी), और जिनके सबसे बड़े पुरस्कार — करियर, संबंधों और ज्ञान में — देर से लेकिन सच्चे में असाधारण और स्थायी हैं।</p>
+<p>ब्रह्मांड ने यह कुंडली प्रारंभिक शिखर के लिए नहीं बल्कि <strong>स्थायी उत्कृष्टता</strong> के लिए डिज़ाइन की है — और 10वें भाव का 37 का अष्टकवर्ग स्कोर ब्रह्मांड का लिखित वादा है कि जातक पहुँचेंगे।</p>
+<hr />
+<h2 id="_11">परिशिष्ट: कुंडली डेटा सारांश</h2>
+<table>
+<thead>
+<tr>
+<th>पैरामीटर</th>
+<th>मूल्य</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>नाम</td>
+<td>अभिषेक सिंह</td>
+</tr>
+<tr>
+<td>जन्म तिथि</td>
+<td>3 सितम्बर 2000</td>
+</tr>
+<tr>
+<td>समय</td>
+<td>00:00:18 IST</td>
+</tr>
+<tr>
+<td>स्थान</td>
+<td>अयोध्या, उ.प्र. (26°48′N, 82°12′E)</td>
+</tr>
+<tr>
+<td>लग्न</td>
+<td>मिथुन (01°09′)</td>
+</tr>
+<tr>
+<td>चंद्र राशि</td>
+<td>तुला</td>
+</tr>
+<tr>
+<td>नक्षत्र</td>
+<td>स्वाती पद 2 (राहु-शासित)</td>
+</tr>
+<tr>
+<td>तिथि</td>
+<td>शुक्ल पंचमी</td>
+</tr>
+<tr>
+<td>अयनांश</td>
+<td>लाहिरी 23°51′57″</td>
+</tr>
+<tr>
+<td>वर्ण</td>
+<td>शूद्र</td>
+</tr>
+<tr>
+<td>गण</td>
+<td>देव</td>
+</tr>
+<tr>
+<td>नाड़ी</td>
+<td>अंत्य</td>
+</tr>
+<tr>
+<td>पाया</td>
+<td>रजत</td>
+</tr>
+<tr>
+<td>वर्तमान महादशा</td>
+<td>शनि (ज 2026 – ज 2045)</td>
+</tr>
+<tr>
+<td>वर्तमान अंतर्दशा</td>
+<td>शनि-शनि (ज 2026 – ज 2029)</td>
+</tr>
+<tr>
+<td>अगली साढ़े साती</td>
+<td>अक्टूबर 2038 (उदय)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>यह रिपोर्ट kundli_final_structured.json (प्राथमिक कुंडली डेटा) और enriched_chunks.json (11 शास्त्रीय वैदिक ज्योतिष ग्रंथों से ज्ञान आधार) का उप<span class='green'>योग</span> करके बनाई गई थी। सभी व्याख्याएँ विशिष्ट शास्त्रीय सिद्धांतों से ली गई हैं। रिपोर्ट तिथि: 18 अप्रैल 2026।</em></p>
+<hr />
+<p><strong>रिपोर्ट समाप्त</strong></p>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+
+<script>
+  var currentLang = 'en';
+
+  function toggleLang() {
+    var enContent  = document.getElementById('contentEn');
+    var hiContent  = document.getElementById('contentHi');
+    var tocEn      = document.getElementById('tocEn');
+    var tocHi      = document.getElementById('tocHi');
+    var btnLabel   = document.getElementById('btnLabel');
+    var btnArrow   = document.getElementById('btnArrow');
+
+    if (currentLang === 'en') {
+      // Switch to Hindi
+      enContent.classList.add('hidden');
+      hiContent.classList.remove('hidden');
+      tocEn.style.display = 'none';
+      tocHi.style.display = '';
+      btnLabel.textContent = 'Read in English';
+      btnArrow.style.transform = 'rotate(180deg)';
+      document.documentElement.lang = 'hi';
+      currentLang = 'hi';
+    } else {
+      // Switch to English
+      hiContent.classList.add('hidden');
+      enContent.classList.remove('hidden');
+      tocHi.style.display = 'none';
+      tocEn.style.display = '';
+      btnLabel.textContent = 'हिंदी में पढ़ें';
+      btnArrow.style.transform = 'rotate(0deg)';
+      document.documentElement.lang = 'en';
+      currentLang = 'en';
+    }
+
+    // Scroll to top of card on switch
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
