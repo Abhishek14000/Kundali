@@ -33,14 +33,29 @@
 
   /* ─── Reset ─── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; font-size: 17px; }
+  html { scroll-behavior: smooth; font-size: 18px; }
 
   /* ─── Base ─── */
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
     background: var(--deep);
     color: var(--text);
-    line-height: 1.95;
+    line-height: 2.05;
+  }
+
+  /* ─── Force gold links — override browser defaults ─── */
+  a,
+  a:visited,
+  a:active {
+    color: #c8a86e !important;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #ffd966 !important;
+    text-decoration: underline;
+  }
+  .sidebar .toc a {
+    color: #c8a86e !important;
   }
 
   /* ─── Hindi font ─── */
@@ -125,8 +140,8 @@
     color: #120f04;
     border: none;
     border-radius: 30px;
-    padding: 12px 24px;
-    font-size: 0.95rem;
+    padding: 10px 18px;
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     cursor: pointer;
@@ -345,19 +360,16 @@
     h2 { margin-top: 38px; }
   }
   @media (max-width: 768px) {
-    html { font-size: 18px; }
-    body { line-height: 2.05; }
-    .main  { padding: 20px 14px 60px; }
-    .card  { padding: 20px 14px; }
+    html { font-size: 19px; }
+    body { line-height: 2.15; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.15rem; }
+    .layout { display: block; }
+    .sidebar { display: none; }
+    .main  { max-width: 100%; padding: 16px 12px 50px; }
+    .card  { padding: 16px 12px; }
     table  { font-size: 0.95rem; }
-    .sidebar { font-size: 0.9rem; }
-  }
-  @media (max-width: 600px) {
-    .main  { padding: 18px 10px 50px; }
-    .card  { padding: 18px 12px; }
-    h1  { font-size: 1.4rem; }
-    h2  { font-size: 1.2rem; }
-    .dasha-grid { grid-template-columns: 1fr; }
   }
 
   /* ─── Print ─── */
